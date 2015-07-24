@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="baidu.giftshop.dao.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="baidu.giftshop.model.Orders" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="good_detail_id" property="goodDetailId" jdbcType="INTEGER" />
+    <result column="addressid" property="addressid" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orderid, good_detail_id, addressid, num, state, data
+  </sql>
+  
+   <select id="checkByOrderid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+       <include refid="Base_Column_List" />
+       from orders
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+  <resultMap id="MybaseResultMap" type="baidu.giftshop.util.OrderListB" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_detail_id" property="goods_detail_id" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="retail_price" property="retail_price" jdbcType="DECIMAL" />
+    <result column="cost_price" property="cost_price" jdbcType="DECIMAL" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="thumb_path" property="thum_path" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="addressid" property="addressid" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="queryOrder" parameterType="java.lang.Integer" resultMap="MybaseResultMap">
+   select o.good_detail_id,o.num,gd.name,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
+      from user_order uo,orders o,goods_detail gd,goods_picture gp 
+      where uo.userid=#{param1,jdbcType=INTEGER} and uo.orderid = o.orderid and o.good_detail_id= gd.id 
+   and gd.goods_id=gp.goods_id and uo.orderid=#{param2,jdbcType=INTEGER}
+  </select>
+  <!-- =================================================================== -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="baidu.giftshop.model.Orders" >
+    insert into orders (id, orderid, good_detail_id, 
+      addressid, num, state, 
+      data)
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{goodDetailId,jdbcType=INTEGER}, 
+      #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{data,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="baidu.giftshop.model.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="goodDetailId != null" >
+        good_detail_id,
+      </if>
+      <if test="addressid != null" >
+        addressid,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="goodDetailId != null" >
+        #{goodDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="addressid != null" >
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="baidu.giftshop.model.Orders" >
+    update orders
+    <set >
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="goodDetailId != null" >
+        good_detail_id = #{goodDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="addressid != null" >
+        addressid = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="baidu.giftshop.model.Orders" >
+    update orders
+    set orderid = #{orderid,jdbcType=INTEGER},
+      good_detail_id = #{goodDetailId,jdbcType=INTEGER},
+      addressid = #{addressid,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      state = #{state,jdbcType=VARCHAR},
+      data = #{data,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

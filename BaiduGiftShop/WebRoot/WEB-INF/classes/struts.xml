@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="struts" extends="struts-default" namespace="/">
+	    <!-- 注册监听事件 -->
+		<action name="register" class="baidu.giftshop.action.UserAction" method="register">
+			<result name="success">./login.jsp</result>
+			<result name="error">./sign-up.html</result>
+		</action>
+		<!-- 登陆监听事件 -->
+		<action name="login" class="baidu.giftshop.action.UserAction" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="subbranch">/Subbranch/Index.jsp</result>
+			<result name="error">/403.html</result>
+		</action>
+		<action name="logout" class="baidu.giftshop.action.UserAction" method="logout">
+		</action>
+		<!-- 修改密码 -->
+		<action name="changPassword" class="baidu.giftshop.action.UserAction" method="changPassword">
+		       <result name="success">/index.jsp</result>  
+		</action>
+		<action name="getAllUser" class="baidu.giftshop.action.UserAction" method="getAllUser">
+		       <result name="success">/users.jsp</result>
+		</action>
+		<action name="deleteUser" class="baidu.giftshop.action.UserAction" method="deleteUser">
+		       
+		</action>
+		
+		<!-- 在添加分类页面中显示当前的code值 -->
+		<action name="goods" class="baidu.giftshop.action.ClassifyAction" method="goods">
+		       <result name="success">/briefGoods/addClassify.jsp</result>
+		</action>
+		<!-- 增加分类 -->
+		<action name="addClassify" class="baidu.giftshop.action.ClassifyAction" method="addClassify">
+		       <result name="success" type="redirect">./listallBrief.action</result>
+		       <result name="error">/index.jsp</result>
+		</action>
+		<!-- 显示所有的分类信息 -->
+		<action name="listallBrief" class="baidu.giftshop.action.ClassifyAction" method="listAllBrief">
+		       <result name="success">/briefGoods/listAllClassify.jsp</result>
+		</action>
+		<!-- 编辑修改分类信息 -->
+		<action name="EditClassify" class="baidu.giftshop.action.ClassifyAction" method="Editclassify">
+		       <result name="success">/briefGoods/EditClassify.jsp</result>
+		</action>
+		<!-- 跳转到修改分类信息 -->
+		<action name="modifyClassify" class="baidu.giftshop.action.ClassifyAction" method="Modify">
+		       <result name="success" type="redirect">/listallBrief.action</result>
+		</action>
+		
+		<action name="upload" class="baidu.giftshop.frk.UploadDAO" method="upload">
+		        <result name="success">/success.jsp</result> 
+		</action>
+		
+		
+		<!-- 添加概要商品信息 -->
+		<action name="addGoods" class="baidu.giftshop.action.BriefGoodsAction" method="addBriefGoods">
+		        <result name="success">/success.jsp</result> 
+		        <result name="error">/503.html</result>
+		</action>
+		<!-- 查询所有的概要商品信息 -->
+		<action name="queryAllBriefGoods" class="baidu.giftshop.action.BriefGoodsAction" method="queryAllBrief">
+		        <result name="success">/briefGoods/listAllBriefGoods.jsp</result>
+		</action>
+		
+		<!-- 添加组图片 -->
+		<action name="addpicgroup" class="baidu.giftshop.action.PictureGroupAction" method="AddPicGroup">
+		        <result name="success">/Picture/ShowGroupId.jsp</result> 
+		        <result name="error">/Picture/AddError.jsp</result>
+		</action>
+		
+		<!-- 增加明细商品信息 -->
+		<action name="addDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="addDeatilGoods">
+		        <result name="success" type="redirect">./listallDetailGoods.action</result>
+		</action>
+		<!-- 列出所有明细商品的信息 -->
+		<action name="listallDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="listallDetailGoods">
+		        <result name="success">/DetailGoods/queryDetailGoods.jsp</result>
+		</action>
+		<!-- 根据商品的条形码或goodsdetailId,查询明细商品的信息 -->
+		<action name="queryDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="queryDetailGoods">
+		       <result name="success">/DetailGoods/listDetailGoods.jsp</result>
+		</action>
+		<!-- 修改明细商品的信息 -->
+		<action name="ModifyDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="ModifyDetailGoods">
+		       <result name="success">/DetailGoods/EditDetailGoods.jsp</result>
+		       <result name="error">/500.html</result>
+		</action>
+		<!-- 删除某个明细商品的信息 -->
+		<!-- <action name="deleteDetail" class="baidu.giftshop.action.DetailGoodsAction" method="deleteDetail">
+		       <result name="success" type="redirect">./listallDetailGoods.action</result>
+		</action> -->
+		
+		<!-- 删除某一组图片 -->
+		<action name="deleteGroup" class="baidu.giftshop.action.PictureGroupAction" method="deletegroup">
+		       <result name="success">/DetailGoods/result.jsp</result>
+		</action>
+		<!-- 根据group(组)的ID得到压缩图的路径 -->
+		<action name="queryGroup" class="baidu.giftshop.action.PictureGroupAction" method="querythumbPathById">
+		       <result name="success">/Picture/ShowPic.jsp</result>
+		</action>
+		<!-- 列出所有的分类信息 -->
+		<action name="subbranchClassify" class="baidu.giftshop.action.ClassifyAction" method="ListClassify">
+		       <result name="success">/Subbranch/ChoseClassify.jsp</result>
+		</action>
+		<!-- 分店店员绑定分类信息 -->
+		<action name="subclassify" class="baidu.giftshop.action.ClassifyAction" method="subClassify">
+		       <result name="success">/Subbranch/subClassifySuc.jsp</result>
+		</action>
+		<!-- <action name="subBriefGoods" class="baidu.giftshop.action.BriefGoodsAction" method="subBriefGoods">
+		       <result name="success">/Subbranch/subBriefSuc.jsp</result>
+		</action> -->
+		<action name="listAllOrders" class="baidu.giftshop.action.OrderAction" method="listAllOrder">
+		       <result name="success">/Subbranch/listOrder.jsp</result>
+		</action>
+		<action name="Setlogistics" class="baidu.giftshop.action.OrderAction" method="Setlogistics">
+		       <result name="success" type="redirect">./listAllOrders.action</result>
+		</action>
+		
+	</package>
+
+	<package name="json" extends="json-default">
+	
+	    <!-- 查询数据中拥有的分店信息，并以json的形式返回 -->
+		<action name="subbranch" class="baidu.giftshop.action.SubbranchAction" method="querySubbranch">
+		</action>
+		<!-- 查询数据中所有分类信息，并以json的形式返回 -->
+		<action name="allclassify" class="baidu.giftshop.action.SubbranchAction" method="allClassify">
+		</action>
+		<!-- 列出一共有的图片组ID -->
+		<action name="listgroupId" class="baidu.giftshop.action.PictureGroupAction" method="listgroupId">
+		</action>
+		<!-- 根据分类的ID得到该类商品所有的概要商品信息 -->
+		<action name="querygoodsById" class="baidu.giftshop.action.BriefGoodsAction" method="querygoodsById">
+		</action>
+		<!-- 在商品注册的时候运用ajax的技术得到唯一的用户名 -->
+		<action name="valuationUsername" class="baidu.giftshop.action.UserAction" method="valuationUsername">
+		</action>
+		<!-- 在商品注册的时候运用ajax的技术得到唯一的邮箱 -->		
+		<action name="valuationEmail" class="baidu.giftshop.action.UserAction" method="valuationEmail">
+		</action>
+		<!-- 根据subbranch_id得到classify_id -->
+		<action name="checkboxclassify" class="baidu.giftshop.action.ClassifyAction" method="checkboxclassify">
+		</action>
+		<!-- 根据分店店员所在的分店得到这个分店所有的分类 -->
+		<action name="querySubClas" class="baidu.giftshop.action.ClassifyAction" method="querySubClas">
+		</action>
+		<!-- 根据surbbranch_id得到goods_id的List -->
+		<action name="querySubBrief" class="baidu.giftshop.action.BriefGoodsAction" method="querySubBrief">
+		</action>
+		<action name="deleteDetail" class="baidu.giftshop.action.DetailGoodsAction" method="deleteDetail">
+		       <!-- <result name="success" type="redirect">./listallDetailGoods.action</result> -->
+		</action>
+		<action name="listDetailByGid" class="baidu.giftshop.action.DetailGoodsAction" method="listDetailByGid">
+		</action>
+		<action name="subDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="subDetailGoods">
+		</action>
+		<action name="querySubDetail" class="baidu.giftshop.action.DetailGoodsAction" method="querySubDetail">
+		</action>
+		<action name="deleteSubDetGoods" class="baidu.giftshop.action.DetailGoodsAction" method="deleteSubDetGoods">
+		</action>
+		<action name="subBriefGoods" class="baidu.giftshop.action.BriefGoodsAction" method="subBriefGoods">
+		</action>
+		<action name="deletesubBriefGoods" class="baidu.giftshop.action.BriefGoodsAction" method="deletesubBriefGoods">
+		</action>
+		<!-- 下架概要商品 -->
+		<action name="DeleteBrief" class="baidu.giftshop.action.BriefGoodsAction" method="deleteBrief">
+		</action>
+		<action name="querySubgoods" class="baidu.giftshop.action.BriefGoodsAction" method="querySubgoods">
+		</action>
+		<action name="checkGoodsCode" class="baidu.giftshop.action.DetailGoodsAction" method="checkGoodsCode">
+		</action>
+		<!-- 删除分类 -->
+		<action name="DeleteClassify" class="baidu.giftshop.action.ClassifyAction" method="Delete">
+		</action>
+	</package>
+</struts>

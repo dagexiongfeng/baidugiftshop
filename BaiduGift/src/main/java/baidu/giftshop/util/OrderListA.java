@@ -1,0 +1,59 @@
+package baidu.giftshop.util;
+
+import java.util.List;
+
+public class OrderListA {
+	
+	private Integer orderid;
+	
+	private String state;
+	
+	private Integer addressid;
+	
+	private List<OrderListB> orderitem;
+
+	public Integer getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(Integer orderid) {
+		this.orderid = orderid;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Integer getAddressid() {
+		return addressid;
+	}
+
+	public void setAddressid(Integer addressid) {
+		this.addressid = addressid;
+	}
+
+	public List<OrderListB> getOrderitem() {
+		return orderitem;
+	}
+
+	public void setOrderitem(List<OrderListB> orderitem) {
+		this.orderitem = orderitem;
+	}
+
+	public OrderListA(Integer orderid, String state, Integer addressid,
+			List<OrderListB> orderitem) {
+		super();
+		this.orderid = orderid;
+		this.state = state;
+		this.addressid = addressid;
+		this.orderitem = orderitem;
+	}
+
+	public OrderListA() {
+		super();
+	}
+}

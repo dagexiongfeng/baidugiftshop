@@ -1,0 +1,9 @@
+
+.checkbox {
+	width: 20px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	display: block;
+	clear: left;
+	float: left;
+}

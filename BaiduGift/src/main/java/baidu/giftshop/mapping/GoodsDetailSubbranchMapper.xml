@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="baidu.giftshop.dao.GoodsDetailSubbranchMapper" >
+  <resultMap id="BaseResultMap" type="baidu.giftshop.model.GoodsDetailSubbranch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_detail_id" property="goodsDetailId" jdbcType="INTEGER" />
+    <result column="subbranch_id" property="subbranchId" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_detail_id, subbranch_id, amount
+  </sql>
+  <select id="queryAmount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    SELECT amount 
+    FROM goods_detail_subbranch gds 
+    where gds.subbranch_id=#{param2,jdbcType=INTEGER} and gds.goods_detail_id=#{param1,jdbcType=INTEGER}
+  </select>
+  <select id="updateAmount" parameterType="java.lang.Integer">
+    update goods_detail_subbranch
+    set amount = amount-#{param3,jdbcType=INTEGER}
+    where goods_detail_id=#{param1,jdbcType=INTEGER} and subbranch_id=#{param2,jdbcType=INTEGER}
+  </select>
+  
+  <!-- ================================================================== -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_detail_subbranch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_detail_subbranch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="baidu.giftshop.model.GoodsDetailSubbranch" >
+    insert into goods_detail_subbranch (id, goods_detail_id, subbranch_id, 
+      amount)
+    values (#{id,jdbcType=INTEGER}, #{goodsDetailId,jdbcType=INTEGER}, #{subbranchId,jdbcType=INTEGER}, 
+      #{amount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="baidu.giftshop.model.GoodsDetailSubbranch" >
+    insert into goods_detail_subbranch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsDetailId != null" >
+        goods_detail_id,
+      </if>
+      <if test="subbranchId != null" >
+        subbranch_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDetailId != null" >
+        #{goodsDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="subbranchId != null" >
+        #{subbranchId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="baidu.giftshop.model.GoodsDetailSubbranch" >
+    update goods_detail_subbranch
+    <set >
+      <if test="goodsDetailId != null" >
+        goods_detail_id = #{goodsDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="subbranchId != null" >
+        subbranch_id = #{subbranchId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="baidu.giftshop.model.GoodsDetailSubbranch" >
+    update goods_detail_subbranch
+    set goods_detail_id = #{goodsDetailId,jdbcType=INTEGER},
+      subbranch_id = #{subbranchId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

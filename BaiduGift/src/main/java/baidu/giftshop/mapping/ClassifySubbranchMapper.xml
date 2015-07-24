@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="baidu.giftshop.dao.ClassifySubbranchMapper" >
+  <resultMap id="BaseResultMap" type="baidu.giftshop.model.ClassifySubbranch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="classify_id" property="classifyId" jdbcType="INTEGER" />
+    <result column="subbranch_id" property="subbranchId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, classify_id, subbranch_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classify_subbranch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classify_subbranch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="baidu.giftshop.model.ClassifySubbranch" >
+    insert into classify_subbranch (id, classify_id, subbranch_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{classifyId,jdbcType=INTEGER}, #{subbranchId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="baidu.giftshop.model.ClassifySubbranch" >
+    insert into classify_subbranch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="classifyId != null" >
+        classify_id,
+      </if>
+      <if test="subbranchId != null" >
+        subbranch_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="classifyId != null" >
+        #{classifyId,jdbcType=INTEGER},
+      </if>
+      <if test="subbranchId != null" >
+        #{subbranchId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="baidu.giftshop.model.ClassifySubbranch" >
+    update classify_subbranch
+    <set >
+      <if test="classifyId != null" >
+        classify_id = #{classifyId,jdbcType=INTEGER},
+      </if>
+      <if test="subbranchId != null" >
+        subbranch_id = #{subbranchId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="baidu.giftshop.model.ClassifySubbranch" >
+    update classify_subbranch
+    set classify_id = #{classifyId,jdbcType=INTEGER},
+      subbranch_id = #{subbranchId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

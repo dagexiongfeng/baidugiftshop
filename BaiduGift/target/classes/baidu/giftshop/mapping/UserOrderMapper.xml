@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="baidu.giftshop.dao.UserOrderMapper" >
+  <resultMap id="BaseResultMap" type="baidu.giftshop.model.UserOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="paytime" property="paytime" jdbcType="VARCHAR" />
+    <result column="shipnum" property="shipnum" jdbcType="VARCHAR" />
+    <result column="fedex" property="fedex" jdbcType="VARCHAR" />
+    <result column="deliverytime" property="deliverytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, orderid, paytime, shipnum, fedex, deliverytime
+  </sql>
+  <select id="queryByOrderid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+      <include refid="Base_Column_List" />
+      from user_order
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+  <select id="queryOrderid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+     select distinct orderid
+     from user_order
+     where user_order.userid=#{userid,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="baidu.giftshop.model.UserOrder" >
+    insert into user_order (id, userid, orderid, 
+      paytime, shipnum, fedex, 
+      deliverytime)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, 
+      #{paytime,jdbcType=VARCHAR}, #{shipnum,jdbcType=VARCHAR}, #{fedex,jdbcType=VARCHAR}, 
+      #{deliverytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="baidu.giftshop.model.UserOrder" >
+    insert into user_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="paytime != null" >
+        paytime,
+      </if>
+      <if test="shipnum != null" >
+        shipnum,
+      </if>
+      <if test="fedex != null" >
+        fedex,
+      </if>
+      <if test="deliverytime != null" >
+        deliverytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="paytime != null" >
+        #{paytime,jdbcType=VARCHAR},
+      </if>
+      <if test="shipnum != null" >
+        #{shipnum,jdbcType=VARCHAR},
+      </if>
+      <if test="fedex != null" >
+        #{fedex,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverytime != null" >
+        #{deliverytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="baidu.giftshop.model.UserOrder" >
+    update user_order
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="paytime != null" >
+        paytime = #{paytime,jdbcType=VARCHAR},
+      </if>
+      <if test="shipnum != null" >
+        shipnum = #{shipnum,jdbcType=VARCHAR},
+      </if>
+      <if test="fedex != null" >
+        fedex = #{fedex,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverytime != null" >
+        deliverytime = #{deliverytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="baidu.giftshop.model.UserOrder" >
+    update user_order
+    set userid = #{userid,jdbcType=INTEGER},
+      orderid = #{orderid,jdbcType=INTEGER},
+      paytime = #{paytime,jdbcType=VARCHAR},
+      shipnum = #{shipnum,jdbcType=VARCHAR},
+      fedex = #{fedex,jdbcType=VARCHAR},
+      deliverytime = #{deliverytime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
