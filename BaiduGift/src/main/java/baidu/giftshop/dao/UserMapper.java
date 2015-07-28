@@ -19,4 +19,16 @@ public interface UserMapper {
     
     List<User> selectByUname(String username);    
     int selectByUid(Integer user_id);
+	/**
+	 * 获取用户信息
+	 * @param username
+	 * @return
+	 */
+	User getUser(String username);
+	/**
+	 * 保存用户信息
+	 * @param user1
+	 * @return
+	 */
+	void saveUser(User user1);
 }

@@ -3,11 +3,13 @@ package baidu.giftshop.model;
 public class User {
     private Integer id;
 
-    private Integer userId;
+    private String userId;
 
     private String username;
 
     private String password;
+    
+    private String type;//用户类型
 
     public Integer getId() {
         return id;
@@ -17,11 +19,11 @@ public class User {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -40,4 +42,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

@@ -41,12 +41,13 @@ public class UserService implements IUserService {
 		List<User> list = userDao.selectByUname(username);
 		if(list.size()>0){
 			User user = list.get(0);
-			Integer user_id = user.getUserId();
-			return user_id;
+	//		Integer user_id = user.getUserId();
+	//		return user_id;
+			return null;
 		}else{
 			Integer userid = setuserid();
 			User user = new User();
-			user.setUserId(userid);
+//			user.setUserId(userid);
 			user.setUsername(username);
 			userDao.insert(user);
 			return userid;
@@ -66,5 +67,16 @@ public class UserService implements IUserService {
 			setuserid();
 		}
 		return userid;
+	}
+
+	@Override
+	public User getUser(String username) {
+	  return userDao.getUser(username);
+		
+	}
+
+	@Override
+	public void saveUser(User user1) {
+		userDao.saveUser(user1);
 	}
 }

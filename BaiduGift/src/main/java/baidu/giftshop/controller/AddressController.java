@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,7 @@ import baidu.giftshop.service.IUserService;
 
 @Controller
 public class AddressController {
-	
+	public static final Logger logger=LoggerFactory.getLogger(AddressController.class);
 	@Autowired
 	@Qualifier("addressService")
 	private IAddressService addressService;
@@ -37,8 +39,8 @@ public class AddressController {
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/AddAddress")
 	public void AddAddress(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		
-		Integer userid = userService.getUid(request.getParameter("userid"));
+	//	Integer userid = userService.getUid(request.getParameter("userid"));
+		Integer userid =Integer.parseInt(request.getParameter("userid")) ;
 		String addressee = request.getParameter("addressee");
 		addressee = new String(addressee.getBytes("iso8859-1"),"utf-8");
 		
@@ -49,7 +51,6 @@ public class AddressController {
 		
 		Base base = new Base();
 		base = addressService.addAddress(userid, addressee, phone, address, zipCode);
-	   
 		response.setContentType("text/javascript;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		   try {

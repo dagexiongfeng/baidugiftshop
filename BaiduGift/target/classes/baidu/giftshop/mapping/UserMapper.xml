@@ -3,14 +3,31 @@
 <mapper namespace="baidu.giftshop.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="baidu.giftshop.model.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
-    id, user_id, username, password
+    id, user_id, username, password,type
   </sql>
   
+
+  <select id="getUser" resultMap="BaseResultMap" >
+  	select  *
+  	from user
+    where username= #{username}
+  </select>
+  
+  
+   <insert id="saveUser"  >
+    insert into user (id, user_id, username, 
+      password)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR})
+  </insert>
+
   <select id="selectByUid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
    select id
      from user
