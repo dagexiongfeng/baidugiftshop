@@ -20,6 +20,7 @@ import baidu.giftshop.service.IAddressService;
 import baidu.giftshop.service.IUserService;
 
 @Controller
+@RequestMapping("/address")
 public class AddressController {
 	public static final Logger logger=LoggerFactory.getLogger(AddressController.class);
 	@Autowired
@@ -37,18 +38,17 @@ public class AddressController {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("rawtypes")
-	@RequestMapping("/AddAddress")
+	@RequestMapping("/add")
 	public void AddAddress(HttpServletRequest request,HttpServletResponse response) throws IOException{
 	//	Integer userid = userService.getUid(request.getParameter("userid"));
-		Integer userid =Integer.parseInt(request.getParameter("userid")) ;
+		request.setCharacterEncoding("UTF-8");
+		String userid =request.getParameter("userid") ;
 		String addressee = request.getParameter("addressee");
-		addressee = new String(addressee.getBytes("iso8859-1"),"utf-8");
-		
+	//	addressee = new String(addressee.getBytes("iso8859-1"),"utf-8");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
-		address = new String(address.getBytes("iso8859-1"),"utf-8");
+	//	address = new String(address.getBytes("iso8859-1"),"utf-8");
 		String zipCode = request.getParameter("zipCode");
-		
 		Base base = new Base();
 		base = addressService.addAddress(userid, addressee, phone, address, zipCode);
 		response.setContentType("text/javascript;charset=UTF-8");
@@ -70,8 +70,8 @@ public class AddressController {
 	public void QueryAddress(@RequestParam(value="userid",required=false) String userid,
 			HttpServletResponse response){
 	    Base base = new Base();
-	    Integer uid = userService.getUid(userid);
-		base = addressService.queryAllAddress(uid);
+	//    Integer uid = userService.getUid(userid);
+		base = addressService.queryAllAddress(userid);
 		response.setContentType("text/javascript;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		   try {
@@ -100,6 +100,17 @@ public class AddressController {
 		 }catch (IOException e) {
 			e.printStackTrace();
 	     }
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/QueryAddressById")
+	public void QueryAddressById(@RequestParam(value="addressid",required=false) Integer addressid,
+			HttpServletResponse response) throws Exception{
+		Base base = new Base();
+		base = addressService.QueryAddressById(addressid);
+		response.setContentType("text/javascript;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(JSON.toJSONString(base));
 	}
 	
 }

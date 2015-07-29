@@ -3,7 +3,7 @@
 <mapper namespace="baidu.giftshop.dao.AddressMapper" >
   <resultMap id="BaseResultMap" type="baidu.giftshop.model.Address" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
     <result column="addressee" property="addressee" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
@@ -13,16 +13,22 @@
   <sql id="Base_Column_List" >
     id, userid, addressee, phone, address, zip_code,state
   </sql>
-  <select id="queryAddressById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="queryAddressById" resultMap="BaseResultMap">
     select
       <include refid="Base_Column_List" />
     from address
-    where address.userid = #{userid,jdbcType=INTEGER} and address.state=1
+    where userid = #{userid} and state=1
   </select>
   <select id="updateAddressState" resultMap="BaseResultMap" parameterType="java.lang.Integer">
    update address
    set address.state=0
    where address.id=#{id,jdbcType=INTEGER}
+  </select>
+   <select id="QueryAddressById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   select 
+     <include refid="Base_Column_List" />
+   from address
+   where address.id=#{addressid,jdbcType=INTEGER}
   </select>
   <!-- ================================================================== -->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -35,12 +41,13 @@
     delete from address
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <!--增加用户地址 -->
   <insert id="insert" parameterType="baidu.giftshop.model.Address" >
     insert into address (id, userid, addressee, 
-      phone, address, zip_code
+      phone, address, zip_code,state
       )
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{addressee,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{userid}, #{addressee,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR},#{state,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="baidu.giftshop.model.Address" >

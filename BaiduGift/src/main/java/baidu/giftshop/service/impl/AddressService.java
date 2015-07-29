@@ -20,7 +20,7 @@ public class AddressService implements IAddressService {
 	@Transactional
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Base addAddress(Integer userid, String addressee, String phone,
+	public Base addAddress(String userid, String addressee, String phone,
 			String address, String zipCode) {
 		Address add = new Address();
 		Base base = new Base();
@@ -29,6 +29,7 @@ public class AddressService implements IAddressService {
 		add.setPhone(phone);
 		add.setAddress(address);
 		add.setZipCode(zipCode);
+		add.setState(1);
 		addressDao.insert(add);
 		base.setContent("Ok");
 		base.setCode(101);
@@ -38,7 +39,7 @@ public class AddressService implements IAddressService {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Base queryAllAddress(Integer userid) {
+	public Base queryAllAddress(String userid) {
 		List<Address> list = addressDao.queryAddressById(userid);
 		A a = new A();
 		Base base = new Base();
@@ -59,5 +60,18 @@ public class AddressService implements IAddressService {
 		base.setCode(101);
 		base.setResult("OK");
 		return base;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public Base QueryAddressById(Integer addressid) {
+		
+		Address address = addressDao.QueryAddressById(addressid);
+		Base base = new Base();
+		base.setContent(address);
+		base.setCode(101);
+		base.setResult("OK");
+		return base;
+		
 	}
 }
