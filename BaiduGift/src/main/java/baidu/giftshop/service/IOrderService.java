@@ -5,7 +5,7 @@ import baidu.giftshop.model.Base;
 public interface IOrderService {
 	
 	
-	Base addOrder(Integer user_id,String subbranch_id,String goods_detail_id,String num,String state,Integer addressid);
+	Base addOrder(String user_id,String subbranch_id,String goods_detail_id,String num,String state,Integer addressid);
 
-	Base queryOrder(Integer user_id,Integer startIndex,Integer requestAmount);
+	Base queryOrder(String user_id,Integer startIndex,Integer requestAmount);
 }

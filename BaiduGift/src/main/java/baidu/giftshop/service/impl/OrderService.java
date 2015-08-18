@@ -1,8 +1,11 @@
 package baidu.giftshop.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +40,7 @@ public class OrderService implements IOrderService {
 	@Transactional
 	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
 	@Override
-	public Base addOrder(Integer user_id, String subbranch_id,
+	public Base addOrder(String user_id, String subbranch_id,
 			String goods_detail_id, String num, String state, Integer addressid){
 		
 		String[] detailId = goods_detail_id.split(";");
@@ -48,16 +51,16 @@ public class OrderService implements IOrderService {
 			String[] number = Number[i].split(",");
 			String[] SubbranchId = subbranchId[i].split(",");
 			
-			Integer orderid = this.setorderid();
+			String orderid = getOrderids();
 			
 	    
 			for(int j =0 ; j < DetailId.length; j++){
 				if(true){
 					UserOrder userorder = new UserOrder();
 					userorder.setOrderid(orderid);
-					Integer uid = userDao.selectByUid(user_id);
-					userorder.setUserid(uid);
-					
+		//			Integer uid = userDao.selectByUid(user_id);
+	//				userorder.setUserid(uid);
+					userorder.setUserid(user_id);
 				    Orders orders = new Orders();
 				    orders.setOrderid(orderid);
 				    orders.setGoodDetailId(Integer.parseInt(DetailId[j]));
@@ -65,6 +68,8 @@ public class OrderService implements IOrderService {
 				    orders.setNum(Integer.parseInt(number[j]));
 				    orders.setState(state);
 				    orders.setData(new Date());
+				    orders.setSubbranchId(Integer.parseInt(SubbranchId[j]));
+				    
 				   
 					if(this.adduserorder(userorder, orderid)){
 						ordersDao.insert(orders);
@@ -88,19 +93,19 @@ public class OrderService implements IOrderService {
 	}
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Base queryOrder(Integer user_id, Integer startIndex,
+	public Base queryOrder(String user_id, Integer startIndex,
 			Integer requestAmount) {
-		Integer userid = userDao.selectByUid(user_id);
+	//	Integer userid = userDao.selectByUid(user_id);
 		
-		List<Integer> list = userorderDao.queryOrderid(userid);
+		List<String> list = userorderDao.queryOrderid(user_id);
 		
 		List<OrderListA> prolist = new ArrayList<OrderListA>();
 		for(int i = 0 ; i < list.size() ; i++){
 			OrderListA orderlista = new OrderListA();
-			Integer Orderid = list.get(i);
-			orderlista.setOrderid(Orderid);
+			String subOrderid = list.get(i);
+			orderlista.setOrderid(subOrderid);
 			
-			List<OrderListB> prelist = ordersDao.queryOrder(userid, Orderid);
+			List<OrderListB> prelist = ordersDao.queryOrder(user_id, subOrderid);
 			orderlista.setState(prelist.get(0).getState());
 			orderlista.setAddressid(prelist.get(0).getAddressid());
 			orderlista.setOrderitem(prelist);
@@ -116,6 +121,15 @@ public class OrderService implements IOrderService {
 	}
 	
 	
+	private String getOrderids(){
+		Date date=new Date();
+		String df=new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+		Random rad=new Random();
+		String rd= rad.nextInt(1000)+"";
+		return df+rd;
+		
+		
+	}
 	
 	public Integer setorderid(){
 		Integer orderid = (int)(Math.random()*10000)+1;
@@ -128,7 +142,7 @@ public class OrderService implements IOrderService {
 		return orderid;
 	}
 	
-	public Boolean adduserorder(UserOrder userorder,int orderid){
+	public Boolean adduserorder(UserOrder userorder,String orderid){
 		List<UserOrder> list = userorderDao.queryByOrderid(orderid);
 		if(list.size()<1){
 			userorderDao.insert(userorder);

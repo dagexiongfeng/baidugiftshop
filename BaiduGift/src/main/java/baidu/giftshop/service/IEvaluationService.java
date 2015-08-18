@@ -6,7 +6,7 @@ import baidu.giftshop.model.Base;
 public interface IEvaluationService {
 	
 	
-	Base addEvaluation(Integer user_id,Integer goods_id,String evaluation);
+	Base addEvaluation(String user_id,Integer goods_id,String evaluation);
 
 	Base queryEvalutaion(Integer goods_id,Integer startIndex,Integer requestAmount);
 }

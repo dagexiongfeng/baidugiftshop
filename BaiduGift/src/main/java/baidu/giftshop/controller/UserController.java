@@ -28,25 +28,25 @@ public class UserController {
 	@RequestMapping("/login")
 	public Object login(@RequestParam(value="username") String username,@RequestParam(value="type") String type, @RequestParam(value="token") String token, HttpServletResponse response) throws Exception{
 	
-		if(StringUtils.isNotEmpty(username)||MD5Util.MD5(username+type+"shabi").equals(token)){
-		 Base base=new Base();
-		 base.setCode(101);
-	     base.setResult("OK");
-		 User user=  userService.getUser(username);
-		 if(user==null){
-			 User user1 =new User();
-			 String userid=UUID.randomUUID().toString().replace("-", "");
-			 System.out.println(userid);
-			 user1.setUserId(userid);
-			 user1.setUsername(username);
-			 user1.setType(type);
-		     userService.saveUser(user1);
-		     base.setContent(user1);
-		     return base;
-		 }else{
-			 base.setContent(user);
-			 return base;
-		 }
+		if(StringUtils.isNotEmpty(username) && MD5Util.MD5(username+type+"shabi").equals(token)){
+			 Base base=new Base();
+			 base.setCode(101);
+		     base.setResult("OK");
+			 User user=  userService.getUser(username);
+			 if(user==null){
+				 User user1 =new User();
+				 String userid=UUID.randomUUID().toString().replace("-", "");
+				 System.out.println(userid);
+				 user1.setUserId(userid);
+				 user1.setUsername(username);
+				 user1.setType(type);
+			     userService.saveUser(user1);
+			     base.setContent(user1);
+			     return base;
+			 }else{
+				 base.setContent(user);
+				 return base;
+			 }
 		}
 		return null;
 	}

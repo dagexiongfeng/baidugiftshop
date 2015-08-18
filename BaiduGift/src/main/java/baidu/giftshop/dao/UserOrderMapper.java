@@ -17,6 +17,13 @@ public interface UserOrderMapper {
 
     int updateByPrimaryKey(UserOrder record);
     
-    List<UserOrder> queryByOrderid(Integer orderid);
-    List<Integer> queryOrderid(Integer userid);
+    /**
+     * 查询用户order表是否存在订单
+     * @param orderid
+     * @return
+     */
+    List<UserOrder> queryByOrderid(String orderid);
+    
+    
+    List<String> queryOrderid(String userid);
 }

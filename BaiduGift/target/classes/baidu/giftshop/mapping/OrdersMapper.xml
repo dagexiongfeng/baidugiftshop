@@ -3,12 +3,13 @@
 <mapper namespace="baidu.giftshop.dao.OrdersMapper" >
   <resultMap id="BaseResultMap" type="baidu.giftshop.model.Orders" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="orderid" property="orderid" jdbcType="VARCHAR" />
     <result column="good_detail_id" property="goodDetailId" jdbcType="INTEGER" />
     <result column="addressid" property="addressid" jdbcType="INTEGER" />
     <result column="num" property="num" jdbcType="INTEGER" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="data" property="data" jdbcType="TIMESTAMP" />
+    <result column="subbranch_id" property="subbranchId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, orderid, good_detail_id, addressid, num, state, data
@@ -32,11 +33,11 @@
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="addressid" property="addressid" jdbcType="INTEGER" />
   </resultMap>
-  <select id="queryOrder" parameterType="java.lang.Integer" resultMap="MybaseResultMap">
+  <select id="queryOrder"  resultMap="MybaseResultMap">
    select o.good_detail_id,o.num,gd.name,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
       from user_order uo,orders o,goods_detail gd,goods_picture gp 
-      where uo.userid=#{param1,jdbcType=INTEGER} and uo.orderid = o.orderid and o.good_detail_id= gd.id 
-   and gd.goods_id=gp.goods_id and uo.orderid=#{param2,jdbcType=INTEGER}
+      where uo.userid=#{param1} and uo.orderid = o.orderid and o.good_detail_id= gd.id 
+   and gd.goods_id=gp.goods_id and uo.orderid=#{param2}
   </select>
   <!-- =================================================================== -->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -52,10 +53,10 @@
   <insert id="insert" parameterType="baidu.giftshop.model.Orders" >
     insert into orders (id, orderid, good_detail_id, 
       addressid, num, state, 
-      data)
-    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{goodDetailId,jdbcType=INTEGER}, 
+      data,subbranch_id)
+    values (#{id,jdbcType=INTEGER}, #{orderid}, #{goodDetailId,jdbcType=INTEGER}, 
       #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
-      #{data,jdbcType=TIMESTAMP})
+      #{data,jdbcType=TIMESTAMP}, #{subbranchId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="baidu.giftshop.model.Orders" >
     insert into orders

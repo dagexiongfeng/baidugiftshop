@@ -5,7 +5,7 @@ import java.util.Date;
 public class Orders {
     private Integer id;
 
-    private Integer orderid;
+    private String orderid;
 
     private Integer goodDetailId;
 
@@ -16,8 +16,18 @@ public class Orders {
     private String state;
 
     private Date data;
+    
+    private Integer subbranchId;
 
-    public Integer getId() {
+    public Integer getSubbranchId() {
+		return subbranchId;
+	}
+
+	public void setSubbranchId(Integer subbranchId) {
+		this.subbranchId = subbranchId;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -25,11 +35,11 @@ public class Orders {
         this.id = id;
     }
 
-    public Integer getOrderid() {
+    public String getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(Integer orderid) {
+    public void setOrderid(String orderid) {
         this.orderid = orderid;
     }
 

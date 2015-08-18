@@ -36,8 +36,8 @@ public class OrderController {
 	public void AddOrder(HttpServletRequest request,HttpServletResponse response){
 		Base base = new Base();
 		
-		Integer user_id = userService.getUid(request.getParameter("user_id"));
-		
+		//Integer user_id = userService.getUid(request.getParameter("user_id"));
+		String user_id=	request.getParameter("user_id");
 		String subbranch_id = request.getParameter("subbranch_id");
 		String goods_detail_id = request.getParameter("goods_detail_id");
 		String num = request.getParameter("num");
@@ -64,8 +64,8 @@ public class OrderController {
 	public void QueryOrder(HttpServletRequest request,HttpServletResponse response){
 		Base base = new Base();
 		
-		Integer user_id = userService.getUid(request.getParameter("user_id"));
-		
+		//Integer user_id = userService.getUid(request.getParameter("user_id"));
+		 String user_id= request.getParameter("user_id");
 		//相对于安卓前端的分页查找结果
 		Integer startIndex = Integer.parseInt(request.getParameter("startIndex"));
 		Integer requestAmount = Integer.parseInt(request.getParameter("requestAmount"));

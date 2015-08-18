@@ -43,10 +43,10 @@ public class EvaluationController {
 		String evaluation = request.getParameter("evaluation");
 		Base base = new Base();
 		
-		Integer userid = userService.getUid(user_id);
+		//Integer userid = userService.getUid(user_id);
 		
 		System.out.println("--------"+evaluation);
-		base = evaluationService.addEvaluation(userid, goods_id, evaluation);
+		base = evaluationService.addEvaluation(user_id, goods_id, evaluation);
 		response.setContentType("text/javascript;charset=UTF-8");
 	    response.setCharacterEncoding("UTF-8");
 		   try {

@@ -3,9 +3,9 @@ package baidu.giftshop.model;
 public class UserOrder {
     private Integer id;
 
-    private Integer userid;
+    private String userid;
 
-    private Integer orderid;
+    private String orderid;
 
     private String paytime;
 
@@ -23,23 +23,25 @@ public class UserOrder {
         this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
-    }
+   
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+    public String getUserid() {
+		return userid;
+	}
 
-    public Integer getOrderid() {
-        return orderid;
-    }
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
-    }
+	public String getOrderid() {
+		return orderid;
+	}
 
-    public String getPaytime() {
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+
+	public String getPaytime() {
         return paytime;
     }
 

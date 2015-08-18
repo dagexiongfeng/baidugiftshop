@@ -20,7 +20,7 @@ import baidu.giftshop.service.IAddressService;
 import baidu.giftshop.service.IUserService;
 
 @Controller
-@RequestMapping("/address")
+// @RequestMapping("/address")
 public class AddressController {
 	public static final Logger logger=LoggerFactory.getLogger(AddressController.class);
 	@Autowired
@@ -38,16 +38,13 @@ public class AddressController {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("rawtypes")
-	@RequestMapping("/add")
+	@RequestMapping("/AddAddress")
 	public void AddAddress(HttpServletRequest request,HttpServletResponse response) throws IOException{
-	//	Integer userid = userService.getUid(request.getParameter("userid"));
 		request.setCharacterEncoding("UTF-8");
 		String userid =request.getParameter("userid") ;
 		String addressee = request.getParameter("addressee");
-	//	addressee = new String(addressee.getBytes("iso8859-1"),"utf-8");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
-	//	address = new String(address.getBytes("iso8859-1"),"utf-8");
 		String zipCode = request.getParameter("zipCode");
 		Base base = new Base();
 		base = addressService.addAddress(userid, addressee, phone, address, zipCode);
@@ -70,7 +67,7 @@ public class AddressController {
 	public void QueryAddress(@RequestParam(value="userid",required=false) String userid,
 			HttpServletResponse response){
 	    Base base = new Base();
-	//    Integer uid = userService.getUid(userid);
+	
 		base = addressService.queryAllAddress(userid);
 		response.setContentType("text/javascript;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="baidu.giftshop.model.Evaluation" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="evaluation" property="evaluation" jdbcType="VARCHAR" />
     <result column="data" property="data" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -12,11 +12,11 @@
     id, goods_id, user_id, evaluation, data
   </sql>
     
-  <select id="queryByUIdAndGId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="queryByUIdAndGId" resultMap="BaseResultMap" >
     select  
       <include refid="Base_Column_List" />
       from evaluation e 
-    where e.user_id=#{param1,jdbcType=INTEGER} and e.goods_id=#{param2,jdbcType=INTEGER}
+    where e.user_id=#{param1} and e.goods_id=#{param2,jdbcType=INTEGER}
   </select>
   <select id="queryByGId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select  
@@ -40,7 +40,7 @@
   <insert id="insert" parameterType="baidu.giftshop.model.Evaluation" >
     insert into evaluation (id, goods_id, user_id, 
       evaluation, data)
-    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
       #{evaluation,jdbcType=VARCHAR}, #{data,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="baidu.giftshop.model.Evaluation" >

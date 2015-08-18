@@ -62,7 +62,7 @@
     where goods_id = #{goods_id,jdbcType=INTEGER}
   </select>
   <select id="selectGroupId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-    select pic_group_id
+    select  distinct  pic_group_id
     from goods_detail
     where goods_id = #{goods_id,jdbcType=INTEGER}
   </select>

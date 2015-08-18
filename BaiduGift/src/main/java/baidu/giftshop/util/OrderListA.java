@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OrderListA {
 	
-	private Integer orderid;
+	private String orderid;
 	
 	private String state;
 	
@@ -12,11 +12,11 @@ public class OrderListA {
 	
 	private List<OrderListB> orderitem;
 
-	public Integer getOrderid() {
+	public String getOrderid() {
 		return orderid;
 	}
 
-	public void setOrderid(Integer orderid) {
+	public void setOrderid(String orderid) {
 		this.orderid = orderid;
 	}
 
@@ -44,7 +44,7 @@ public class OrderListA {
 		this.orderitem = orderitem;
 	}
 
-	public OrderListA(Integer orderid, String state, Integer addressid,
+	public OrderListA(String orderid, String state, Integer addressid,
 			List<OrderListB> orderitem) {
 		super();
 		this.orderid = orderid;

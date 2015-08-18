@@ -22,7 +22,7 @@ public class EvaluationService implements IEvaluationService {
 	@Transactional
 	@SuppressWarnings({ "rawtypes" })
 	@Override
-	public Base addEvaluation(Integer user_id, Integer goods_id,
+	public Base addEvaluation(String user_id, Integer goods_id,
 			String evaluation) {
 		List<Evaluation> list = evaluationDao.queryByUIdAndGId(user_id, goods_id);
 		Base base = new Base();
@@ -47,6 +47,7 @@ public class EvaluationService implements IEvaluationService {
 	@Override
 	public Base queryEvalutaion(Integer goods_id, Integer startIndex,
 			Integer requestAmount) {
+		
 		List<Evaluation> list = evaluationDao.queryByGId(goods_id, startIndex, requestAmount);
 		A a = new A();
 	    Base base = new Base();

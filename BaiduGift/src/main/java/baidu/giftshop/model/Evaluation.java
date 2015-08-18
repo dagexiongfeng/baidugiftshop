@@ -7,7 +7,7 @@ public class Evaluation {
 
     private Integer goodsId;
 
-    private Integer userId;
+    private String userId;
 
     private String evaluation;
 
@@ -29,11 +29,11 @@ public class Evaluation {
         this.goodsId = goodsId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

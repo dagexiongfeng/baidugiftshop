@@ -17,15 +17,15 @@
   <select id="getUser" resultMap="BaseResultMap" >
   	select  *
   	from user
-    where username= #{username}
+    where username = #{username,jdbcType=VARCHAR}
   </select>
   
   
    <insert id="saveUser"  >
     insert into user (id, user_id, username, 
-      password)
+      password,type)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+      #{password,jdbcType=VARCHAR},#{type})
   </insert>
 
   <select id="selectByUid" resultType="java.lang.Integer" parameterType="java.lang.Integer">

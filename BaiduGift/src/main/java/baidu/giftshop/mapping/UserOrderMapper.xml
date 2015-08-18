@@ -3,8 +3,8 @@
 <mapper namespace="baidu.giftshop.dao.UserOrderMapper" >
   <resultMap id="BaseResultMap" type="baidu.giftshop.model.UserOrder" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="orderid" property="orderid" jdbcType="VARCHAR" />
     <result column="paytime" property="paytime" jdbcType="VARCHAR" />
     <result column="shipnum" property="shipnum" jdbcType="VARCHAR" />
     <result column="fedex" property="fedex" jdbcType="VARCHAR" />
@@ -13,16 +13,16 @@
   <sql id="Base_Column_List" >
     id, userid, orderid, paytime, shipnum, fedex, deliverytime
   </sql>
-  <select id="queryByOrderid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="queryByOrderid" resultMap="BaseResultMap">
     select 
       <include refid="Base_Column_List" />
       from user_order
-    where orderid = #{orderid,jdbcType=INTEGER}
+    where orderid = #{orderid}
   </select>
-  <select id="queryOrderid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  <select id="queryOrderid" resultType="java.lang.String" parameterType="java.lang.String">
      select distinct orderid
      from user_order
-     where user_order.userid=#{userid,jdbcType=INTEGER}
+     where userid=#{userid}
   </select>
   
   
@@ -41,7 +41,7 @@
     insert into user_order (id, userid, orderid, 
       paytime, shipnum, fedex, 
       deliverytime)
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{userid}, #{orderid}, 
       #{paytime,jdbcType=VARCHAR}, #{shipnum,jdbcType=VARCHAR}, #{fedex,jdbcType=VARCHAR}, 
       #{deliverytime,jdbcType=VARCHAR})
   </insert>
