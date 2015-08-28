@@ -15,7 +15,11 @@ import baidu.giftshop.model.Base;
 import baidu.giftshop.model.User;
 import baidu.giftshop.service.IUserService;
 import baidu.giftshop.util.MD5Util;
-
+/**
+ * 用户登录接口
+ * @author tongwenli
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {

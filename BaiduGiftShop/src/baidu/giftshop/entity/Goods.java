@@ -21,6 +21,15 @@ public class Goods implements java.io.Serializable {
 	private String unit;
 	private String name;
 	private Integer state;
+	private Integer productType;
+	public Integer getProductType() {
+		return productType;
+	}
+
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+
 	private Set goodsSubbranchs = new HashSet(0);
 	private Set goodsPictures = new HashSet(0);
 	private Set goodsDetais = new HashSet(0);

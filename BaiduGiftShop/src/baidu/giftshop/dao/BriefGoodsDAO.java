@@ -21,7 +21,7 @@ public class BriefGoodsDAO {
 	 * @param name
 	 * @return
 	 */
-	public Boolean savegoods(Integer classifyId,String unit,String name){
+	public Boolean savegoods(Integer classifyId,String unit,String name,Integer productType){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
 		Classify classify = (Classify) session.get(Classify.class, classifyId);
@@ -35,6 +35,7 @@ public class BriefGoodsDAO {
 		goods.setClassify(classify);
 		goods.setUnit(unit);
 		goods.setName(name);
+		goods.setProductType(productType);
 		goods.setState(1);
 		session.save(goods);
 		tr.commit();
@@ -50,7 +51,7 @@ public class BriefGoodsDAO {
 	 * @param name
 	 * @return
 	 */
-	public Integer findGoodsId(Integer classifyId,String unit,String name){
+	public Integer findGoodsId(Integer classifyId,String unit,String name,Integer productType){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
 		String sql = "select g.id from Goods g where g.classify.id=? and g.unit=? and g.name=?";
@@ -269,5 +270,24 @@ public class BriefGoodsDAO {
 		}
 		tr.commit();
 		session.close();
+	}
+	/**
+	 * 修改状态
+	 * @param goods_id
+	 * @param productType
+	 * @return
+	 */
+	public boolean changeType(Integer goods_id, Integer productType) {
+		
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String sql = "update Goods g set g.productType = ? where g.id=?";
+		 Query q = session.createQuery(sql);
+		 q.setParameter(0, productType);
+		 q.setParameter(1, goods_id);
+		 q.executeUpdate();
+		 tr.commit();
+		session.close();
+		return true;
 	}
 }

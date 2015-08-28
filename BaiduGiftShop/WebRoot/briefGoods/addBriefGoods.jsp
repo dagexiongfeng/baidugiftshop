@@ -47,8 +47,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   </select><br>      
                                                                         单位：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="unit" name="unit" class="span12"/><br>
                                                                         货品名：&nbsp;&nbsp;<input type="text" id="name" name="name" class="span12"/><br>
-                                                                                                            
-                                                                        上传图片：<input type="file" id="pic" name="pic">（要求规格（宽：480~1024）的正方形）<br>                                         
+                              <select name="productType">
+	                               <option value="0" selected="selected">普通商品</option>
+	                               <option value="1">热卖商品</option>
+	                               <option value="2">新品上货</option>
+                              </select> 
+                              <br>                                                                             
+                              &nbsp   上传图片：<input type="file" id="pic" name="pic"><br>（要求规格（宽：480~1024）的正方形）<br>                                         
 							 <input type="submit" value="增加商品信息" class="btn btn-primary"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							 <input type="reset"  value="重置" class="btn btn-info">
 	               </form>

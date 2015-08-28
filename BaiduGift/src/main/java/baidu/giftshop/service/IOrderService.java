@@ -8,4 +8,6 @@ public interface IOrderService {
 	Base addOrder(String user_id,String subbranch_id,String goods_detail_id,String num,String state,Integer addressid);
 
 	Base queryOrder(String user_id,Integer startIndex,Integer requestAmount);
+
+	Base cancelOrder(String user_id, String orderid, Integer num);
 }

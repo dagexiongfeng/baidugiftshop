@@ -168,6 +168,10 @@
 		<!-- 下架概要商品 -->
 		<action name="DeleteBrief" class="baidu.giftshop.action.BriefGoodsAction" method="deleteBrief">
 		</action>
+		<!-- 改变概要商品类型 -->
+		<action name="changeType" class="baidu.giftshop.action.BriefGoodsAction" method="changeType">
+		</action>
+		
 		<action name="querySubgoods" class="baidu.giftshop.action.BriefGoodsAction" method="querySubgoods">
 		</action>
 		<action name="checkGoodsCode" class="baidu.giftshop.action.DetailGoodsAction" method="checkGoodsCode">

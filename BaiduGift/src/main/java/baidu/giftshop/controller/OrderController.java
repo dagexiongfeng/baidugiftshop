@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
 
@@ -77,5 +78,17 @@ public class OrderController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		    }
+	}
+	
+	@RequestMapping("/cancelOrder")
+	public Object CancelOrder(@RequestParam("orderid") String orderid,@RequestParam("num") Integer num,HttpServletResponse response,HttpServletRequest request){
+          Base base = new Base();
+          String user_id= request.getParameter("user_id");
+		   try {
+			   base = orderService.cancelOrder(user_id,orderid,num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		    }
+		   return base;
 	}
 }

@@ -8,8 +8,8 @@ import baidu.giftshop.entity.GoodsPicture;
 
 public interface IBriefGoodsService {
 	
-	public Boolean savegoods(Integer classifyId,String unit,String name);
-    public Integer findGoodsId(Integer classifyId,String unit,String name);
+	public Boolean savegoods(Integer classifyId,String unit,String name,Integer productType);
+    public Integer findGoodsId(Integer classifyId,String unit,String name, Integer productType);
     public List<GoodsPicture> queryAllBrief(PageBean pageBean);
     public String DeleteBrief(Integer goods_id);
     public String querygoodsById(Integer Id,PageBean pageBean);
@@ -19,4 +19,5 @@ public interface IBriefGoodsService {
 	public String querySubBrief(Integer subbranchId);
 	public String deletesubBriefGoods(Integer goodsId,Integer subbranchId);
 	public String querySubgoods(Integer Id,Integer subbranchId);
+	public String changeType(Integer goods_id, Integer productType);
 }

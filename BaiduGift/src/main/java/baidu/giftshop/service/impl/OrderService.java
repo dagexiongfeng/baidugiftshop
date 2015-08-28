@@ -125,7 +125,7 @@ public class OrderService implements IOrderService {
 		Date date=new Date();
 		String df=new SimpleDateFormat("yyyyMMddHHmmss").format(date);
 		Random rad=new Random();
-		String rd= rad.nextInt(1000)+"";
+		String rd=100+ rad.nextInt(899)+"";
 		return df+rd;
 		
 		
@@ -148,11 +148,18 @@ public class OrderService implements IOrderService {
 			userorderDao.insert(userorder);
 		}else{
 		}
+		
 		return true;
 	}
 	
 	public synchronized void changeamount(Integer goodsDetailId,Integer subbranchId,Integer amount){
 		goodsDSDao.updateAmount(goodsDetailId, subbranchId,amount);
+	}
+	@Override
+	public Base cancelOrder(String user_id, String orderid, Integer num) {
+//	      List<Integer>  goodDetailId=	ordersDao.queryOrderByOrderid(orderid);	
+//	      if()
+		return null;
 	}
 
 	

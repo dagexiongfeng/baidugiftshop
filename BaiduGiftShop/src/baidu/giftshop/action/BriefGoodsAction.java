@@ -30,7 +30,14 @@ public class BriefGoodsAction extends ActionSupport{
     private String goodsId;
     private Integer subbranchId;
     private Integer page=1;
-    private PageBean pageBean = new PageBean();
+    private Integer productType;
+    public Integer getProductType() {
+		return productType;
+	}
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+	private PageBean pageBean = new PageBean();
 	/**
 	 * 增加概要商品信息
 	 */
@@ -42,8 +49,8 @@ public class BriefGoodsAction extends ActionSupport{
 		Integer classify = Integer.parseInt(classifyId);
 		
 		
-		if(briefGoodsService.savegoods(classify, unit, name)){
-		int goodsid = briefGoodsService.findGoodsId(classify, unit, name);
+		if(briefGoodsService.savegoods(classify, unit, name,productType)){
+		int goodsid = briefGoodsService.findGoodsId(classify, unit, name,productType);
 		Map request=(Map)ActionContext.getContext().get("request");
 		request.put("goodsid", goodsid);
 		if(uploaddao.upload(pic,picFileName,goodsid).equals("success"))
@@ -82,6 +89,20 @@ public class BriefGoodsAction extends ActionSupport{
 		PrintWriter out = response.getWriter();
 		            out.print(result);
 		            out.flush();
+		return null;
+	}
+	/**
+	 * 改变商品信息
+	 * @return
+	 * @throws Exception
+	 */
+	public String changeType() throws Exception{
+		result = briefGoodsService.changeType(goods_id,productType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(result);
+		out.flush();
 		return null;
 	}
 	

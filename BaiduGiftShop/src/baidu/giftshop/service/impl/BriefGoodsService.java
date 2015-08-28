@@ -27,15 +27,15 @@ public class BriefGoodsService implements IBriefGoodsService {
 	}
 
 	@Override
-	public Boolean savegoods(Integer classifyId, String unit, String name) {
+	public Boolean savegoods(Integer classifyId, String unit, String name,Integer productType) {
 		  String unit_cp = unit.replace(" ", "");
 		  String name_cp = name.replace(" ", "");
-          return briefGoodsDAO.savegoods(classifyId, unit_cp, name_cp);
+          return briefGoodsDAO.savegoods(classifyId, unit_cp, name_cp,productType);
 	}
 
 	@Override
-	public Integer findGoodsId(Integer classifyId, String unit, String name) {
-		return briefGoodsDAO.findGoodsId(classifyId, unit, name);
+	public Integer findGoodsId(Integer classifyId, String unit, String name,Integer productType) {
+		return briefGoodsDAO.findGoodsId(classifyId, unit, name,productType);
 	}
 
 	@Override
@@ -166,5 +166,22 @@ public class BriefGoodsService implements IBriefGoodsService {
 		JSONObject jsonObject = new JSONObject();
 		result = JSONObject.fromObject(base,jsonConfig).toString();
 		return result;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked", "unchecked" })
+	public String changeType(Integer goods_id, Integer productType) {
+		 Base base = new Base();
+		 if(briefGoodsDAO.changeType(goods_id,productType)){
+			 base.setContent(101);
+		 }else{
+			 base.setContent(102);
+		 }
+		    JsonConfig jsonConfig = new JsonConfig();  
+			jsonConfig.setIgnoreDefaultExcludes(false); 
+			jsonConfig.setExcludes(new String[]{""});
+			@SuppressWarnings("unused")
+			JSONObject jsonObject = new JSONObject();
+			result = JSONObject.fromObject(base,jsonConfig).toString();
+			return result;
 	}
 }

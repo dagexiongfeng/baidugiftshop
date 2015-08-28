@@ -25,6 +25,11 @@
                 <comment>货品名称</comment>
             </column>
         </property>
+        <property name="productType" type="integer">
+            <column name="product_type" length="50">
+                <comment>货品名称</comment>
+            </column>
+        </property>
         <property name="state" type="integer">
             <column name="state" length="11">
                 <comment>概要商品状态</comment>

@@ -20,24 +20,31 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-    <!-- Demo page code -->
-    <style type="text/css">
-        #line-chart {
-            height:300px;
-            width:800px;
-            margin: 0px auto;
-            margin-top: 1em;
-        }
-        .brand { font-family: georgia, serif; }
-        .brand .first {
-            color: #ccc;
-            font-style: italic;
-        }
-        .brand .second {
-            color: #fff;
-            font-weight: bold;
-        }
-    </style>
+  
+ <script type="text/javascript">
+ function changType(goodid,type){
+	 if(confirm("确定要改变类型？")){
+	 $.ajax({
+	       type :"get",
+	       url :"./changeType.action",
+	       data:{goods_id:goodid,
+	    	productType:type   
+	       },
+	       dataType:"json",
+	       success :function(result){
+	          var data = result.content;
+	          if(data==101){
+	            alert("更新成功!");
+	            location.href ="./queryAllBriefGoods.action";
+	          }else{
+	            alert("更新失败！");
+	          }
+	       }
+	     });
+	 }
+ }
+ 
+ </script>
   </head>
   <body>
   <br>
@@ -49,6 +56,7 @@
         <td width="100">概要商品名称</td>
         <td width="100">缩略图</td>
         <td width="100">高宽比</td>
+        <td width="100">商品类型</td>
         <td width="100">状态(0为已下架)</td>
         <td width="100">上架或下架</td>
     </tr>
@@ -61,6 +69,32 @@
         <td width="100"><img src="<%=root %>/<s:property value="#list.thumbPath"/>"/></td>
         <%-- <td width="100"><img src="./<s:property value="#list.thumbPath"/>"></td> --%>
         <td width="100"><s:property value="#list.ratio"/></td>
+        
+        <td width="100">
+        <s:if test="%{#list.goods.productType==0}">
+	        <select style="width: 100px;height: 35px" id="productType" onchange="changType(<s:property value="#list.goods.id"/>,this.value)">
+	        	  <option value="0" selected="selected">普通商品</option>
+	              <option value="1">热卖商品</option>
+	             <option value="2">新品上货</option>
+	        </select>
+        </s:if>
+        <s:if test="%{#list.goods.productType==1}">
+	        <select style="width: 100px;height: 35px" id="productType" onchange="changType(<s:property value="#list.goods.id"/>,this.value)">
+	        	  <option value="0" >普通商品</option>
+	              <option value="1" selected="selected">热卖商品</option>
+	             <option value="2">新品上货</option>
+	        </select>
+        </s:if>
+        <s:if test="%{#list.goods.productType==2}">
+	        <select style="width: 100px;height: 35px" id="productType" onchange="changType(<s:property value="#list.goods.id"/>,this.value)">
+	        	  <option value="0" >普通商品</option>
+	              <option value="1">热卖商品</option>
+	             <option value="2" selected="selected">新品上货</option>
+	        </select>
+        </s:if>
+        </td>
+        
+        
         <td width="100"><s:property value="#list.goods.state"/></td>
         <td width="100">
         <s:if test="%{#list.goods.state==1}">
