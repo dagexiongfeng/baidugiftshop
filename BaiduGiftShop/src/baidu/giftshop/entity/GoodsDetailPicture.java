@@ -15,6 +15,15 @@ public class GoodsDetailPicture implements java.io.Serializable {
 	private String path;
 	private String thumbPath;
 	private Double ratio;
+	private String picGroupName;
+	public String getPicGroupName() {
+		return picGroupName;
+	}
+
+	public void setPicGroupName(String picGroupName) {
+		this.picGroupName = picGroupName;
+	}
+
 	// Constructor
 	/** default constructor */
 	public GoodsDetailPicture() {

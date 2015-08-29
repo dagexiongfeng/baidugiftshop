@@ -117,9 +117,9 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
             <li ><a href="./listallDetailGoods.action">&nbsp&nbsp&nbsp查询明细商品</a></li>
             <li ><a href="./DetailGoods/ModifyDetailGoods.jsp">&nbsp&nbsp&nbsp修改明细商品</a></li>
         </ul>
-        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>图片组别</a>
+        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>图片组别<span class="label label-info">3</span></a>
         <ul id="accounts-menu4" class="nav nav-list collapse">
-            <li ><a href="./Picture/AddPic.jsp">&nbsp&nbsp&nbsp增加一组图片</a></li>
+            <li ><a href="./addPic.action">&nbsp&nbsp&nbsp增加一组图片</a></li>
             <li ><a href="./Picture/ShowPic.jsp">&nbsp&nbsp&nbsp查询一组图片</a></li>
             <li ><a href="./Picture/DeleteGroup.jsp">&nbsp&nbsp&nbsp删除一组图片</a></li>
         </ul>

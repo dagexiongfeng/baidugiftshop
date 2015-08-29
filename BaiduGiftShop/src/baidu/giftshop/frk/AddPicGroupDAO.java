@@ -43,7 +43,7 @@ public class AddPicGroupDAO {
      * @throws IOException 
      * @throws ParseException 
      */  
-    public String upload(File pic,String picFileName,Integer groupId){  
+    public String upload(File pic,String picFileName,Integer groupId,String picGroupName){  
     	
     	String name = picFileName.substring(picFileName.lastIndexOf(".")); // 得到后缀名
     	if (name.equals(".jpg") || name.equals(".gif") || name.equals(".png")|| name.equals(".jpeg")) { 
@@ -69,6 +69,7 @@ public class AddPicGroupDAO {
 		                    Transaction tr = session.beginTransaction();
 		                    GoodsDetailPicture goodsdetailpicture = new GoodsDetailPicture();
 		                    goodsdetailpicture.setGroupId(groupId);
+		                    goodsdetailpicture.setPicGroupName(picGroupName);
 		                    goodsdetailpicture.setPath("Original/"+FileName);
 		                    goodsdetailpicture.setThumbPath("Thumb/"+FileName);
 		                    goodsdetailpicture.setRatio(radio);
@@ -196,10 +197,11 @@ public class AddPicGroupDAO {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked" })
-	public List<Integer> listGroupId(){
-		String sql = "select distinct groupId from GoodsDetailPicture";
+	public List<GoodsDetailPicture> listGroupId(){
+		String sql = " from GoodsDetailPicture";
 		Query q = session.createQuery(sql);
-		List<Integer> list = q.list();
+		List<GoodsDetailPicture> list = q.list();
+		
 		return list;
 	}
 	

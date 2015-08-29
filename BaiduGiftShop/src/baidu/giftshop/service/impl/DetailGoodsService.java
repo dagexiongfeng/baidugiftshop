@@ -93,7 +93,7 @@ public class DetailGoodsService implements IDetailGoodsService {
 			goodsdetail.setType3(goodsdetai.getType3());
 			goodsdetail.setType4(goodsdetai.getType4());
 			goodsdetail.setStockPrice(goodsdetai.getStockPrice());
-			goodsdetail.setLastStockPrice(goodsdetai.getLastStockPrice());
+			goodsdetail.setBaiduPrice(goodsdetai.getBaiduPrice());
 			goodsdetail.setRetailPrice(goodsdetai.getRetailPrice());
 			goodsdetail.setCostPrice(goodsdetail.getCostPrice());
 			goodsdetail.setPicGroupId(amount);

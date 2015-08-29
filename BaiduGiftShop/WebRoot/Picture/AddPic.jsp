@@ -46,7 +46,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <div class="block-body">
              
                   <s:form action ="addpicgroup.action" method ="POST" enctype ="multipart/form-data" >   
-  
+                                            明细商品名称:<input type="text" name="picGroupName" style="width: 165px;height: 25px"><br/>                          
+                                            商品图片组别:<input type="text"   name="groupId" value="${groupId}" readonly="readonly" style="width: 165px;height: 23px" >
                   <s:file name ="myFile" label ="Image File1"/>  
   
                   <s:file name ="myFile" label ="Image File2"/>  

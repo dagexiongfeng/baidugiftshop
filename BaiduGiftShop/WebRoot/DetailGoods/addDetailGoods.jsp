@@ -49,24 +49,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <option value="0">---请选择---</option>
                                   </select><br>
                                   商品名称： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select id="goodsId" name="goodsId">
+							<select id="goodsId" name="goodsId" onchange="changname(this.value)">
                              <option value="0">---请选择---</option>
                                   </select><br>
-                                  图片组ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  图片组ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select id="picGroupId" name="goodsDetai.picGroupId">
                              <option value="0">---请选择---</option>
                                   </select><br>
                                   商品名: 
-                                  <input type="text" id="name" name="goodsDetai.name" class="span12"/><br>
+                                  <input type="text" id="name" name="goodsDetai.name" class="span12" readonly="readonly" /><br>
                                   商品代码:
                                   <input type="text" id="goodsCode" name="goodsDetai.goodsCode" class="span12" onblur="checkGoodsCode()"/><br>
                                   店内代码:
                                   <input type="text" id="shopCode" name="goodsDetai.shopCode" class="span12"/><br>
                                   条形码:
                                   <input type="text" id="barCode" name="goodsDetai.barCode" class="span12"/><br>
-                                  分类属性1:
+                                  分类属性1:(颜色)
                                   <input type="text" id="type1" name="goodsDetai.type1" class="span12"/><br>
-                                  分类属性2:
+                                  分类属性2:(大小)
                                   <input type="text" id="type2" name="goodsDetai.type2" class="span12"/><br>
                                   分类属性3:
                                   <input type="text" id="type3" name="goodsDetai.type3" class="span12"/><br>
@@ -74,8 +74,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <input type="text" id="type4" name="goodsDetai.type4" class="span12"/><br>
                                   进价*:(单位:元)
                                   <input type="text" id="stockPrice" name="goodsDetai.stockPrice" class="span12"/><br>
-                                  最后进价*:(单位:元)
-                                  <input type="text" id="lastStockPrice" name="goodsDetai.lastStockPrice" class="span12"/><br>
+                                  百度员工价*:(单位:元)
+                                  <input type="text" id="baiduPrice" name="goodsDetai.baiduPrice" class="span12"/><br>
                                   零售价*:(单位:元)
                                   <input type="text" id="retailPrice" name="goodsDetai.retailPrice" class="span12"/><br>
                                   成本价*:(单位:元)
@@ -99,22 +99,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  //var ids = data[n].id;
 	  //var names = data[n].name;
 	  $("#classifyId").append("<option id='"+data[n].id+"' value='"+data[n].id+"'>"+data[n].name+"</option>");
+	  
 	 }
 	 }
      });
+  
      $.ajax({
-	 type :"post",
-	 url :"./listgroupId.action",
-	 dataType :"json",
-	 success :function(result){
-	 var data = result.content;
-	 for(var n=0;n<data.length;n++){
-	  var names = data[n];
-	  $("#picGroupId").append("<option id='"+names+"' value='"+names+"'>"+names+"</option>");
-	 }
-	 }
-     });
+    	 type :"post",
+    	 url :"./listgroupId.action",
+    	 dataType :"json",
+    	 success :function(data){
+    		 $.each(data.content,function(i,n){
+    			  $("#picGroupId").append("<option id='"+n.id+"' value='"+n.id+"'>"+n.id+":  "+n.picGroupName+"</option>");
+    		 })
+    	   }
+         });
      };
+    
      function beforeSubmit(form){
 	    if(form.classifyId.value=='0'){
 		 alert('没有选择分类');
@@ -142,6 +143,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 return false;
 		 }
 }
+    
+     function changname(value){
+    	 $("#name").val(value);
+     };
      
 function updateSelect(){
  var classifyId = $("#classifyId").val();
@@ -157,6 +162,7 @@ function updateSelect(){
 	 for(var n=0;n<data.length;n++){
 	  var names = data[n][0];
 	  $("#goodsId").append("<option id='"+names+"' value='"+names+"'>"+names+"</option>");
+
 	 }
     }
 });
@@ -164,10 +170,6 @@ function updateSelect(){
 
 function checkGoodsCode(){
 	var goodsCode = $("#goodsCode").val();
-	if(goodsCode==""){
-		alert("商品代码不能为空！");
-		document.getElementById("goodsCode").focus();
-	}
 	$.ajax({
 	    type:"post",
 	    url:"./checkGoodsCode.action",

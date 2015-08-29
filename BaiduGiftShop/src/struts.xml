@@ -95,7 +95,7 @@
 		
 		<!-- 删除某一组图片 -->
 		<action name="deleteGroup" class="baidu.giftshop.action.PictureGroupAction" method="deletegroup">
-		       <result name="success">/DetailGoods/result.jsp</result>
+		       <result name="success">/Picture/result.jsp</result>
 		</action>
 		<!-- 根据group(组)的ID得到压缩图的路径 -->
 		<action name="queryGroup" class="baidu.giftshop.action.PictureGroupAction" method="querythumbPathById">
@@ -178,6 +178,10 @@
 		</action>
 		<!-- 删除分类 -->
 		<action name="DeleteClassify" class="baidu.giftshop.action.ClassifyAction" method="Delete">
+		</action>
+		<!--跳转到增加图片页  -->
+		<action name="addPic" class="baidu.giftshop.action.PictureGroupAction" method="addPic">
+			<result>/Picture/AddPic.jsp</result>
 		</action>
 	</package>
 </struts>

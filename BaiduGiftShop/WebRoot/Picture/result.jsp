@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,10 +8,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
+    
+    <title>My JSP 'result.jsp' starting page</title>
   </head>
-
+  
   <body>
-                刚才添加的图片组号${groupId }<br>
-      <a href="./addPic.action">继续添加</a>
+    删除成功<br>
+    
+  <a href="./Picture/DeleteGroup.jsp">继续删除</a>
+    <a href="./index.jsp">返回首页</a>
   </body>
 </html>

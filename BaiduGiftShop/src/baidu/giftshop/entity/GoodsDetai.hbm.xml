@@ -65,9 +65,9 @@
                 <comment>进价</comment>
             </column>
         </property>
-        <property name="lastStockPrice" type="java.math.BigDecimal">
-            <column name="last_stock_price" precision="10" scale="0">
-                <comment>最后进价</comment>
+        <property name="baiduPrice" type="java.math.BigDecimal">
+            <column name="baidu_price" precision="10" scale="0">
+                <comment>百度员工价</comment>
             </column>
         </property>
         <property name="retailPrice" type="java.math.BigDecimal">

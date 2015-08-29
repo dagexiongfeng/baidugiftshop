@@ -30,5 +30,10 @@
                 <comment>图片的宽高比</comment>
             </column>
         </property>
+        <property name="picGroupName" type="string">
+            <column name="picgroup_name" length="100">
+                <comment>图片名称</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

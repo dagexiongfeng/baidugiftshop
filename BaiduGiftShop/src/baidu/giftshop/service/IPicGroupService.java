@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IPicGroupService {
 	
-	public String upload(File pic,String picFileName,Integer groupId);
+	public String upload(File pic,String picFileName,Integer groupId ,String picGroupName);
 	public Integer queryGroupId();
 	public String listGroupId();
 	public void deletegroup(Integer groupId);

@@ -28,18 +28,24 @@ public class PictureGroupAction extends ActionSupport{
 	private List<String> myFileFileName = new ArrayList<String>();;//�ļ���ʵ����
 	private String result;
 	private Integer groupId;
+	private String picGroupName;
 	
 	
+	public String getPicGroupName() {
+		return picGroupName;
+	}
+
+	public void setPicGroupName(String picGroupName) {
+		this.picGroupName = picGroupName;
+	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String AddPicGroup() throws Exception{
 		int i = 0 ;
 		int j = 0;
-		Integer groupId = picgroupservice.queryGroupId()+1;
-		Map request = (Map) ActionContext.getContext().get("request");
-		request.put("groupId", groupId);
 		for (File file:myFile){
 			String fileName =this.myFileFileName.get(i++);
-			String s = picgroupservice.upload(file, fileName, groupId);
+			String s = picgroupservice.upload(file, fileName, groupId,picGroupName);
 			if(s.equals("success")){
 				j=j+1;
 			}
@@ -64,11 +70,25 @@ public class PictureGroupAction extends ActionSupport{
 	}
 	
 	/**
+	 * 跳转到增加图片组页
+	 * @return
+	 */
+	public String addPic(){
+		 groupId= picgroupservice.queryGroupId();
+		 if(groupId==null){
+			 groupId=1;
+		 }else{
+		groupId=groupId+1; 
+		 }
+		return SUCCESS;
+	}
+	/**
 	 * 删除某一图片
 	 * @throws Exception
 	 */
-	public void deletegroup() throws Exception{
+	public String deletegroup() throws Exception{
 		picgroupservice.deletegroup(groupId);
+		return SUCCESS;
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

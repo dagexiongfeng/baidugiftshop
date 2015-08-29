@@ -1,12 +1,20 @@
 package baidu.giftshop.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import baidu.giftshop.bean.Base;
+import baidu.giftshop.bean.PictureidBean;
 import baidu.giftshop.dao.PicGroupDAO;
+import baidu.giftshop.entity.GoodsDetailPicture;
 import baidu.giftshop.frk.AddPicGroupDAO;
 import baidu.giftshop.service.IPicGroupService;
 
@@ -16,8 +24,8 @@ public class PicGroupService implements IPicGroupService {
 	
 	private String result;
 	@Override
-	public String upload(File pic, String picFileName, Integer groupId) {
-		return addpicgroupdao.upload(pic, picFileName, groupId);
+	public String upload(File pic, String picFileName, Integer groupId, String picGroupName) {
+		return addpicgroupdao.upload(pic, picFileName, groupId,picGroupName);
 	}
 	
 	@Override
@@ -28,10 +36,26 @@ public class PicGroupService implements IPicGroupService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String listGroupId() {
-		 List<Integer> list = addpicgroupdao.listGroupId();
+		 List<GoodsDetailPicture> list = addpicgroupdao.listGroupId();
+		 List<PictureidBean> results=new ArrayList<PictureidBean>();
+		 Map<Integer,String> idMap=new TreeMap<Integer, String>();
+		 for(GoodsDetailPicture p:list){
+			 int id=p.getGroupId();
+			 String name=p.getPicGroupName();
+			 if(idMap.containsKey(id)){
+				 
+			 }else{
+				 idMap.put(id, name);
+				 PictureidBean pd=new PictureidBean();
+				 pd.setId(id);
+				 pd.setPicGroupName(name);
+				 results.add(pd);
+			 }
+		 }
+		
 		 @SuppressWarnings("rawtypes")
 			Base base = new Base();
-			base.setContent(list);
+			base.setContent(results);
 			
 			JsonConfig jsonConfig = new JsonConfig();  
 			jsonConfig.setIgnoreDefaultExcludes(false); 

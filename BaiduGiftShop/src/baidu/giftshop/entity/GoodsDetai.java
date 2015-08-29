@@ -28,7 +28,7 @@ public class GoodsDetai implements java.io.Serializable {
 	private String type4;
 	private Integer picGroupId;
 	private BigDecimal stockPrice;
-	private BigDecimal lastStockPrice;
+	private BigDecimal baiduPrice;
 	private BigDecimal retailPrice;
 	private BigDecimal costPrice;
 	private Integer state;
@@ -152,12 +152,14 @@ public class GoodsDetai implements java.io.Serializable {
 		this.stockPrice = stockPrice;
 	}
 
-	public BigDecimal getLastStockPrice() {
-		return lastStockPrice;
+
+
+	public BigDecimal getBaiduPrice() {
+		return baiduPrice;
 	}
 
-	public void setLastStockPrice(BigDecimal lastStockPrice) {
-		this.lastStockPrice = lastStockPrice;
+	public void setBaiduPrice(BigDecimal baiduPrice) {
+		this.baiduPrice = baiduPrice;
 	}
 
 	public BigDecimal getRetailPrice() {
@@ -203,7 +205,7 @@ public class GoodsDetai implements java.io.Serializable {
 		this.type4 = type4;
 		this.picGroupId = picGroupId;
 		this.stockPrice = stockPrice;
-		this.lastStockPrice = lastStockPrice;
+		this.baiduPrice = baiduPrice;
 		this.retailPrice = retailPrice;
 		this.costPrice = costPrice;
 		this.state = state;
