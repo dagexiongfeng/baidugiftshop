@@ -14,6 +14,18 @@ public class BriefGoodsBean {
 	
 	private String name;
 	
+	private Integer productType;
+	
+
+
+	public Integer getProductType() {
+		return productType;
+	}
+
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+
 	public List<GoodsPicture> pictures;
 
 	public Integer getId() {

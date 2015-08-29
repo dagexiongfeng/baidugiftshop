@@ -81,4 +81,35 @@ public class BriefGoodsController {
 			e.printStackTrace();
 		    }
 		}
+	
+	@RequestMapping("/HotGoodsList")
+	public void HotGoodsList(@RequestParam(value="subbranch_id",required=false) Integer subbranch_id,
+			HttpServletRequest request,HttpServletResponse response){
+		Base base = new Base();
+		Integer startIndex = Integer.parseInt(request.getParameter("startIndex"));
+		Integer requestAmount = Integer.parseInt(request.getParameter("requestAmount"));
+	    base = briefGoodsService.getHotGoods(subbranch_id, startIndex, requestAmount);
+		response.setContentType("text/javascript;charset=UTF-8");
+		   response.setCharacterEncoding("UTF-8");
+		   try {
+			response.getWriter().print(JSON.toJSONString(base));
+		} catch (IOException e) {
+			e.printStackTrace();
+		    }
+		}
+	@RequestMapping("/NewGoodsList")
+	public void NewGoodsList(@RequestParam(value="subbranch_id",required=false) Integer subbranch_id,
+			HttpServletRequest request,HttpServletResponse response){
+		Base base = new Base();
+		Integer startIndex = Integer.parseInt(request.getParameter("startIndex"));
+		Integer requestAmount = Integer.parseInt(request.getParameter("requestAmount"));
+	    base = briefGoodsService.getNewGoods(subbranch_id, startIndex, requestAmount);
+		response.setContentType("text/javascript;charset=UTF-8");
+		   response.setCharacterEncoding("UTF-8");
+		   try {
+			response.getWriter().print(JSON.toJSONString(base));
+		} catch (IOException e) {
+			e.printStackTrace();
+		    }
+		}
 	}

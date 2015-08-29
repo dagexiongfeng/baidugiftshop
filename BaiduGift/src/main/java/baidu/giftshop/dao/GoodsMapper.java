@@ -25,4 +25,8 @@ public interface GoodsMapper {
     List<Goods> queryAllGoods(Integer subbranch_id,Integer startIndex, Integer requestAmount,String name);
     
     List<Goods> queryByClassifyId(Integer subbranch_id,Integer classify_id,Integer startIndex, Integer requestAmount,String name);
+//查询热卖商品
+	List<Goods> selectHotGoods(Integer subbranch_id, Integer startIndex,Integer requestAmount);
+//新品到货
+	List<Goods> selectNewGoods(Integer subbranch_id, Integer startIndex,Integer requestAmount);
 }

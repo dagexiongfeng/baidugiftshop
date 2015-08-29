@@ -7,6 +7,8 @@
     <result column="unit" property="unit" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="product_type" property="productType" jdbcType="INTEGER" />
+    
   </resultMap>
   <sql id="Base_Column_List" >
     id, classify_id, unit, name, state
@@ -27,6 +29,21 @@
      limit #{param2,jdbcType=INTEGER},#{param3,jdbcType=INTEGER}
   </select>
   
+  <select id="selectHotGoods" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+        g.id,g.classify_id,g.unit,g.name,g.state ,g.product_type
+        from goods_subbranch gs,goods g 
+     where gs.goods_id=g.id  and g.product_type= 1 and gs.subbranch_id=#{param1,jdbcType=INTEGER} 
+     limit #{param2,jdbcType=INTEGER},#{param3,jdbcType=INTEGER}
+  </select>
+   
+  <select id="selectNewGoods" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+        g.id,g.classify_id,g.unit,g.name,g.state ,g.product_type
+        from goods_subbranch gs,goods g 
+     where gs.goods_id=g.id  and g.product_type= 2 and gs.subbranch_id=#{param1,jdbcType=INTEGER} 
+     limit #{param2,jdbcType=INTEGER},#{param3,jdbcType=INTEGER}
+  </select>
   <select id="queryByClassifyId" resultMap="BaseResultMap">
      select
         g.id,g.classify_id,g.unit,g.name,g.state

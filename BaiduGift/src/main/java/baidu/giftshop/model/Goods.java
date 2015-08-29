@@ -10,8 +10,18 @@ public class Goods {
     private String name;
 
     private Integer state;
+    
+    private Integer productType;
 
-    public Integer getId() {
+    public Integer getProductType() {
+		return productType;
+	}
+
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+
+	public Integer getId() {
         return id;
     }
 
