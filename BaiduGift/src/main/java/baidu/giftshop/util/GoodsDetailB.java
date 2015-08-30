@@ -15,7 +15,7 @@ public class GoodsDetailB {
 	public String type4;
 	public Integer pic_group_id;
 	public String   stock_price;
-	public String   last_stock_price;
+	public String   baidu_price;
 	public String   retail_price;
 	public String   cost_price;
 	public Integer amount;
@@ -104,7 +104,7 @@ public class GoodsDetailB {
 		this.type4 = type4;
 		this.pic_group_id = pic_group_id;
 		this.stock_price = stock_price;
-		this.last_stock_price = last_stock_price;
+		this.baidu_price = baidu_price;
 		this.retail_price = retail_price;
 		this.cost_price = cost_price;
 		this.amount = amount;
@@ -115,11 +115,12 @@ public class GoodsDetailB {
 	public void setStock_price(String stock_price) {
 		this.stock_price = stock_price;
 	}
-	public String getLast_stock_price() {
-		return last_stock_price;
+
+	public String getBaidu_price() {
+		return baidu_price;
 	}
-	public void setLast_stock_price(String last_stock_price) {
-		this.last_stock_price = last_stock_price;
+	public void setBaidu_price(String baidu_price) {
+		this.baidu_price = baidu_price;
 	}
 	public String getRetail_price() {
 		return retail_price;

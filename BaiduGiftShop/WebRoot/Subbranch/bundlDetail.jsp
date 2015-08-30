@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td width="140">分类属性3</td>
         <td width="140">分类属性4</td>
         <td width="100">进价</td>
-        <td width="120">最后进价</td>
+        <td width="120">百度员工价</td>
         <td width=100>零售价</td>
         <td width="100">成本价</td>
         <td width="100" id="amount">数量</td>
@@ -96,5 +96,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
      };
 </script>
-<script type="text/javascript" src="./jquery/bundlDetail.js"></script>
+
+<script type="text/javascript" src="./jquery/newbundlDetail.js"></script> 
+<!--   <script type="text/javascript" src="./jquery/bundlDetail.js"></script>-->
+
+
+
 </html>

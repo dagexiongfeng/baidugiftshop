@@ -290,4 +290,14 @@ public class BriefGoodsDAO {
 		session.close();
 		return true;
 	}
+	public List<Integer> findBriefID(int classifyId, Integer subbranchId) {
+		Session session = HibernateSessionFactory.getSession();
+		String sql = "select g.id from Goods g,GoodsSubbranch gs where gs.goods=g and g.classify.id=? and gs.subbranch.id=?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, classifyId);
+		q.setParameter(1, subbranchId);
+		List<Integer> list = q.list();
+		session.close();
+		return list;
+	}
 }

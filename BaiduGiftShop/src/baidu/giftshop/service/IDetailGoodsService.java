@@ -19,4 +19,5 @@ public interface IDetailGoodsService {
 	public String querySubDetail(Integer subbranchId);
 	public String deleteSubDetGoods(Integer goods_detail_id,Integer subbranch_id);
 	public String checkGoodsCode(String goodsCode);
+	public String listDetailBysubgood(int classifyId, Integer subbranchId);
 }

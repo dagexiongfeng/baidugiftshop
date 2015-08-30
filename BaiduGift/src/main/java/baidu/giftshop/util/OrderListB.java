@@ -9,7 +9,18 @@ public class OrderListB {
 	private String name;
 	private BigDecimal retail_price;
     private BigDecimal cost_price;
-    private String path;
+    private BigDecimal baidu_price;
+    public BigDecimal getBaidu_price() {
+		return baidu_price;
+	}
+
+
+	public void setBaidu_price(BigDecimal baidu_price) {
+		this.baidu_price = baidu_price;
+	}
+
+
+	private String path;
     private String thum_path;
     private String state;
     private Integer addressid;

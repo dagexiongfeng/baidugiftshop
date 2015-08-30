@@ -14,14 +14,14 @@
     <result column="type4" property="type4" jdbcType="VARCHAR" />
     <result column="pic_group_id" property="picGroupId" jdbcType="INTEGER" />
     <result column="stock_price" property="stockPrice" jdbcType="DECIMAL" />
-    <result column="last_stock_price" property="lastStockPrice" jdbcType="DECIMAL" />
+    <result column="baidu_price" property="baiduPrice" jdbcType="DECIMAL" />
     <result column="retail_price" property="retailPrice" jdbcType="DECIMAL" />
     <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
     <result column="state" property="state" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, goods_id, name, goods_code, shop_code, bar_code, type1, type2, type3, type4, 
-    pic_group_id, stock_price, last_stock_price, retail_price, cost_price, state
+    pic_group_id, stock_price, baidu_price, retail_price, cost_price, state
   </sql>
 <!-- ===================================================================== -->
 <resultMap id="MybaseResultMap" type="baidu.giftshop.util.GoodsDetailB" >
@@ -36,7 +36,7 @@
     <result column="type4" property="type4" jdbcType="VARCHAR" />
     <result column="pic_group_id" property="pic_group_id" jdbcType="INTEGER" />
     <result column="stock_price" property="stock_price" jdbcType="DECIMAL" />
-    <result column="last_stock_price" property="last_stock_price" jdbcType="DECIMAL" />
+    <result column="baidu_price" property="baidu_price" jdbcType="DECIMAL" />
     <result column="retail_price" property="retail_price" jdbcType="DECIMAL" />
     <result column="cost_price" property="cost_price" jdbcType="DECIMAL" />
     <result column="amount" property="amount" jdbcType="INTEGER" />
@@ -68,7 +68,7 @@
   </select>
   <select id="selectBySubIdAndGoodsId" parameterType="java.lang.Integer" resultMap="MybaseResultMap">
   select 
-     gd.id,gd.name,gd.goods_code,gd.shop_code,gd.bar_code,gd.type1,gd.type2,gd.type3,gd.type4,gd.pic_group_id,gd.stock_price,gd.retail_price,gd.last_stock_price,gd.cost_price,gds.amount 
+     gd.id,gd.name,gd.goods_code,gd.shop_code,gd.bar_code,gd.type1,gd.type2,gd.type3,gd.type4,gd.pic_group_id,gd.stock_price,gd.retail_price,gd.baidu_price,gd.cost_price,gds.amount 
      from goods_detail gd,goods_detail_subbranch gds 
   where gds.goods_detail_id=gd.id and gd.goods_id=#{param2,jdbcType=INTEGER} and gds.subbranch_id=#{param1,jdbcType=INTEGER}
   </select>

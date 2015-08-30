@@ -27,9 +27,17 @@ public class GoodsDetail {
 
     private BigDecimal stockPrice;
 
-    private BigDecimal lastStockPrice;
+    private BigDecimal baiduPrice;
 
-    private BigDecimal retailPrice;
+    public BigDecimal getBaiduPrice() {
+		return baiduPrice;
+	}
+
+	public void setBaiduPrice(BigDecimal baiduPrice) {
+		this.baiduPrice = baiduPrice;
+	}
+
+	private BigDecimal retailPrice;
 
     private BigDecimal costPrice;
 
@@ -131,13 +139,7 @@ public class GoodsDetail {
         this.stockPrice = stockPrice;
     }
 
-    public BigDecimal getLastStockPrice() {
-        return lastStockPrice;
-    }
 
-    public void setLastStockPrice(BigDecimal lastStockPrice) {
-        this.lastStockPrice = lastStockPrice;
-    }
 
     public BigDecimal getRetailPrice() {
         return retailPrice;

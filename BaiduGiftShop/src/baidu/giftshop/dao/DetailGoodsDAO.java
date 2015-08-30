@@ -284,5 +284,17 @@ public class DetailGoodsDAO {
 			return 0;
 		}
 	}
+	@SuppressWarnings("rawtypes")
+	public List<GoodsDetai> listDetailBysubgood(List<Integer> ss) {
+		  Session session = HibernateSessionFactory.getSession();
+		    Transaction tr = session.beginTransaction();
+		    String sql = " from GoodsDetai gd where gd.goods.id in (:ss)";
+		    Query q = session.createQuery(sql);
+		    q.setParameterList("ss",ss);
+		    List list = q.list();
+		    tr.commit();
+		    session.close();
+			return list;
+	}
 	
 }

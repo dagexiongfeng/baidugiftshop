@@ -80,17 +80,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td width="80">${goodsdetai.type4 }</td>
         <td width="80">${goodsdetai.picGroupId }</td>
         <td width="50">${goodsdetai.stockPrice }</td>
-        <td width="50">${goodsdetai.lastStockPrice }</td>
+        <td width="50">${goodsdetai.baiduPrice }</td>
         <td width="70">${goodsdetai.retailPrice }</td>
         <td width="50">${goodsdetai.costPrice }</td>
         <td width="100">${goodsdetai.state }</td>
         <td width="100">
          <s:iterator value="#session.goodsdetai" id="goodsdetai">
          <s:if test="%{#goodsdetai.state==1}">
-           <input type="button" id="button" name="button" value="下架" style="width: 100px;height: 40px" onclick="change(${goodsdetai.id })"/>
+           <input type="button" id="button" name="button" value="下架" class="btn btn-danger" style="width: 100px;height: 40px" onclick="change(${goodsdetai.id })"/>
         </s:if>
         <s:elseif test="%{#goodsdetai.state!=1}">
-           <input type="button" id="button" name="button" value="上架" style="width: 100px;height: 40px" onclick="change(${goodsdetai.id })"/>
+           <input type="button" id="button" name="button" value="上架" class="btn btn-success" style="width: 100px;height: 40px" onclick="change(${goodsdetai.id })"/>
         </s:elseif>
         </s:iterator>
         </td>

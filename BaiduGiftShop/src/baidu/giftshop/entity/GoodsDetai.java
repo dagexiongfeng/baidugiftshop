@@ -26,7 +26,7 @@ public class GoodsDetai implements java.io.Serializable {
 	private String type2;
 	private String type3;
 	private String type4;
-	private Integer picGroupId;
+	private Integer picGroupId; //商品数量,艹
 	private BigDecimal stockPrice;
 	private BigDecimal baiduPrice;
 	private BigDecimal retailPrice;

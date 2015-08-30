@@ -1,5 +1,6 @@
 package baidu.giftshop.action;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
@@ -169,6 +170,23 @@ public class DetailGoodsAction extends ActionSupport{
 	}
 	public String getClassifyId() {
 		return classifyId;
+	}
+	
+	/**
+	 * 查询所有商品
+	 * @param classifyId
+	 * @throws IOException 
+	 */
+	public String listDetailBysubgood() throws IOException{
+		pageBean.setCurrentPage(page);
+		result = detailgoodsService.listDetailBysubgood(Integer.parseInt(classifyId),subbranchId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		//以流的形式输出result
+		PrintWriter out = response.getWriter();   
+		            out.print(result);  
+		            out.flush();
+		return null;
 	}
 
 	public void setClassifyId(String classifyId) {

@@ -11,6 +11,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import baidu.giftshop.bean.Base;
 import baidu.giftshop.bean.PageBean;
+import baidu.giftshop.dao.BriefGoodsDAO;
 import baidu.giftshop.dao.DetailGoodsDAO;
 import baidu.giftshop.entity.Goods;
 import baidu.giftshop.entity.GoodsDetai;
@@ -191,6 +192,50 @@ public class DetailGoodsService implements IDetailGoodsService {
 		JsonConfig jsonConfig = new JsonConfig();
 		JSONObject jsonObject = new JSONObject();
 	    result = JSONObject.fromObject(base,jsonConfig).toString();
+		return result;
+	}
+	@Override
+	public String listDetailBysubgood(int classifyId, Integer subbranchId) {
+		System.out.println("ssss");
+		System.out.println("ssss");
+		System.out.println("ssss");
+		System.out.println("ssss");
+		BriefGoodsDAO bfd=new BriefGoodsDAO();
+	    List<Integer> ss=	bfd.findBriefID(classifyId,subbranchId);
+	    
+		List<GoodsDetai> list = detailgoodsdao.listDetailBysubgood(ss);
+		List<GoodsDetai> prelist = new ArrayList<GoodsDetai>();
+		for(GoodsDetai goodsdetai : list){
+			GoodsDetai goodsdetail = new GoodsDetai();
+			Integer amount = this.queryAmount(goodsdetai.getId(), subbranchId);
+	      if(amount!=null){
+	      }else{
+	    	 amount = 0;
+	      }
+			goodsdetail.setId(goodsdetai.getId());
+			goodsdetail.setName(goodsdetai.getName());
+			goodsdetail.setGoodsCode(goodsdetai.getGoodsCode());
+			goodsdetail.setShopCode(goodsdetai.getShopCode());
+			goodsdetail.setBarCode(goodsdetai.getBarCode());
+			goodsdetail.setType1(goodsdetai.getType1());
+			goodsdetail.setType2(goodsdetai.getType2());
+			goodsdetail.setType3(goodsdetai.getType3());
+			goodsdetail.setType4(goodsdetai.getType4());
+			goodsdetail.setStockPrice(goodsdetai.getStockPrice());
+			goodsdetail.setBaiduPrice(goodsdetai.getBaiduPrice());
+			goodsdetail.setRetailPrice(goodsdetai.getRetailPrice());
+			goodsdetail.setCostPrice(goodsdetail.getCostPrice());
+			goodsdetail.setPicGroupId(amount);
+			prelist.add(goodsdetail);
+		}
+		Base base = new Base();
+		base.setContent(prelist);
+		JsonConfig jsonConfig = new JsonConfig();  
+		jsonConfig.setIgnoreDefaultExcludes(false); 
+		jsonConfig.setExcludes(new String[]{"classifySubbranchs","goods"});
+		@SuppressWarnings("unused")
+		JSONObject jsonObject = new JSONObject();
+		result = JSONObject.fromObject(base,jsonConfig).toString();
 		return result;
 	}
 }

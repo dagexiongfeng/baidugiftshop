@@ -28,13 +28,14 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="retail_price" property="retail_price" jdbcType="DECIMAL" />
     <result column="cost_price" property="cost_price" jdbcType="DECIMAL" />
+    <result column="baidu_price" property="baidu_price" jdbcType="DECIMAL" />
     <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="thumb_path" property="thum_path" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="addressid" property="addressid" jdbcType="INTEGER" />
   </resultMap>
   <select id="queryOrder"  resultMap="MybaseResultMap">
-   select o.good_detail_id,o.num,gd.name,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
+   select o.good_detail_id,o.num,gd.name,gd.baidu_price,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
       from user_order uo,orders o,goods_detail gd,goods_picture gp 
       where uo.userid=#{param1} and uo.orderid = o.orderid and o.good_detail_id= gd.id 
    and gd.goods_id=gp.goods_id and uo.orderid=#{param2}

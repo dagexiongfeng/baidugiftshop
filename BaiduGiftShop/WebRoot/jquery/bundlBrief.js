@@ -45,6 +45,7 @@
 	   }
      });
  }
+ //提交更新的方法
 function subBriefGoods(){
    var rows = document.getElementById("show").rows; 
    var a = document.getElementsByName("goodsId"); 

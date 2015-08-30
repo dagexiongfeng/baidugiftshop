@@ -46,11 +46,12 @@ public class OrderService implements IOrderService {
 		String[] detailId = goods_detail_id.split(";");
 		String[] Number = num.split(";");
 		String[] subbranchId = subbranch_id.split(";");
+	//	String[] total_Money = totalMoney.split(";");
 		for(int i = 0;i<detailId.length;i++){
 			String[] DetailId = detailId[i].split(",");
 			String[] number = Number[i].split(",");
 			String[] SubbranchId = subbranchId[i].split(",");
-			
+		//	String[] Total_Money =total_Money.split(",");
 			String orderid = getOrderids();
 			
 	    

@@ -183,5 +183,6 @@
 		<action name="addPic" class="baidu.giftshop.action.PictureGroupAction" method="addPic">
 			<result>/Picture/AddPic.jsp</result>
 		</action>
+		<action name="listDetailBysubgood" class="baidu.giftshop.action.DetailGoodsAction" method="listDetailBysubgood"></action>
 	</package>
 </struts>
