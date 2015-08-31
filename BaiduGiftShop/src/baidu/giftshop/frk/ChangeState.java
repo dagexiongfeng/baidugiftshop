@@ -59,7 +59,7 @@ public class ChangeState {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void changstate(Integer orderid){
+	public void changstate(String orderid){
 		Session session = HibernateSessionFactory.getSession();
 		String sql = "select o from Orders o where o.orderid=?";
 		Query q = session.createQuery(sql);

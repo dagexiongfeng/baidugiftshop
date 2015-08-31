@@ -10,17 +10,21 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="address" class="baidu.giftshop.entity.Address" fetch="select" lazy="false">
+      
+        <property name="addressid" type="integer">
             <column name="addressid" not-null="true" />
-        </many-to-one>
-        <many-to-one name="goodsDetail" class="baidu.giftshop.entity.GoodsDetai" fetch="select" lazy="false">
+        </property>
+        <property name="goodsdetailid" type="integer">
             <column name="good_detail_id" not-null="true" />
-        </many-to-one>
-        <property name="orderid" type="integer">
+        </property>
+        <property name="orderid" type="string">
             <column name="orderid" not-null="true" />
         </property>
         <property name="num" type="integer">
             <column name="num" not-null="true" />
+        </property>
+        <property name="totalMoney" type="string">
+            <column name="total_money"  />
         </property>
         <property name="state" type="string">
             <column name="state" length="200" not-null="true" />

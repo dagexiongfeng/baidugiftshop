@@ -17,6 +17,11 @@
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>
+		
+		<!-- 在控制器中打印SQL语句 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 对打印语句进行格式化 -->
+		<property name="hibernate.format_sql">false</property>
 	<property name="myeclipse.connection.profile">hibernate</property>
 	<mapping resource="baidu/giftshop/entity/Account.hbm.xml" />
 	<mapping resource="baidu/giftshop/entity/Address.hbm.xml" />

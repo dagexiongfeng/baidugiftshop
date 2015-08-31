@@ -10,10 +10,10 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="user" class="baidu.giftshop.entity.User" fetch="select">
+        <property name="userid" type="string">
             <column name="userid" />
-        </many-to-one>
-        <property name="orderid" type="integer">
+        </property>
+        <property name="orderid" type="string">
             <column name="orderid" />
         </property>
         <property name="paytime" type="string">

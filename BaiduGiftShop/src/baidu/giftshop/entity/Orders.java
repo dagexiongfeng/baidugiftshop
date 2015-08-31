@@ -12,57 +12,28 @@ public class Orders implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Address address;
-	private GoodsDetai goodsDetail;
-	private Integer orderid;
+	private Integer addressid;
+	private Integer goodsdetailid;
+	private String orderid;
 	private Integer num;
+	private String totalMoney;
+	public String getTotalMoney() {
+		return totalMoney;
+	}
+
+
+	public void setTotalMoney(String totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
+
 	private String state;
     private Date data;
     private Integer subbranchId;
 	// Constructors
 
 	/** default constructor */
-	public Orders() {
-	}
 	
-
-	public Orders(Integer id, Address address, GoodsDetai goodsDetail,
-			Integer orderid, Integer num, String state, Date data,
-			Integer subbranchId) {
-		super();
-		this.id = id;
-		this.address = address;
-		this.goodsDetail = goodsDetail;
-		this.orderid = orderid;
-		this.num = num;
-		this.state = state;
-		this.data = data;
-		this.subbranchId = subbranchId;
-	}
-
-
-	public Orders(Integer id, Address address, GoodsDetai goodsDetail,
-			Integer orderid, Integer num, String state) {
-		super();
-		this.id = id;
-		this.address = address;
-		this.goodsDetail = goodsDetail;
-		this.orderid = orderid;
-		this.num = num;
-		this.state = state;
-	}
-   
-	public Orders(Integer id, Address address, GoodsDetai goodsDetail,
-			Integer orderid, Integer num, String state, Date data) {
-		super();
-		this.id = id;
-		this.address = address;
-		this.goodsDetail = goodsDetail;
-		this.orderid = orderid;
-		this.num = num;
-		this.state = state;
-		this.data = data;
-	}
 
 	// Property accessors
 
@@ -74,35 +45,43 @@ public class Orders implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Address getAddress() {
-		return this.address;
-	}
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
-	
 
-	public GoodsDetai getGoodsDetail() {
-		return goodsDetail;
+
+
+
+	public Integer getAddressid() {
+		return addressid;
 	}
 
 
-
-	public void setGoodsDetail(GoodsDetai goodsDetail) {
-		this.goodsDetail = goodsDetail;
+	public void setAddressid(Integer addressid) {
+		this.addressid = addressid;
 	}
 
 
 
-	public Integer getOrderid() {
-		return this.orderid;
+
+	public Integer getGoodsdetailid() {
+		return goodsdetailid;
 	}
 
-	public void setOrderid(Integer orderid) {
+
+	public void setGoodsdetailid(Integer goodsdetailid) {
+		this.goodsdetailid = goodsdetailid;
+	}
+
+
+	public String getOrderid() {
+		return orderid;
+	}
+
+
+	public void setOrderid(String orderid) {
 		this.orderid = orderid;
 	}
+
 
 	public Integer getNum() {
 		return this.num;

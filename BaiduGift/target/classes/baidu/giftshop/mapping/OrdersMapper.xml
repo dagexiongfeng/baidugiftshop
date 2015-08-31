@@ -8,6 +8,7 @@
     <result column="addressid" property="addressid" jdbcType="INTEGER" />
     <result column="num" property="num" jdbcType="INTEGER" />
     <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="total_money" property="totalMoney" jdbcType="VARCHAR" />
     <result column="data" property="data" jdbcType="TIMESTAMP" />
     <result column="subbranch_id" property="subbranchId" jdbcType="INTEGER" />
   </resultMap>
@@ -25,6 +26,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="goods_detail_id" property="goods_detail_id" jdbcType="INTEGER" />
     <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="data" property="data"  />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="retail_price" property="retail_price" jdbcType="DECIMAL" />
     <result column="cost_price" property="cost_price" jdbcType="DECIMAL" />
@@ -35,7 +37,7 @@
     <result column="addressid" property="addressid" jdbcType="INTEGER" />
   </resultMap>
   <select id="queryOrder"  resultMap="MybaseResultMap">
-   select o.good_detail_id,o.num,gd.name,gd.baidu_price,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
+   select o.good_detail_id,o.data,o.num,gd.name,gd.baidu_price,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
       from user_order uo,orders o,goods_detail gd,goods_picture gp 
       where uo.userid=#{param1} and uo.orderid = o.orderid and o.good_detail_id= gd.id 
    and gd.goods_id=gp.goods_id and uo.orderid=#{param2}

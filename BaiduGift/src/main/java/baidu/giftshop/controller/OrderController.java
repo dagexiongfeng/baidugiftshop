@@ -42,10 +42,10 @@ public class OrderController {
 		String subbranch_id = request.getParameter("subbranch_id");
 		String goods_detail_id = request.getParameter("goods_detail_id");
 		String num = request.getParameter("num");
-	//	String totalMoney=request.getParameter("total_money");
+		String totalMoney=request.getParameter("total_money");
 		String state = "待付款";
 		Integer addressid = Integer.parseInt(request.getParameter("addressid"));
-		base = orderService.addOrder(user_id, subbranch_id, goods_detail_id, num, state, addressid);
+		base = orderService.addOrder(user_id, subbranch_id, goods_detail_id, num, state, addressid,totalMoney);
 		
 		response.setContentType("text/javascript;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");

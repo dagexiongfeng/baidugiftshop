@@ -3,7 +3,7 @@ package baidu.giftshop.action;
 import java.util.List;
 import java.util.Map;
 
-import baidu.giftshop.bean.OrderBean;
+import baidu.giftshop.bean.NewOrderBean;
 import baidu.giftshop.bean.PageBean;
 import baidu.giftshop.service.IOrderService;
 import baidu.giftshop.service.impl.OrderService;
@@ -27,7 +27,7 @@ public class OrderAction extends ActionSupport{
 		
 		pageBean.setCurrentPage(page);
 		IOrderService orderservice = new OrderService();
-		List<OrderBean> list = orderservice.listAllOrder(pageBean,subbranch_id);
+		List<NewOrderBean> list = orderservice.listAllOrder(pageBean,subbranch_id);
 		Map request = (Map) ActionContext.getContext().get("request");
 		request.put("list", list);
 //		Map session=(Map)ActionContext.getContext().getSession();
@@ -38,7 +38,7 @@ public class OrderAction extends ActionSupport{
 	
 	public String Setlogistics() throws Exception{
 		IOrderService orderservice = new OrderService();
-		orderservice.addlogistics(Integer.parseInt(userid), Integer.parseInt(orderid), shipnum, fedex);
+		orderservice.addlogistics(userid, orderid, shipnum, fedex);
 		return SUCCESS;
 	}
 	

@@ -1,6 +1,7 @@
 package baidu.giftshop.model;
 
 public class UserOrder {
+	
     private Integer id;
 
     private String userid;

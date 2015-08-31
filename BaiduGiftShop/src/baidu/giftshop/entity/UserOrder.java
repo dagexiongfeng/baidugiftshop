@@ -13,61 +13,37 @@ public class UserOrder implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private User user;
-	private Integer orderid;
+	private String userid;
+	private String orderid;
 	private String paytime;
 	private String shipnum;
 	private String fedex;
 	private String deliverytime;
 
-	// Constructors
-
-	/** default constructor */
-	public UserOrder() {
-	}
-
-	/** full constructor */
-	public UserOrder(User user, Integer orderid) {
-		this.user = user;
-		this.orderid = orderid;
-	}
 	
 
-	public UserOrder(Integer id, User user, Integer orderid, String paytime,
-			String shipnum, String fedex, String deliverytime) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.orderid = orderid;
-		this.paytime = paytime;
-		this.shipnum = shipnum;
-		this.fedex = fedex;
-		this.deliverytime = deliverytime;
-	}
-
-	// Property accessors
-
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return this.user;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
-	public Integer getOrderid() {
-		return this.orderid;
+
+	public String getOrderid() {
+		return orderid;
 	}
 
-	public void setOrderid(Integer orderid) {
+	public void setOrderid(String orderid) {
 		this.orderid = orderid;
 	}
 

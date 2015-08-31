@@ -41,17 +41,17 @@ public class OrderService implements IOrderService {
 	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
 	@Override
 	public Base addOrder(String user_id, String subbranch_id,
-			String goods_detail_id, String num, String state, Integer addressid){
+			String goods_detail_id, String num, String state, Integer addressid,String totalMoney){
 		
 		String[] detailId = goods_detail_id.split(";");
 		String[] Number = num.split(";");
 		String[] subbranchId = subbranch_id.split(";");
-	//	String[] total_Money = totalMoney.split(";");
+		String[] total_Money = totalMoney.split(";");
 		for(int i = 0;i<detailId.length;i++){
 			String[] DetailId = detailId[i].split(",");
 			String[] number = Number[i].split(",");
 			String[] SubbranchId = subbranchId[i].split(",");
-		//	String[] Total_Money =total_Money.split(",");
+			String[] Total_Money =total_Money[i].split(",");
 			String orderid = getOrderids();
 			
 	    
@@ -67,6 +67,7 @@ public class OrderService implements IOrderService {
 				    orders.setGoodDetailId(Integer.parseInt(DetailId[j]));
 				    orders.setAddressid(addressid);
 				    orders.setNum(Integer.parseInt(number[j]));
+				    orders.setTotalMoney(Total_Money[j]);
 				    orders.setState(state);
 				    orders.setData(new Date());
 				    orders.setSubbranchId(Integer.parseInt(SubbranchId[j]));
@@ -109,6 +110,7 @@ public class OrderService implements IOrderService {
 			List<OrderListB> prelist = ordersDao.queryOrder(user_id, subOrderid);
 			orderlista.setState(prelist.get(0).getState());
 			orderlista.setAddressid(prelist.get(0).getAddressid());
+			orderlista.setData(prelist.get(0).getData());
 			orderlista.setOrderitem(prelist);
 			prolist.add(orderlista);
 		}

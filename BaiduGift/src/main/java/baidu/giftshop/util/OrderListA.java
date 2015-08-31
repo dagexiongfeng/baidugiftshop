@@ -1,5 +1,6 @@
 package baidu.giftshop.util;
 
+import java.util.Date;
 import java.util.List;
 
 public class OrderListA {
@@ -10,6 +11,18 @@ public class OrderListA {
 	
 	private Integer addressid;
 	
+	private String data;
+	
+
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	private List<OrderListB> orderitem;
 
 	public String getOrderid() {

@@ -38,14 +38,17 @@
     </style>
   </head>
   <body>
+  <h1>订单管理</h1>
   <table id="show" border="1 #76aef0 solid" cellspacing="0" cellpadding="1" align="center" bgColor="#E4E8EF" width="1024" border="0">
     <tr id="tr">
         <td width="100">订单编号</td>
         <td width="100">商品名称</td>
         <td width="100">商品码</td>
         <td width="100">数量</td>
+        <td width="100">总价钱</td>
         <td width="100">收货人</td>
         <td width="100">地址信息</td>
+        <td width="100">电话</td>
         <td width="100">状态</td>
         <td width="100">发货</td>
     </tr>
@@ -55,12 +58,14 @@
         <td width="100"><s:property value="#list.goodsname"/></td>
         <td width="100"><s:property value="#list.goodscode"/></td>
         <td width="100"><s:property value="#list.num"/></td>
+        <td width="100"><s:property value="#list.totalMoney"/></td>
         <td width="60"><s:property value="#list.addressee"/></td>
         <td width="200"><s:property value="#list.address"/></td>
+        <td width="200"><s:property value="#list.phone"/></td>
         <td width="100"><s:property value="#list.state"/></td>
         <td width="100">
         <s:if test="%{#list.state=='已付款'}">
-          <a href="./Subbranch/logistics.jsp?orderid=<s:property value="#list.orderid"/>&&userid=<s:property value="#list.username"/>"> <input type="button" id="button" name="button" value="发货" style="width: 100px;height: 40px" class="btn btn-danger"/></a>
+          <a href="./Subbranch/logistics.jsp?orderid=<s:property value="#list.orderid"/>&&userid=<s:property value="#list.userid"/>"> <input type="button" id="button" name="button" value="发货" style="width: 100px;height: 40px" class="btn btn-danger"/></a>
         </s:if>
         <s:elseif test="%{#list.state!='已付款'}">
            <input type="button" id="button" name="button" value="发货" style="width: 100px;height: 40px" class="btn btn-success" readonly/>

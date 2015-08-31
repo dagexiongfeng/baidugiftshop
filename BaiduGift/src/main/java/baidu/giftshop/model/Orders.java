@@ -14,8 +14,10 @@ public class Orders {
     private Integer num;
 
     private String state;
+    
+    private String totalMoney;
 
-    private Date data;
+	private Date data;
     
     private Integer subbranchId;
 
@@ -25,6 +27,13 @@ public class Orders {
 
 	public void setSubbranchId(Integer subbranchId) {
 		this.subbranchId = subbranchId;
+	}
+    public String getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(String totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
 	public Integer getId() {

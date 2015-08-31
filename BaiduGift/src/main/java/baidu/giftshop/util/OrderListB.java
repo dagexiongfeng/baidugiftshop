@@ -1,12 +1,24 @@
 package baidu.giftshop.util;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class OrderListB {
 
 	private Integer goods_detail_id;
 	private Integer num;
 	private String name;
+	private String data;
+	public String getData() {
+		return data;
+	}
+
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+
 	private BigDecimal retail_price;
     private BigDecimal cost_price;
     private BigDecimal baidu_price;
