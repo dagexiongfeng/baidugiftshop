@@ -17,6 +17,10 @@ public interface OrdersMapper {
 
     int updateByPrimaryKey(Orders record);
     
-	List<Orders> checkByOrderid(Integer orderid);
+	List<Orders> checkByOrderid(String orderid);
 	List<OrderListB> queryOrder(String userid,String Orderid);
+
+	int updateOrderType(String state, String orderid);
+
+	String queryState(String orderid);
 }

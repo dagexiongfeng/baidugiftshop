@@ -9,13 +9,13 @@ public class OrderListB {
 	private Integer num;
 	private String name;
 	private String data;
-	public String getData() {
-		return data;
+	private Integer subbranchid;
+	public Integer getSubbranchid() {
+		return subbranchid;
 	}
 
-
-	public void setData(String data) {
-		this.data = data;
+	public void setSubbranchid(Integer subbranchid) {
+		this.subbranchid = subbranchid;
 	}
 
 
@@ -24,6 +24,15 @@ public class OrderListB {
     private BigDecimal baidu_price;
     public BigDecimal getBaidu_price() {
 		return baidu_price;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+
+	public void setData(String data) {
+		this.data = data;
 	}
 
 

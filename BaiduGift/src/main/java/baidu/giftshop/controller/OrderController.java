@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
@@ -43,7 +44,7 @@ public class OrderController {
 		String goods_detail_id = request.getParameter("goods_detail_id");
 		String num = request.getParameter("num");
 		String totalMoney=request.getParameter("total_money");
-		String state = "待付款";
+		String state = "待支付";
 		Integer addressid = Integer.parseInt(request.getParameter("addressid"));
 		base = orderService.addOrder(user_id, subbranch_id, goods_detail_id, num, state, addressid,totalMoney);
 		
@@ -81,15 +82,37 @@ public class OrderController {
 		    }
 	}
 	
+	
+	
+	
+	/**
+	 * 取消订单接口
+	 * @param orderid
+	 * @param num
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
 	@RequestMapping("/cancelOrder")
-	public Object CancelOrder(@RequestParam("orderid") String orderid,@RequestParam("num") Integer num,HttpServletResponse response,HttpServletRequest request){
+	public Object CancelOrder(@RequestParam("order_id") String orderid,HttpServletResponse response,HttpServletRequest request){
           Base base = new Base();
-          String user_id= request.getParameter("user_id");
+         
 		   try {
-			   base = orderService.cancelOrder(user_id,orderid,num);
+			   base = orderService.cancelOrder(orderid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		    }
 		   return base;
+	}
+	/**
+	 * 
+	 */
+	@ResponseBody
+	@RequestMapping("/queryState")
+	public Object queryState(@RequestParam("order_id") String orderid){
+		Base	 base = orderService.queryState(orderid);
+		return base;
+		
 	}
 }

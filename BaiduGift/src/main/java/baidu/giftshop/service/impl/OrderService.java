@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,16 +136,16 @@ public class OrderService implements IOrderService {
 		
 	}
 	
-	public Integer setorderid(){
-		Integer orderid = (int)(Math.random()*10000)+1;
-		List<Orders> list = ordersDao.checkByOrderid(orderid);
-		if(list.size()<1){
-			return orderid;
-		}else{
-			setorderid();
-		}
-		return orderid;
-	}
+//	public Integer setorderid(){
+//		Integer orderid = (int)(Math.random()*10000)+1;
+//		List<Orders> list = ordersDao.checkByOrderid(orderid);
+//		if(list.size()<1){
+//			return orderid;
+//		}else{
+//			setorderid();
+//		}
+//		return orderid;
+//	}
 	
 	public Boolean adduserorder(UserOrder userorder,String orderid){
 		List<UserOrder> list = userorderDao.queryByOrderid(orderid);
@@ -158,11 +160,52 @@ public class OrderService implements IOrderService {
 	public synchronized void changeamount(Integer goodsDetailId,Integer subbranchId,Integer amount){
 		goodsDSDao.updateAmount(goodsDetailId, subbranchId,amount);
 	}
+
+	
+	
 	@Override
-	public Base cancelOrder(String user_id, String orderid, Integer num) {
-//	      List<Integer>  goodDetailId=	ordersDao.queryOrderByOrderid(orderid);	
-//	      if()
-		return null;
+	public Base cancelOrder(String orderid) {
+		
+		  List<Orders>  ss= ordersDao.checkByOrderid(orderid);
+		
+		  for (Orders orders : ss) {
+			Integer goodsDetailId=orders.getGoodDetailId();
+			Integer	subbranchId=orders.getSubbranchId();
+			Integer num=orders.getNum();
+			String state="已取消";
+			ordersDao.updateOrderType(state,orders.getOrderid());
+			goodsDSDao.updateAmount(goodsDetailId, subbranchId, -num);
+			
+		}
+			Base base = new Base();
+			base.setCode(101);
+			base.setContent("OK");
+			base.setResult("OK");
+//		Integer	goodsDetailId=Integer.parseInt(goods_detail_id);
+//		Integer	subbranchId=Integer.parseInt(subbranch_id);
+//		int	num1=num;
+//		String state="已取消";
+//		int i=   ordersDao.updateOrderType(state,orderid);
+//		System.out.println("ss");
+//		if(i>0){
+//		goodsDSDao.updateAmount(goodsDetailId, subbranchId, -num1);
+//		}
+
+		return base;
+		
+	}
+	@Override
+	public Base queryState(String orderid) {
+		String state= ordersDao.queryState(orderid);
+		
+		Map<String,String> paramMap=new HashMap<String, String>();
+		paramMap.put("state", state);
+		     Base base = new Base();
+			base.setCode(101);
+			base.setContent(paramMap);
+			base.setResult("OK");
+			
+			return base;
 	}
 
 	

@@ -12,11 +12,19 @@
   
   <select id="updateAmount" parameterType="java.lang.Integer">
   UPDATE goods_detail_subbranch gds 
-  SET amount = amount -1 
+  SET amount = amount -#{param3} 
   WHERE gds.goods_detail_id=#{param1,jdbcType=INTEGER} and gds.subbranch_id=#{param2,jdbcType=INTEGER}
   </select>
-  
-  
+   <select id="updateAmount1" parameterType="java.lang.Integer">
+  UPDATE goods_detail_subbranch gds 
+  SET amount = amount + #{param3} 
+  WHERE gds.goods_detail_id=#{param1,jdbcType=INTEGER} and gds.subbranch_id=#{param2,jdbcType=INTEGER}
+  </select>
+   <select id="updateCancleAmount" parameterType="java.lang.Integer">
+  UPDATE goods_detail_subbranch gds 
+  SET amount = amount +1 
+  WHERE gds.goods_detail_id=#{param1,jdbcType=INTEGER} and gds.subbranch_id=#{param2,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

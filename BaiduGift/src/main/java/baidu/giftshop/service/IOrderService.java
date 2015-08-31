@@ -9,5 +9,7 @@ public interface IOrderService {
 
 	Base queryOrder(String user_id,Integer startIndex,Integer requestAmount);
 
-	Base cancelOrder(String user_id, String orderid, Integer num);
+	Base cancelOrder(String orderid);
+
+	Base queryState(String orderid);
 }

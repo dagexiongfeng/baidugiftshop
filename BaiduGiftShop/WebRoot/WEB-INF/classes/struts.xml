@@ -116,7 +116,7 @@
 		       <result name="success">/Subbranch/listOrder.jsp</result>
 		</action>
 		<action name="Setlogistics" class="baidu.giftshop.action.OrderAction" method="Setlogistics">
-		       <result name="success" type="redirect">./listAllOrders.action</result>
+		       <result name="success" >/Subbranch/successchangestate.jsp</result>
 		</action>
 		
 	</package>
