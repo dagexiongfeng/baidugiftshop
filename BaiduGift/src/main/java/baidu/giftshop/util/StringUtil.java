@@ -25,8 +25,7 @@ public class StringUtil {
     /**
      * 判断字符串是否为空
      * 
-     * @Author: zhouyu
-     * @CreateDate: 2012-09-16
+     * 
      * @param str
      *            被判断对象
      * @Return:

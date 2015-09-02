@@ -26,4 +26,6 @@ public interface UserOrderMapper {
     
     
     List<String> queryOrderid(String userid);
+
+	void insertPayTime(String pay_time, String orderid);
 }

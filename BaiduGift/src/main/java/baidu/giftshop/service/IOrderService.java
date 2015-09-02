@@ -12,4 +12,8 @@ public interface IOrderService {
 	Base cancelOrder(String orderid);
 
 	Base queryState(String orderid);
+	
+	void changeOrderStatus(String order_no, String pay_time);
+
+	String queryStatus(String order_no);
 }

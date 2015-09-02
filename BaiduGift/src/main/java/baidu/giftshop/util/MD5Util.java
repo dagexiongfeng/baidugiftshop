@@ -38,7 +38,7 @@ public class MD5Util {
 
     public static void main(String[] args) {
         String str = "1";
-        String encryptStr = MD5(str);
+        String encryptStr = MD5("admin");
         System.out.println("加密前：" + str);
         System.out.println("加密后：" + encryptStr);
     }

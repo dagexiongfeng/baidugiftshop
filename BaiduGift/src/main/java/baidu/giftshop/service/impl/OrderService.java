@@ -207,6 +207,26 @@ public class OrderService implements IOrderService {
 			
 			return base;
 	}
+	@Override
+	public void changeOrderStatus(String order_no, String pay_time) {
+		List<Orders>  ss= ordersDao.checkByOrderid(order_no);
+		
+		  for (Orders orders : ss) {
+			String state="已支付";
+			ordersDao.updateOrderType(state,orders.getOrderid());
+		  }
+		  if(ss.size()==1){
+			  userorderDao.insertPayTime(pay_time,order_no);
+		  }
+	}
+	/**
+	 * 支付时查询的订单状态
+	 */
+	@Override
+	public String queryStatus(String order_no) {
+		String state= ordersDao.queryState(order_no);
+		return state;
+	}
 
 	
 }

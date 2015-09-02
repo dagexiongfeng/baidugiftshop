@@ -401,3 +401,6 @@ org.hibernate.LazyInitializationException: could not initialize proxy - no Sessi
 	at org.hibernate.proxy.pojo.cglib.CGLIBLazyInitializer.invoke(CGLIBLazyInitializer.java:150)
 	at com.bjpowernode.hibernate.pojo.User$$EnhancerByCGLIB$$1ccb98f3.getName(<generated>)
 	at com.bjpowernode.hibernate.test.LoadUserDAO.main(LoadUserDAO.java:39)
+16:02:50,214  WARN JDBCExceptionReporter:100 - SQL Error: 1054, SQLState: 42S22
+16:02:50,221 ERROR JDBCExceptionReporter:101 - Unknown column 'gd' in 'field list'
+16:08:44,680 ERROR BasicPropertyAccessor:194 - IllegalArgumentException in class: baidu.giftshop.entity.GoodsDetai, getter method of property: id

@@ -22,7 +22,37 @@ public class CreatSignUtil {
 			sb.append( k + "=" + v + "&");
 		}
 		String params = sb.substring(0,sb.lastIndexOf("&"));
-		
 		return MD5Util.MD5(params);
+	}
+	
+	public static String modifyString(SortedMap<String, String> signParams){
+		
+		StringBuffer sb=new StringBuffer();
+		Set es=signParams.entrySet();
+		Iterator it=es.iterator();
+		while (it.hasNext()){
+			Map.Entry entry=(Map.Entry)it.next();
+			String k=(String) entry.getKey();
+			String v=(String) entry.getValue();
+			sb.append( k + "=" + v + "&");
+		}
+		  String params= sb.toString();
+		return params;
+	}
+	
+public static String createUrlParam(SortedMap<String, String> signParams){
+		
+		StringBuffer sb=new StringBuffer();
+		Set es=signParams.entrySet();
+		Iterator it=es.iterator();
+		while (it.hasNext()){
+			Map.Entry entry=(Map.Entry)it.next();
+			String k=(String) entry.getKey();
+			String v=(String) entry.getValue();
+			sb.append( k + "=" + v + "&");
+		}
+		  
+		  String params = sb.substring(0,sb.lastIndexOf("&"));
+		return params;
 	}
 }

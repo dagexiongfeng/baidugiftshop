@@ -19,6 +19,11 @@
       from user_order
     where orderid = #{orderid}
   </select>
+  <update id="insertPayTime">
+  		update user_order 
+  		set paytime=#{param1}
+  		where orderid=#{param2}
+  </update>
   <select id="queryOrderid" resultType="java.lang.String" parameterType="java.lang.String">
      select distinct orderid
      from user_order
