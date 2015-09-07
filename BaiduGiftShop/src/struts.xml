@@ -115,6 +115,10 @@
 		<action name="listAllOrders" class="baidu.giftshop.action.OrderAction" method="listAllOrder">
 		       <result name="success">/Subbranch/listOrder.jsp</result>
 		</action>
+		<!-- 显示已支付待发货订单 -->
+		<action name="listPayOrders" class="baidu.giftshop.action.OrderAction" method="listPayOrders">
+		       <result name="success">/Subbranch/listPayOrder.jsp</result>
+		</action>
 		<action name="Setlogistics" class="baidu.giftshop.action.OrderAction" method="Setlogistics">
 		       <result name="success" >/Subbranch/successchangestate.jsp</result>
 		</action>

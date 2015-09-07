@@ -97,7 +97,7 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
             <li ><a href="./index.jsp">Home</a></li>
-            <li ><a href="./getAllUser.action">Sample List</a></li>
+            <li ><a href="./getAllUser.action">User management</a></li>
             <li ><a href="user.jsp">Sample Item</a></li>
         </ul>
 

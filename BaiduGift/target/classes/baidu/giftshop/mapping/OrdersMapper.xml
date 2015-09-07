@@ -39,9 +39,12 @@
     <result column="subbranch_id" property="subbranchid" jdbcType="INTEGER" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="addressid" property="addressid" jdbcType="INTEGER" />
+    <result column="shipnum" property="shipnum" jdbcType="VARCHAR" />
+    <result column="fedex" property="fedex" jdbcType="VARCHAR" />
   </resultMap>
   <select id="queryOrder"  resultMap="MybaseResultMap">
-   select o.good_detail_id,o.data,o.subbranch_id ,o.num,gd.name,gd.baidu_price,gd.retail_price,gd.cost_price,gp.path,gp.thumb_path,o.state,o.addressid 
+   select o.good_detail_id,o.data,o.subbranch_id ,o.num,gd.name,gd.baidu_price,gd.retail_price,gd.cost_price,gp.path,
+   gp.thumb_path,o.state,o.addressid ,uo.shipnum,uo.fedex
       from user_order uo,orders o,goods_detail gd,goods_picture gp 
       where uo.userid=#{param1} and uo.orderid = o.orderid and o.good_detail_id= gd.id 
    and gd.goods_id=gp.goods_id and uo.orderid=#{param2}
@@ -67,10 +70,10 @@
   </delete>
   <insert id="insert" parameterType="baidu.giftshop.model.Orders" >
     insert into orders (id, orderid, good_detail_id, 
-      addressid, num, state, 
+      addressid, num,total_money ,state, 
       data,subbranch_id)
     values (#{id,jdbcType=INTEGER}, #{orderid}, #{goodDetailId,jdbcType=INTEGER}, 
-      #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{totalMoney,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
       #{data,jdbcType=TIMESTAMP}, #{subbranchId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="baidu.giftshop.model.Orders" >

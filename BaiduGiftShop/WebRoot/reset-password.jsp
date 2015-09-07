@@ -86,11 +86,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="block">
             <p class="block-heading">Reset your password</p>
               <div class="block-body">
-                <form action="changPassword.action?id=<%=id %>>" method="post" name="changPassword">
+                <form action="changPassword.action?id=<%=id %>>" method="post" name="changPassword" onsubmit="return beforeSubmit(this);">
                     <label>用户名</label>
                     <input type="text" id="code" name="code" value="${user.account }" class="span12" readonly/>
                     <label>新密码</label>
                     <input type="password" id="password" name="password" class="span12"/>
+                    <label>确认密码</label>
+                    <input type="password" id="passwordagain" name="passwordagain" class="span12"/>
                     <input type="submit" value="Send" class="btn btn-primary pull-right"/>
                     <div class="clearfix"></div>
                 </form>
@@ -105,6 +107,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $(function() {
             $('.demo-cancel-click').click(function(){return false;});
         });
+        
+        function beforeSubmit(form){
+     	    if(form.password.length<6){
+     		 alert('密码长度大于6');
+     		 form.password.focus();
+     		 return false;
+     		 }
+     		
+     }
     </script>
     
   </body>

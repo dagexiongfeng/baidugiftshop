@@ -12,6 +12,13 @@ public class NewOrderBean {
     private String phone;
     private String state;
     private String userid;
+    private String paytime;
+	public String getPaytime() {
+		return paytime;
+	}
+	public void setPaytime(String paytime) {
+		this.paytime = paytime;
+	}
 	public String getUserid() {
 		return userid;
 	}

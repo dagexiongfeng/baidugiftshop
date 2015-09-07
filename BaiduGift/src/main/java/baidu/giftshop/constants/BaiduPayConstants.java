@@ -16,5 +16,6 @@ public class BaiduPayConstants {
 	
 	public static final String KEY="GUKCdezLaaBQyw56DkpATKWeGP6mBZ7h"; //百度钱包支付合作密钥
 	
+	public static final String RETURN_URL="http://172.21.192.14:8080/BaiduGift/payState.action"; //return_url
 
 }

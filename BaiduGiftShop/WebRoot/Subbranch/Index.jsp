@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="navbar-inner">
                 <ul class="nav pull-right">
                     
-                    <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
+                    <li><a href="javascript:void(0)" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-user"></i> ${user.account }
@@ -67,9 +67,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">My Account</a></li>
+                            <li><a tabindex="-1" href="javascript:void(0)">My Account</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                            <li><a  class="visible-phone" href="javascript:void(0)">Settings</a></li>
                             <li class="divider visible-phone"></li>
                             <li><a tabindex="-1" href="./logout.action">Logout</a></li>
                         </ul>
@@ -101,9 +101,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul id="accounts-menu3" class="nav nav-list collapse">
             <li ><a href="./Subbranch/bundlDetail.jsp">&nbsp&nbsp&nbsp 分店绑定明细商品</a></li>
         </ul>
-        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">1</span></a></a>
+        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">2</span></a></a>
         <ul id="accounts-menu4" class="nav nav-list collapse">
-            <li ><a href="./listAllOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp 订单管理</a></li>
+            <li ><a href="./listAllOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp全部订单</a></li>
+            <li ><a href="./listPayOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp待发货订单</a></li>
         </ul>
 
        <!--  <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
@@ -114,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li ><a href="503.html">503 page</a></li>
         </ul> -->
 
-        <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
+        <a href="javascript:void(0)" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
     </div>
     
 

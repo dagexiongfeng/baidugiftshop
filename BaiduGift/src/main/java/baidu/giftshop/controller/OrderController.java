@@ -106,7 +106,7 @@ public class OrderController {
 		   return base;
 	}
 	/**
-	 * 
+	 * 查询订单状态
 	 */
 	@ResponseBody
 	@RequestMapping("/queryState")
@@ -115,4 +115,24 @@ public class OrderController {
 		return base;
 		
 	}
+	/**
+	 * 确认收货订单接口
+	 * @param orderid
+	 * @param num
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ConfirmOrder")
+	public Object ConfirmOrder(@RequestParam("order_id") String orderid,HttpServletResponse response,HttpServletRequest request){
+          Base base = new Base();
+		   try {
+			   base = orderService.confirmOrder(orderid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		    }
+		   return base;
+	}
+	
 }

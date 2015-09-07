@@ -11,4 +11,7 @@ public interface IOrderService {
 	
 	public void addlogistics(String userid,String orderid,String shipnum,String fedex);
 
+	public List<NewOrderBean> listPayOrders(PageBean pageBean,
+			Integer subbranch_id);
+
 }

@@ -227,6 +227,21 @@ public class OrderService implements IOrderService {
 		String state= ordersDao.queryState(order_no);
 		return state;
 	}
+	@Override
+	public Base confirmOrder(String orderid) {
+		
+		  List<Orders>  ss= ordersDao.checkByOrderid(orderid);
+			
+		  for (Orders orders : ss) {
+			String state="交易完成";
+			ordersDao.updateOrderType(state,orders.getOrderid());
+		  }
+			Base base = new Base();
+			base.setCode(101);
+			base.setContent("OK");
+			base.setResult("OK");
+		return base;
+	}
 
 	
 }

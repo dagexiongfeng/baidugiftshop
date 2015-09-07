@@ -90,32 +90,43 @@
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
             <li ><a href="./index.jsp">Home</a></li>
-            <li ><a href="users.jsp">Sample List</a></li>
-            <li ><a href="user.jsp">Sample Item</a></li>
+            <li ><a href="./getAllUser.action">User management</a></li>
+            <li ><a href="user.jsp">Personal information</a></li>
         </ul>
 
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">2</span></a>
         <ul id="accounts-menu" class="nav nav-list collapse">
-            <li ><a href="./listallBrief.action">查询分类信息</a></li>
-            <li ><a href="./goods.action">增加分类信息</a></li>
+            <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
+            <li ><a href="./listallBrief.action">&nbsp&nbsp&nbsp查询分类信息</a></li>
         </ul>
         <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>概要商品<span class="label label-info">2</span></a>
         <ul id="accounts-menu2" class="nav nav-list collapse">
-            <li ><a href="./briefGoods/addBriefGoods.jsp">增加概要信息</a></li>
-            <li ><a href="./queryAllBriefGoods.action">查询概要信息</a></li>
+            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加概要信息</a></li>
+            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询概要信息</a></li>
         </ul>
         <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">3</span></a>
         <ul id="accounts-menu3" class="nav nav-list collapse">
-            <li ><a href="./listallDetailGoods.action">查询明细商品</a></li>
-            <li ><a href="./DetailGoods/addDetailGoods.jsp">增加概要信息</a></li>
-            <li ><a href="./DetailGoods/ModifyDetailGoods.jsp">修改明细商品</a></li>
+            <li ><a href="./DetailGoods/addDetailGoods.jsp">&nbsp&nbsp&nbsp增加明细信息</a></li>
+            <li ><a href="./listallDetailGoods.action">&nbsp&nbsp&nbsp查询明细商品</a></li>
+            <li ><a href="./DetailGoods/ModifyDetailGoods.jsp">&nbsp&nbsp&nbsp修改明细商品</a></li>
         </ul>
-        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>图片组别</a>
+        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>图片组别<span class="label label-info">3</span></a>
         <ul id="accounts-menu4" class="nav nav-list collapse">
-            <li ><a href="./Picture/AddPic.jsp">增加一组图片</a></li>
-            <li ><a href="./Picture/ShowPic.jsp">查询一组图片</a></li>
-            <li ><a href="./Picture/DeleteGroup.jsp">删除一组图片</a></li>
+            <li ><a href="./addPic.action">&nbsp&nbsp&nbsp增加一组图片</a></li>
+            <li ><a href="./Picture/ShowPic.jsp">&nbsp&nbsp&nbsp查询一组图片</a></li>
+            <li ><a href="./Picture/DeleteGroup.jsp">&nbsp&nbsp&nbsp删除一组图片</a></li>
         </ul>
+
+        <!-- <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
+        <ul id="error-menu" class="nav nav-list collapse">
+            <li ><a href="403.html">403 page</a></li>
+            <li ><a href="404.html">404 page</a></li>
+            <li ><a href="500.html">500 page</a></li>
+            <li ><a href="503.html">503 page</a></li>
+        </ul> -->
+
+        <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
+    </div>
 
         <!-- <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
         <ul id="error-menu" class="nav nav-list collapse">
@@ -144,8 +155,6 @@
                     
 <div class="btn-toolbar">
     <a href="./sign-up.html"><button class="btn btn-primary"><i class="icon-plus"></i> New User</button></a>
-    <button class="btn">Import</button>
-    <button class="btn">Export</button>
   <div class="btn-group">
   </div>
 </div>
@@ -168,8 +177,9 @@
           <td><s:property value="#list.email" /></td>
           <td><s:property value="#list.tel" /></td>
           <td>
-              <a href="user.jsp"><i class="icon-pencil"></i></a>
-              <a href="./deleteUser.action?aid=<s:property value="#list.id"/>"><i class="icon-remove"></i></a>
+              <s:if test="#list.account != 'administor'">
+              <a href="./deleteUser.action?aid=<s:property value="#list.id"/>">删除</a>
+              </s:if>
           </td>
         </tr>
       </tbody>

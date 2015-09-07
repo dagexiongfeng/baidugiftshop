@@ -38,4 +38,19 @@ public class OrderService implements IOrderService {
 //			System.out.println(object);
 //		}
 	}
+
+
+
+	@Override
+	public List<NewOrderBean> listPayOrders(PageBean pageBean,
+			Integer subbranch_id) {
+		OrderDAO orderdao = new OrderDAO();
+		List<NewOrderBean> list = orderdao.listPayOrder(subbranch_id);
+		int totalSize = list.size();
+		pageBean.setPerPage(10);
+		pageBean = pageBean.init(pageBean, totalSize);
+		int maxResult = pageBean.getPerPage();
+		int firstResult = (pageBean.getCurrentPage()-1)*maxResult;
+		return orderdao.listPayOrder(firstResult,maxResult,subbranch_id);
+	}
 }

@@ -50,6 +50,7 @@
         <td width="100">地址信息</td>
         <td width="100">电话</td>
         <td width="100">状态</td>
+        <td width="100">支付时间</td>
         <td width="100">发货</td>
     </tr>
      <s:iterator value="#request.list" id="list">
@@ -63,6 +64,7 @@
         <td width="200"><s:property value="#list.address"/></td>
         <td width="200"><s:property value="#list.phone"/></td>
         <td width="100"><s:property value="#list.state"/></td>
+        <td width="100"><s:property value="#list.paytime"/></td>
         <td width="100">
         <s:if test="%{#list.state=='已支付'}">
           <a href="./Subbranch/logistics.jsp?orderid=<s:property value="#list.orderid"/>&&userid=<s:property value="#list.userid"/>"> <input type="button" id="button" name="button" value="发货" style="width: 100px;height: 40px" class="btn btn-danger"/></a>
@@ -91,10 +93,10 @@
                              第<s:property value="#pageBean.currentPage"/>页
                              共<s:property value="#pageBean.allPage"/>页
                         
-      <a href="listAllOrders.action?page=<s:property value="#pageBean.firstPage"/>&subbranch_id=${user.subbranchId}">首页</a>
-      <a href="listAllOrders.action?page=<s:property value="#pageBean.previousPage"/>&subbranch_id=${user.subbranchId}">上一页</a>
-      <a href="listAllOrders.action?page=<s:property value="#pageBean.nextPage"/>&subbranch_id=${user.subbranchId}">下一页</a>
-      <a href="listAllOrders.action?page=<s:property value="#pageBean.lastPage"/>&subbranch_id=${user.subbranchId}">尾页</a>
+      <a href="listPayOrders.action?page=<s:property value="#pageBean.firstPage"/>&subbranch_id=${user.subbranchId}">首页</a>
+      <a href="listPayOrders.action?page=<s:property value="#pageBean.previousPage"/>&subbranch_id=${user.subbranchId}">上一页</a>
+      <a href="listPayOrders.action?page=<s:property value="#pageBean.nextPage"/>&subbranch_id=${user.subbranchId}">下一页</a>
+      <a href="listPayOrders.action?page=<s:property value="#pageBean.lastPage"/>&subbranch_id=${user.subbranchId}">尾页</a>
               共<s:property value="#pageBean.allRecords"/>条 
       </td>
     </tr>

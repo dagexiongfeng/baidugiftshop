@@ -36,6 +36,20 @@ public class OrderAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	/*
+	 *显示已支付待发货的订单 
+	 */
+	public String listPayOrders() throws Exception{
+		
+		pageBean.setCurrentPage(page);
+		IOrderService orderservice = new OrderService();
+		List<NewOrderBean> list = orderservice.listPayOrders(pageBean,subbranch_id);
+		Map request = (Map) ActionContext.getContext().get("request");
+		request.put("list", list);
+		request.put("pageBean",pageBean);
+		return SUCCESS;
+	}
+	
 	public String Setlogistics() throws Exception{
 		IOrderService orderservice = new OrderService();
 		orderservice.addlogistics(userid, orderid, shipnum, fedex);

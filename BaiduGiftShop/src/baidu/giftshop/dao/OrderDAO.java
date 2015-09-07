@@ -61,7 +61,7 @@ public class OrderDAO {
 		
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
-		String aql="select  o.orderid ,gd.name,gd.shop_code,o.num,o.total_money, ad.addressee, ad.address,ad.phone,o.state ,u.user_id from user_order uo ,orders  o , address  ad ,goods_detail gd, user u"+
+		String aql="select  o.orderid ,gd.name,gd.shop_code,o.num,o.total_money, ad.addressee, ad.address,ad.phone,o.state ,u.user_id ,uo.paytime from user_order uo ,orders  o , address  ad ,goods_detail gd, user u"+
 				 " WHERE  o.orderid=uo.orderid and o.addressid=ad.id and  o.good_detail_id=gd.id  and uo.userid=u.user_id and o.subbranch_id= ?";
 		SQLQuery a=	session.createSQLQuery(aql);
 		a.setParameter(0, subbranch_id);
@@ -81,6 +81,7 @@ public class OrderDAO {
 	    	orderbean.setPhone((String)obs[7]);
 	    	orderbean.setState((String)obs[8]);
 	    	orderbean.setUserid((String)obs[9]);
+	    	orderbean.setPaytime((String)obs[10]);
 	    	prelist.add(orderbean);
 	    }
 	    session.close();
@@ -93,7 +94,7 @@ public List<NewOrderBean> listAllOrder(Integer firstResult,Integer maxResult,Int
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
 		String aql="select  o.orderid ,gd.name,gd.shop_code,o.num,o.total_money, ad.addressee, ad.address,ad.phone,o.state ,u.user_id from user_order uo ,orders  o , address  ad ,goods_detail gd, user u"+
-				 " WHERE  o.orderid=uo.orderid and o.addressid=ad.id and  o.good_detail_id=gd.id  and uo.userid=u.user_id and o.subbranch_id= ?  order by o.orderid desc ";
+				 " WHERE  o.orderid=uo.orderid and o.addressid=ad.id and  o.good_detail_id=gd.id  and uo.userid=u.user_id  and o.subbranch_id= ?  order by o.orderid desc ";
 		SQLQuery a=	session.createSQLQuery(aql);
 		a.setFirstResult(firstResult);
 		a.setMaxResults(maxResult);
@@ -203,6 +204,71 @@ public List<NewOrderBean> listAllOrder(Integer firstResult,Integer maxResult,Int
 			
 	    tr.commit();
 	    session.close();
+	}
+
+
+	public List<NewOrderBean> listPayOrder(Integer subbranch_id) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String aql="select  o.orderid ,gd.name,gd.shop_code,o.num,o.total_money, ad.addressee, ad.address,ad.phone,o.state ,u.user_id ,uo.paytime from user_order uo ,orders  o , address  ad ,goods_detail gd, user u"+
+				 " WHERE  o.orderid=uo.orderid and o.addressid=ad.id and  o.good_detail_id=gd.id  and uo.userid=u.user_id and o.state='已支付' and o.subbranch_id= ?";
+		SQLQuery a=	session.createSQLQuery(aql);
+		a.setParameter(0, subbranch_id);
+		List<Object[]> list=	a.list();
+	    tr.commit();
+	    List<NewOrderBean> prelist = new ArrayList<NewOrderBean>();
+	    for(int i = 0 ; i < list.size() ; i ++){
+	    	Object[] obs = list.get(i);
+	    	NewOrderBean orderbean = new NewOrderBean();
+	    	orderbean.setOrderid((String)obs[0]);
+	    	orderbean.setGoodsname((String)obs[1]);
+	    	orderbean.setGoodscode((String)obs[2]);
+	    	orderbean.setNum(String.valueOf((Integer)obs[3]));
+	    	orderbean.setTotalMoney((String)obs[4]);
+	    	orderbean.setAddressee((String)obs[5]);
+	    	orderbean.setAddress((String)obs[6]);
+	    	orderbean.setPhone((String)obs[7]);
+	    	orderbean.setState((String)obs[8]);
+	    	orderbean.setUserid((String)obs[9]);
+	    	orderbean.setPaytime((String)obs[10]);
+	    	prelist.add(orderbean);
+	    }
+	    session.close();
+		return prelist;
+	}
+
+
+	public List<NewOrderBean> listPayOrder(int firstResult, int maxResult,
+			Integer subbranch_id) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String aql="select  o.orderid ,gd.name,gd.shop_code,o.num,o.total_money, ad.addressee, ad.address,ad.phone,o.state ,u.user_id,uo.paytime from user_order uo ,orders  o , address  ad ,goods_detail gd, user u"+
+				 " WHERE  o.orderid=uo.orderid and o.addressid=ad.id and  o.good_detail_id=gd.id  and uo.userid=u.user_id and o.state='已支付' and o.subbranch_id= ?  order by o.orderid desc ";
+		SQLQuery a=	session.createSQLQuery(aql);
+		a.setFirstResult(firstResult);
+		a.setMaxResults(maxResult);
+		a.setParameter(0, subbranch_id);
+		List<Object[]> list=a.list();
+	    tr.commit();
+	    List<NewOrderBean> prelist = new ArrayList<NewOrderBean>();
+	    for(int i = 0 ; i < list.size() ; i ++){
+	    	Object[] obs = list.get(i);
+	    	NewOrderBean orderbean = new NewOrderBean();
+	    	orderbean.setOrderid((String)obs[0]);
+	    	orderbean.setGoodsname((String)obs[1]);
+	    	orderbean.setGoodscode((String)obs[2]);
+	    	orderbean.setNum(String.valueOf((Integer)obs[3]));
+	    	orderbean.setTotalMoney((String)obs[4]);
+	    	orderbean.setAddressee((String)obs[5]);
+	    	orderbean.setAddress((String)obs[6]);
+	    	orderbean.setPhone((String)obs[7]);
+	    	orderbean.setState((String)obs[8]);
+	    	orderbean.setUserid((String)obs[9]);
+	    	orderbean.setPaytime((String)obs[10]);
+	    	prelist.add(orderbean);
+	    }
+	    session.close();
+		return prelist;
 	}
 	
 }

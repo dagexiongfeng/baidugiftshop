@@ -56,9 +56,9 @@ public class BaiduPayController {
 	public Object getSign(HttpServletRequest request) throws IOException{
 	
 		String goods_name = request.getParameter("goods_name");
-	//	goods_name = new String(goods_name.getBytes("UTF-8"),"GBK");
+		goods_name = new String(goods_name.getBytes("UTF-8"),"GBK");
 		String goods_desc = request.getParameter("goods_desc");
-	//	goods_desc = new String(goods_desc.getBytes("UTF-8"),"GBK");
+		goods_desc = new String(goods_desc.getBytes("UTF-8"),"GBK");
 
 		String subbranchid= request.getParameter("subbranch_id");
 		//配置请求参数
@@ -71,7 +71,7 @@ public class BaiduPayController {
 		signParams.put("goods_desc", goods_desc);		
 		signParams.put("total_amount", request.getParameter("total_amount"));
 		signParams.put("currency", BaiduPayConstants.CURRENCY);
-		signParams.put("return_url", request.getParameter("return_url"));
+		signParams.put("return_url", BaiduPayConstants.RETURN_URL);
 		signParams.put("pay_type", BaiduPayConstants.PAY_TYPE);
 		signParams.put("input_charset", "1");
 		signParams.put("version", "2");
@@ -88,6 +88,7 @@ public class BaiduPayController {
 		Map<String,String> paramMap=new HashMap<String, String>();
 		paramMap.put("sign", sign);
 		paramMap.put("sp_no", BaiduPayConstants.SP_NO);
+		paramMap.put("return_url",BaiduPayConstants.RETURN_URL);
 		Base base = new Base();
 		base.setCode(101);
 		base.setContent(paramMap);
@@ -112,6 +113,7 @@ public class BaiduPayController {
 
 		if(status.equals("已支付")){
 			paramMap.put("state", "1");//支付成功
+			paramMap.put("order_no",order_no);
 			base.setCode(101);
 			base.setContent(paramMap);
 			base.setResult("OK");
@@ -119,26 +121,29 @@ public class BaiduPayController {
 		}if(status.equals("待支付")){
 			String pay_result = (String) getBaiduPayOrderStatus(order_no);
 			if( pay_result != ""){
-				 String[] ss = pay_result.split(pay_result);
+				 String [] ss = pay_result.split(";");
 				 String	pay_result1 = ss[0];
 				 String pay_time = ss[1];
-				 if(pay_result1=="1"){
+				 if(pay_result1.equals("1")){
 				   	 orderService.changeOrderStatus(order_no,pay_time);
 					 paramMap.put("state", "1");//支付成功
+					 paramMap.put("order_no",order_no);
 					 base.setCode(101);
 					 base.setContent(paramMap);
 					 base.setResult("OK");
 					 return base;
 				 }
-				 if(pay_result1=="2"){
+				 if(pay_result1.equals("2")){
 				     paramMap.put("state", "2");//等待支付
+					 paramMap.put("order_no",order_no);
 					 base.setCode(101);
 					 base.setContent(paramMap);
 					 base.setResult("OK");
 					 return base;
 					 }
 			}else{
-				paramMap.put("state", "4");//支付异常
+				 paramMap.put("state", "4");//支付异常
+				 paramMap.put("order_no",order_no);
 				 base.setCode(101);
 				 base.setContent(paramMap);
 				 base.setResult("error");
@@ -153,7 +158,7 @@ public class BaiduPayController {
 	
 	
 	/**
-	 *  按订单号查询支付结果接口
+	 * 按订单号查询支付结果接口
 	 * 客户端请求我的订单状态,会传给服务器的支付结果和订单号,服务器根据订单号查看支付结果,
 	 * 假如不同,会请求百度服务器查看支付结果,判断支付状态,
 	 * @param request
@@ -186,8 +191,8 @@ public class BaiduPayController {
 		    if(query_status.equals("0")){
 		        String pay_result = eleRoot.elementText("pay_result");//获取支付结果
 		        String order_no1 = eleRoot.elementText("order_no");//获取订单号
-		        String pay_time= "";
-		        if(pay_result=="1"){
+ 		        String pay_time= "1";
+		        if(pay_result.equals("1")){
 		        	pay_time = eleRoot.elementText("pay_time");//获取支付时间
 		        }
 		        if(order_no1.equals(order_no)){

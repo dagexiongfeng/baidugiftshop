@@ -16,4 +16,11 @@ public interface IOrderService {
 	void changeOrderStatus(String order_no, String pay_time);
 
 	String queryStatus(String order_no);
+
+	/**
+	 * 确认收货接口
+	 * @param orderid
+	 * @return
+	 */
+	Base confirmOrder(String orderid);
 }

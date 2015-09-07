@@ -10,6 +10,31 @@ public class OrderListB {
 	private String name;
 	private String data;
 	private Integer subbranchid;
+	private BigDecimal retail_price;
+    private BigDecimal cost_price;
+    private BigDecimal baidu_price;
+	private String path;
+    private String thum_path;
+    private String state;
+    private Integer addressid;
+    private String fedex;
+    private String shipnum;
+    public String getFedex() {
+		return fedex;
+	}
+
+	public void setFedex(String fedex) {
+		this.fedex = fedex;
+	}
+
+	public String getShipnum() {
+		return shipnum;
+	}
+
+	public void setShipnum(String shipnum) {
+		this.shipnum = shipnum;
+	}
+
 	public Integer getSubbranchid() {
 		return subbranchid;
 	}
@@ -19,33 +44,6 @@ public class OrderListB {
 	}
 
 
-	private BigDecimal retail_price;
-    private BigDecimal cost_price;
-    private BigDecimal baidu_price;
-    public BigDecimal getBaidu_price() {
-		return baidu_price;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
-
-	public void setBaidu_price(BigDecimal baidu_price) {
-		this.baidu_price = baidu_price;
-	}
-
-
-	private String path;
-    private String thum_path;
-    private String state;
-    private Integer addressid;
-    
 	public OrderListB(Integer goods_detail_id, Integer num, String name,
 			BigDecimal retail_price, BigDecimal cost_price, String path,
 			String thum_path, String state, Integer addressid) {
@@ -76,6 +74,23 @@ public class OrderListB {
 		return num;
 	}
 
+	  public BigDecimal getBaidu_price() {
+			return baidu_price;
+		}
+
+		public String getData() {
+			return data;
+		}
+
+
+		public void setData(String data) {
+			this.data = data;
+		}
+
+
+		public void setBaidu_price(BigDecimal baidu_price) {
+			this.baidu_price = baidu_price;
+		}
 
 	public void setNum(Integer num) {
 		this.num = num;
