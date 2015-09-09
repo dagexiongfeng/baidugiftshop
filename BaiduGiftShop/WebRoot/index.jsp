@@ -98,7 +98,7 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
         <ul id="dashboard-menu" class="nav nav-list collapse in">
             <li ><a href="./index.jsp">Home</a></li>
             <li ><a href="./getAllUser.action">User management</a></li>
-            <li ><a href="user.jsp">Sample Item</a></li>
+            <li ><a href="user.jsp">Personal information</a></li>
         </ul>
 
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">2</span></a>
@@ -106,12 +106,12 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
             <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
             <li ><a href="./listallBrief.action">&nbsp&nbsp&nbsp查询分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>概要商品<span class="label label-info">2</span></a>
+        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">2</span></a>
         <ul id="accounts-menu2" class="nav nav-list collapse">
-            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加概要信息</a></li>
-            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询概要信息</a></li>
+            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加商品信息</a></li>
+            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询商品信息</a></li>
         </ul>
-        <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">3</span></a>
+        <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品明细<span class="label label-info">3</span></a>
         <ul id="accounts-menu3" class="nav nav-list collapse">
             <li ><a href="./DetailGoods/addDetailGoods.jsp">&nbsp&nbsp&nbsp增加明细信息</a></li>
             <li ><a href="./listallDetailGoods.action">&nbsp&nbsp&nbsp查询明细商品</a></li>

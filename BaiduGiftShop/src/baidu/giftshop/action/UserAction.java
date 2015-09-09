@@ -96,6 +96,13 @@ public class UserAction extends ActionSupport{
 		userService.changPassword(uid, password);
 		return SUCCESS;
 	}
+	@SuppressWarnings("static-access")
+	public String changsubPassword() throws Exception{
+		AESDAO AesDao = new AESDAO();
+		Integer uid = Integer.parseInt(AesDao.desCrytStr(id));
+		userService.changPassword(uid, password);
+		return SUCCESS;
+	}
 	
 	public void deleteUser() throws Exception{
 		userService.deleteUser(aid);

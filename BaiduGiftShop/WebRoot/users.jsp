@@ -15,7 +15,10 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
 
-    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"> </script>
+
+    
+   
 
     <!-- Demo page code -->
 
@@ -99,10 +102,10 @@
             <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
             <li ><a href="./listallBrief.action">&nbsp&nbsp&nbsp查询分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>概要商品<span class="label label-info">2</span></a>
+        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">2</span></a>
         <ul id="accounts-menu2" class="nav nav-list collapse">
-            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加概要信息</a></li>
-            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询概要信息</a></li>
+            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加商品信息</a></li>
+            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询商品信息</a></li>
         </ul>
         <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">3</span></a>
         <ul id="accounts-menu3" class="nav nav-list collapse">
@@ -166,6 +169,7 @@
           <th>SubbranchId</th>
           <th>Email</th>
           <th>Tel</th>
+          <th>操作</th>
           <th style="width: 26px;"></th>
         </tr>
       </thead>
@@ -177,8 +181,9 @@
           <td><s:property value="#list.email" /></td>
           <td><s:property value="#list.tel" /></td>
           <td>
+          
               <s:if test="#list.account != 'administor'">
-              <a href="./deleteUser.action?aid=<s:property value="#list.id"/>">删除</a>
+              <a href="javascript:if(confirm('确实要删除该内容吗?'))location='./deleteUser.action?aid=<s:property value="#list.id"/>'">删除</a>
               </s:if>
           </td>
         </tr>

@@ -98,10 +98,10 @@
             <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
             <li ><a href="./listallBrief.action">&nbsp&nbsp&nbsp查询分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>概要商品<span class="label label-info">2</span></a>
+        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">2</span></a>
         <ul id="accounts-menu2" class="nav nav-list collapse">
-            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加概要信息</a></li>
-            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询概要信息</a></li>
+            <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加商品信息</a></li>
+            <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询商品信息</a></li>
         </ul>
         <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">3</span></a>
         <ul id="accounts-menu3" class="nav nav-list collapse">
@@ -144,13 +144,13 @@
 
         <div class="container-fluid">
             <div class="row-fluid">
-                    
+  <!--                 
 <div class="btn-toolbar">
     <button class="btn btn-primary"><i class="icon-save"></i> Save</button>
     <a href="#myModal" data-toggle="modal" class="btn">Delete</a>
   <div class="btn-group">
   </div>
-</div>
+</div> -->  
 <div class="well">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>

@@ -21,6 +21,9 @@
 		<action name="changPassword" class="baidu.giftshop.action.UserAction" method="changPassword">
 		       <result name="success">/index.jsp</result>  
 		</action>
+		<action name="changsubPassword" class="baidu.giftshop.action.UserAction" method="changsubPassword">
+		       <result name="success">/Subbranch/Index.jsp</result>  
+		</action>
 		<action name="getAllUser" class="baidu.giftshop.action.UserAction" method="getAllUser">
 		       <result name="success">/users.jsp</result>
 		</action>

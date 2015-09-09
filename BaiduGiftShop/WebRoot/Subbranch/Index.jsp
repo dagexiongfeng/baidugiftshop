@@ -85,17 +85,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
             <li ><a href="./Subbranch/Index.jsp">Home</a></li>
-            <li ><a href="reset-password.jsp">Rset Password</a></li>
-            <li ><a href="./Subbranch/user.jsp">Sample Item</a></li>
+            <li ><a href="./Subbranch/reset-password.jsp">Rset Password</a></li>
+             <li ><a href="./Subbranch/user.jsp">Personal information</a></li>
         </ul>
 
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">1</span></a>
         <ul id="accounts-menu" class="nav nav-list collapse">
             <li ><a href="./subbranchClassify.action">&nbsp&nbsp&nbsp 绑定分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>概要商品<span class="label label-info">1</span></a>
+        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">1</span></a>
         <ul id="accounts-menu2" class="nav nav-list collapse">
-            <li ><a href="./Subbranch/bundlBrief.jsp">&nbsp&nbsp&nbsp 绑定概要信息</a></li>
+            <li ><a href="./Subbranch/bundlBrief.jsp">&nbsp&nbsp&nbsp 绑定商品信息</a></li>
         </ul>
         <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">1</span></a>
         <ul id="accounts-menu3" class="nav nav-list collapse">

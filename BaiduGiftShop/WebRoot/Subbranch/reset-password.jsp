@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="block">
             <p class="block-heading">Reset your password</p>
               <div class="block-body">
-                <form action="changPassword.action?id=<%=id %>>" method="post" name="form" onsubmit="return beforeSubmit(this);">
+                <form action="changsubPassword.action?id=<%=id %>>" method="post" name="form" onsubmit="return beforeSubmit(this);">
                     <label>用户名</label>
                     <input type="text" id="code" name="code" value="${user.account }" class="span12" readonly/>
                     <label>新密码</label>

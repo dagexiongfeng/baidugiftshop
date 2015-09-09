@@ -81,32 +81,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
 
-    <div class="sidebar-nav">
+     <div class="sidebar-nav">
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
             <li ><a href="./Subbranch/Index.jsp">Home</a></li>
-            <li ><a href="reset-password.jsp">Rset Password</a></li>
-            <li ><a href="./Subbranch/user.jsp">Sample Item</a></li>
+            <li ><a href="./Subbranch/reset-password.jsp">Rset Password</a></li>
+             <li ><a href="./Subbranch/user.jsp">Personal information</a></li>
         </ul>
 
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">1</span></a>
         <ul id="accounts-menu" class="nav nav-list collapse">
-            <li ><a href="./subbranchClassify.action">绑定分类信息</a></li>
+            <li ><a href="./subbranchClassify.action">&nbsp&nbsp&nbsp 绑定分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>概要商品<span class="label label-info">1</span></a>
+        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">1</span></a>
         <ul id="accounts-menu2" class="nav nav-list collapse">
-            <li ><a href="./Subbranch/bundlBrief.jsp">绑定概要信息</a></li>
+            <li ><a href="./Subbranch/bundlBrief.jsp">&nbsp&nbsp&nbsp 绑定商品信息</a></li>
         </ul>
         <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">1</span></a>
         <ul id="accounts-menu3" class="nav nav-list collapse">
-            <li ><a href="./Subbranch/bundlDetail.jsp">分店绑定明细商品</a></li>
+            <li ><a href="./Subbranch/bundlDetail.jsp">&nbsp&nbsp&nbsp 分店绑定明细商品</a></li>
         </ul>
-        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理</a>
+        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">2</span></a></a>
         <ul id="accounts-menu4" class="nav nav-list collapse">
-            <li ><a href="./listAllOrders.action">订单管理</a></li>
+            <li ><a href="./listAllOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp全部订单</a></li>
+            <li ><a href="./listPayOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp待发货订单</a></li>
         </ul>
 
-        <!-- <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
+       <!--  <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
         <ul id="error-menu" class="nav nav-list collapse">
             <li ><a href="403.html">403 page</a></li>
             <li ><a href="404.html">404 page</a></li>
@@ -114,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li ><a href="503.html">503 page</a></li>
         </ul> -->
 
-        <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
+        <a href="javascript:void(0)" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
     </div>
     
       <div class="content">
@@ -122,23 +123,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <h1 class="page-title">Edit User</h1>
         </div>
                 <ul class="breadcrumb">
-            <li><a href="/Subbranch/Index.jsp">Home</a> <span class="divider">/</span></li>
+            <li><a href="./Subbranch/Index.jsp">Home</a> <span class="divider">/</span></li>
             <li class="active">User</li>
         </ul>
 
         <div class="container-fluid">
             <div class="row-fluid">
-                    
-<div class="btn-toolbar">
+  <!--               
+  <div class="btn-toolbar">
     <button class="btn btn-primary"><i class="icon-save"></i> Save</button>
     <a href="#myModal" data-toggle="modal" class="btn">Delete</a>
   <div class="btn-group">
   </div>
-</div>
+</div>-->     
 <div class="well">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-      <li><a href="reset-password.jsp" data-toggle="tab">Password</a></li>
+     <!--  <li><a href="reset-password.jsp" data-toggle="tab">Password</a></li> -->
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
@@ -155,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <textarea value="Smith" rows="3" class="input-xlarge">
 2817 S 49th
 Apt 314
-San Jose, CA 95101
+
         </textarea>
     </form>
       </div>

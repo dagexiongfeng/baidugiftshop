@@ -123,7 +123,7 @@ public class UserDAO {
 	@SuppressWarnings("unchecked")
 	public List<Account> getAllUser(){
 		Session session = HibernateSessionFactory.getSession();
-		String sql = "select a from Account a";
+		String sql = "select a from Account a ";
 		Query q = session.createQuery(sql);
 		List<Account> list = q.list();
 		session.close();
