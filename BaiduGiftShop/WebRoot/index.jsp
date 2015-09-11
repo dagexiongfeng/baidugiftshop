@@ -96,9 +96,9 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
     <div class="sidebar-nav">
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li ><a href="./index.jsp">Home</a></li>
-            <li ><a href="./getAllUser.action">User management</a></li>
-            <li ><a href="user.jsp">Personal information</a></li>
+            <li ><a href="./index.jsp">&nbsp&nbsp&nbspHome</a></li>
+            <li ><a href="./getAllUser.action">&nbsp&nbsp&nbsp分店用户管理</a></li>
+            <li ><a href="user.jsp">&nbsp&nbsp&nbsp个人中心</a></li>
         </ul>
 
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">2</span></a>
