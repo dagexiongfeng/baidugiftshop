@@ -44,12 +44,18 @@ public class DetailGoodsService implements IDetailGoodsService {
 	public GoodsDetai queryDetaiGoods(String barCode) {
 		return detailgoodsdao.queryDetaiGoods(barCode);
 	}
+	
+	@Override
+	public Goods querygood(String classifyId, String goodsId) {
+		return detailgoodsdao.querygood(classifyId, goodsId);
+	}
 	@Override
 	public List<GoodsDetai> listallDetailGoods(PageBean pageBean) {
 		List<GoodsDetai> list = detailgoodsdao.listallDetailGoods();
 		int totalSize = list.size();
+		pageBean.setPerPage(10);
 		pageBean = pageBean.init(pageBean, totalSize);
-		int maxResult = 5;
+		int maxResult = 10;
 		int firstResult = (pageBean.getCurrentPage()-1)*maxResult;
 		return detailgoodsdao.listallDetailGoods(firstResult,maxResult);
 	}
@@ -79,10 +85,10 @@ public class DetailGoodsService implements IDetailGoodsService {
 		List<GoodsDetai> prelist = new ArrayList<GoodsDetai>();
 		for(GoodsDetai goodsdetai : list){
 			GoodsDetai goodsdetail = new GoodsDetai();
-			Integer amount = this.queryAmount(goodsdetai.getId(), subbranch_id);
+			String amount = this.queryAmount(goodsdetai.getId(), subbranch_id).toString();
 	      if(amount!=null){
 	      }else{
-	    	 amount = 0;
+	    	 amount = "0";
 	      }
 			goodsdetail.setId(goodsdetai.getId());
 			goodsdetail.setName(goodsdetai.getName());
@@ -225,7 +231,7 @@ public class DetailGoodsService implements IDetailGoodsService {
 			goodsdetail.setBaiduPrice(goodsdetai.getBaiduPrice());
 			goodsdetail.setRetailPrice(goodsdetai.getRetailPrice());
 			goodsdetail.setCostPrice(goodsdetail.getCostPrice());
-			goodsdetail.setPicGroupId(amount);
+			goodsdetail.setPicGroupId(amount.toString());
 			prelist.add(goodsdetail);
 		}
 		Base base = new Base();
@@ -238,4 +244,48 @@ public class DetailGoodsService implements IDetailGoodsService {
 		result = JSONObject.fromObject(base,jsonConfig).toString();
 		return result;
 	}
+	@Override
+	public String checkbarcode(String barCode) {
+		Base base = new Base();
+		if(detailgoodsdao.checkbarcode(barCode)>0){
+			base.setContent(102);
+		}else{
+			base.setContent(101);
+		}
+		JsonConfig jsonConfig = new JsonConfig();
+		JSONObject jsonObject = new JSONObject();
+	    result = JSONObject.fromObject(base,jsonConfig).toString();
+		return result;
+	}
+	@Override
+	public String deleteBriefgood(String goodsId) {
+		 Base base = new Base();
+		 if(detailgoodsdao.deleteBriefgood(goodsId)){
+			 base.setContent(101);
+		 }else{
+			 base.setContent(102);
+		 }
+		    JsonConfig jsonConfig = new JsonConfig();  
+			jsonConfig.setIgnoreDefaultExcludes(false); 
+			jsonConfig.setExcludes(new String[]{""});
+			@SuppressWarnings("unused")
+			JSONObject jsonObject = new JSONObject();
+			result = JSONObject.fromObject(base,jsonConfig).toString();
+			return result;
+	}
+	/**
+	 * 更具商品编号查询明细商品
+	 */
+	
+	@Override
+	public List<GoodsDetai> queryDetailGoods(PageBean pageBean, String goodsCode) {
+		List<GoodsDetai> list = detailgoodsdao.queryDetailGoods(goodsCode);
+		int totalSize = list.size();
+		pageBean.setPerPage(10);
+		pageBean = pageBean.init(pageBean, totalSize);
+		int maxResult = 10;
+		int firstResult = (pageBean.getCurrentPage()-1)*maxResult;
+		return detailgoodsdao.queryDetailGoods(firstResult,maxResult,goodsCode);
+	}
+
 }

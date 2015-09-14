@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
 import baidu.giftshop.bean.PageBean;
@@ -31,7 +32,14 @@ public class BriefGoodsAction extends ActionSupport{
     private Integer subbranchId;
     private Integer page=1;
     private Integer productType;
-    public Integer getProductType() {
+    private String goodcode;
+    public String getGoodcode() {
+		return goodcode;
+	}
+	public void setGoodcode(String goodcode) {
+		this.goodcode = goodcode;
+	}
+	public Integer getProductType() {
 		return productType;
 	}
 	public void setProductType(Integer productType) {
@@ -49,8 +57,8 @@ public class BriefGoodsAction extends ActionSupport{
 		Integer classify = Integer.parseInt(classifyId);
 		
 		
-		if(briefGoodsService.savegoods(classify, unit, name,productType)){
-		int goodsid = briefGoodsService.findGoodsId(classify, unit, name,productType);
+		if(briefGoodsService.savegoods(classify, unit, name,productType,goodcode)){
+		int goodsid = briefGoodsService.findGoodsId(classify, unit, name,productType,goodcode);
 		Map request=(Map)ActionContext.getContext().get("request");
 		request.put("goodsid", goodsid);
 		if(uploaddao.upload(pic,picFileName,goodsid).equals("success"))
@@ -77,8 +85,57 @@ public class BriefGoodsAction extends ActionSupport{
 		session.put("briefGoodsList", list);*/
 		return SUCCESS;
 	}
+	
 	/**
-	 * 删除概要商品
+	 * 按商品种类或商品编号查询
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public String querybriefgood()throws Exception{
+		if(goodcode !=null && StringUtils.isNotEmpty(goodcode)){
+		pageBean.setCurrentPage(page);
+		List<GoodsPicture> list= briefGoodsService.querybriefgoodbygoodcode(pageBean,goodcode);
+		Map request=(Map)ActionContext.getContext().get("request");
+		request.put("birefGoodsList", list);
+		request.put("pageBean", pageBean);
+		return SUCCESS;
+		}
+		if(productType != 11){
+			pageBean.setCurrentPage(page);
+			List<GoodsPicture> list= briefGoodsService.querybriefgoodbyproductType(pageBean,productType);
+			Map request=(Map)ActionContext.getContext().get("request");
+			request.put("birefGoodsList", list);
+			request.put("pageBean", pageBean);
+			return SUCCESS;
+		}else{
+			pageBean.setCurrentPage(page);
+			List<GoodsPicture> list= briefGoodsService.queryAllBrief(pageBean);
+			Map request=(Map)ActionContext.getContext().get("request");
+			request.put("birefGoodsList", list);
+			request.put("pageBean", pageBean);
+		}
+		return "all";
+	}
+	
+	/**
+	 * 检查商品代码是否存在
+	 * @return
+	 * @throws Exception
+	 */
+	public String checkGoodcode() throws Exception{
+		result = briefGoodsService.checkGoodcode(goodcode);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();   
+		            out.print(result);  
+		            out.flush();
+		return null;
+	}
+	
+	
+	/**
+	 * 下架概要商品
 	 * @return
 	 * @throws Exception
 	 */
@@ -91,6 +148,21 @@ public class BriefGoodsAction extends ActionSupport{
 		            out.flush();
 		return null;
 	}
+	/**
+	 * 删除概要商品
+	 * @return
+	 * @throws Exception
+	 */
+	public String deleteBriefgood() throws Exception{
+		result = briefGoodsService.deleteBriefgood(goods_id);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		            out.print(result);
+		            out.flush();
+		return null;
+	}
+	
 	/**
 	 * 改变商品信息
 	 * @return

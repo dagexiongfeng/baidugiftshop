@@ -3,6 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+<constant name="struts.multipart.maxSize" value="52428800"></constant>
 	<package name="struts" extends="struts-default" namespace="/">
 	    <!-- 注册监听事件 -->
 		<action name="register" class="baidu.giftshop.action.UserAction" method="register">
@@ -67,29 +68,49 @@
 		<action name="queryAllBriefGoods" class="baidu.giftshop.action.BriefGoodsAction" method="queryAllBrief">
 		        <result name="success">/briefGoods/listAllBriefGoods.jsp</result>
 		</action>
-		
+		<!-- 检查商品代码是否存在 -->
+		<action name="checkGoodcode" class="baidu.giftshop.action.BriefGoodsAction" method="checkGoodcode"/>
+		<!-- 按商品编号或商品种类查询商品 -->
+		<action name="querybriefgood" class="baidu.giftshop.action.BriefGoodsAction" method="querybriefgood">
+		 	<result name="success">/briefGoods/listBriefGoods.jsp</result>
+		 	 <result name="all">/briefGoods/listAllBriefGoods.jsp</result>
+		</action>
+		<!-- 删除good -->
+		<action name="deleteBriefgood" class="baidu.giftshop.action.BriefGoodsAction" method="deleteBriefgood">
+		</action>
 		<!-- 添加组图片 -->
 		<action name="addpicgroup" class="baidu.giftshop.action.PictureGroupAction" method="AddPicGroup">
 		        <result name="success">/Picture/ShowGroupId.jsp</result> 
 		        <result name="error">/Picture/AddError.jsp</result>
 		</action>
-		
+		<!-- 查询商品图片编号是否存在 -->
+		<action name="checkpicgroupId" class="baidu.giftshop.action.PictureGroupAction"  method="checkpicgroupId"></action>
+		<!-- 添加商品是验证商品图片是否已添加 -->
+		<action name="checkpic" class="baidu.giftshop.action.PictureGroupAction" method="checkpic"></action>
 		<!-- 增加明细商品信息 -->
 		<action name="addDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="addDeatilGoods">
 		        <result name="success" type="redirect">./listallDetailGoods.action</result>
 		</action>
+		<!-- 更新修改 -->
+		<action name="updateDetailGoods"  class="baidu.giftshop.action.DetailGoodsAction" method="updateDetailGoods">
+		  <result name="success" type="redirect">./listallDetailGoods.action</result>
+		</action>
+		<!-- 检查条形码是否存在 -->
+		<action name="checkbarcode" class="baidu.giftshop.action.DetailGoodsAction" method="checkbarcode"></action>
 		<!-- 列出所有明细商品的信息 -->
 		<action name="listallDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="listallDetailGoods">
 		        <result name="success">/DetailGoods/queryDetailGoods.jsp</result>
 		</action>
-		<!-- 根据商品的条形码或goodsdetailId,查询明细商品的信息 -->
+		<!-- 删除明细商品 -->
+		<action name="deleteDetailgood" class="baidu.giftshop.action.DetailGoodsAction"  method="deleteDetailgood"></action>
+		<!-- 根据商品的商品编号或条形码,查询明细商品的信息 -->
 		<action name="queryDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="queryDetailGoods">
-		       <result name="success">/DetailGoods/listDetailGoods.jsp</result>
-		</action>
+  			 <result name="success">/DetailGoods/queryDetailGoods.jsp</result>	
+  		</action>
 		<!-- 修改明细商品的信息 -->
 		<action name="ModifyDetailGoods" class="baidu.giftshop.action.DetailGoodsAction" method="ModifyDetailGoods">
 		       <result name="success">/DetailGoods/EditDetailGoods.jsp</result>
-		       <result name="error">/500.html</result>
+		       <result name="error">/DetailGoods/notfindDetailGoods.jsp</result>
 		</action>
 		<!-- 删除某个明细商品的信息 -->
 		<!-- <action name="deleteDetail" class="baidu.giftshop.action.DetailGoodsAction" method="deleteDetail">
@@ -103,6 +124,7 @@
 		<!-- 根据group(组)的ID得到压缩图的路径 -->
 		<action name="queryGroup" class="baidu.giftshop.action.PictureGroupAction" method="querythumbPathById">
 		       <result name="success">/Picture/ShowPic.jsp</result>
+		       <result name="nopicture">/Picture/noPic.jsp</result>
 		</action>
 		<!-- 列出所有的分类信息 -->
 		<action name="subbranchClassify" class="baidu.giftshop.action.ClassifyAction" method="ListClassify">
@@ -181,8 +203,10 @@
 		
 		<action name="querySubgoods" class="baidu.giftshop.action.BriefGoodsAction" method="querySubgoods">
 		</action>
+		<!-- 查询图片编号是否存在 -->
 		<action name="checkGoodsCode" class="baidu.giftshop.action.DetailGoodsAction" method="checkGoodsCode">
 		</action>
+		
 		<!-- 删除分类 -->
 		<action name="DeleteClassify" class="baidu.giftshop.action.ClassifyAction" method="Delete">
 		</action>
@@ -191,5 +215,13 @@
 			<result>/Picture/AddPic.jsp</result>
 		</action>
 		<action name="listDetailBysubgood" class="baidu.giftshop.action.DetailGoodsAction" method="listDetailBysubgood"></action>
+		<!-- 百度sdk上传 -->
+		<action name="uploadsdk" class="baidu.giftshop.action.baiduSdkupload"  method="uploadsdk">
+			    <result>/403.html</result>
+		 	  <interceptor-ref name="fileUpload">
+                <param name="maximumSize">52428800</param> 
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
 	</package>
 </struts>

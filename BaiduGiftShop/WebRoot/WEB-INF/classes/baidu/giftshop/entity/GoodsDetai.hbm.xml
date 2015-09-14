@@ -55,7 +55,7 @@
                 <comment>分类属性4</comment>
             </column>
         </property>
-        <property name="picGroupId" type="integer">
+        <property name="picGroupId" type="string">
             <column name="pic_group_id">
                 <comment>对应的一组图片ID</comment>
             </column>
@@ -86,7 +86,7 @@
             </column>
         </property>
         
-        <set name="goodsDetailSubbranchs" inverse="true" lazy="false">
+        <set name="goodsDetailSubbranchs" cascade="delete" inverse="true" lazy="false">
             <key>
                 <column name="goods_detail_id">
                     <comment>商品明细表外键</comment>

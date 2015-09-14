@@ -48,10 +48,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               
            修改的商品条形码:(*必填)<input type="text" name="barCode" class="span12"/>
            
-           修改的商品ID:<input type="text" name="goodsDetailId" class="span12"/>
+        <!--   修改的商品ID:<input type="text" name="goodsDetailId" class="span12"/> --> 
           
                <input type="submit" value="查询" class="btn btn-primary"/>
+               
      </form>
+     <br>
+     
+     <a href="./index.jsp" >返回到首页</a>
   </div>
   </div>
   </div>

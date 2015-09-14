@@ -17,7 +17,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-
+	<script type="text/javascript">
+	//检查商品编号是否存在
+	function checkpictureCode(){
+		
+		var groupId = $("#groupId").val();
+		$.ajax({
+		    type:"post",
+		    url:"./checkpicgroupId.action",
+		    data:{groupId:groupId},
+		    dataType :"json",
+		    success :function(result){
+		    var data = result.content;
+			 if(data==102){
+				 alert("商品图片编号已存在！");
+				 document.getElementById("goodsCode").focus();
+			 }
+		    }
+		});
+	}
+	
+	</script>
     <!-- Demo page code -->
 
     <style type="text/css">
@@ -47,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              
                   <s:form action ="addpicgroup.action" method ="POST" enctype ="multipart/form-data" >   
                                             明细商品名称:<input type="text" name="picGroupName" style="width: 165px;height: 25px"><br/>                          
-                                            商品图片组别:<input type="text"   name="groupId" value="${groupId}" readonly="readonly" style="width: 165px;height: 23px" >
+                                            商品图片编号:<input type="text"   id="groupId" name="groupId"   style="width: 165px;height: 23px"  onblur="checkpictureCode()">(与商品编号一致)
                   <s:file name ="myFile" label ="Image File1"/>  
   
                   <s:file name ="myFile" label ="Image File2"/>  

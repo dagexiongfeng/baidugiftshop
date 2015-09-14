@@ -20,4 +20,8 @@ public interface IDetailGoodsService {
 	public String deleteSubDetGoods(Integer goods_detail_id,Integer subbranch_id);
 	public String checkGoodsCode(String goodsCode);
 	public String listDetailBysubgood(int classifyId, Integer subbranchId);
+	public String checkbarcode(String barCode);
+	public Goods querygood(String classifyId, String goodsId);
+	public String deleteBriefgood(String goodsId);
+	public List<GoodsDetai> queryDetailGoods(PageBean pageBean, String goodsCode);
 }

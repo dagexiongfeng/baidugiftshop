@@ -53,6 +53,8 @@ String root = realpath.substring(0,realpath.lastIndexOf("/"));
             <p class="block-heading">查询一组图片</p>
                <div class="block-body">
      <form action=<%=url %>>
+     您查询的图片不存在,请确定商品图片编号是否存在
+     <hr>
                                   查询的商品图片编号(与商品编号一致)：<input type="text" name="groupId" class="span12"/><br><br>
                        <input type="submit" value="确定" style="width: 100;height: 35" class="btn btn-primary"/>
      </form>

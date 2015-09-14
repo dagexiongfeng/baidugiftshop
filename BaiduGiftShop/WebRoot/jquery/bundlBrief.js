@@ -16,7 +16,7 @@
 	     var data = result.content;
 	     var pagebean = result.list;
 	      for(var n=0;n<data.length;n++){
-	          var tTr = "<tr><td>"+data[n][0]+"</td><td>"+data[n][1]+"</td><td>"+"<input type='checkbox'; name='goodsId'; value='"+data[n][2]+"'; style='width: 20;height: 20' ></td></tr>";
+	          var tTr = "<tr><td>"+data[n][0]+"</td><td>"+data[n][2]+"</td><td>"+"<input type='checkbox'; name='goodsId'; value='"+data[n][3]+"'; style='width: 20;height: 20' ></td></tr>";
 	          $("#show").append(tTr);
 	      }
 	      $.ajax({
@@ -28,7 +28,7 @@
 	        var classify = result.content;
 	        for(var k=0;k<classify.length;k++){
 	          for(var n=0;n<data.length;n++){
-	            if(classify[k]==data[n][2]){
+	            if(classify[k]==data[n][3]){
 	               var j=n+1;
 	               input[j].checked=true;
 	            }else{
@@ -50,57 +50,56 @@ function subBriefGoods(){
    var rows = document.getElementById("show").rows; 
    var a = document.getElementsByName("goodsId"); 
    window["ss"]=0;
-   for(var i=0;i<a.length;i++) 
-{ 
-if(a[i].checked){ 
-  var row = a[i].parentElement.parentElement.rowIndex; 
-  //alert(a[i].value); 
-  //alert(rows[row].cells[12].innerHTML); 
-  var goodsId=a[i].value;
-  var subbranchId = $("#subbranchId").val();
-  var classifyId = $("#classifyId").val();
-   $.ajax({
-     type: "get",
-     url :"./subBriefGoods.action",
-     data :"subbranchId="+subbranchId+"&goodsId="+goodsId+"&classifyId="+classifyId,
-     dataType:"json",
-   success :function(result){
-     var content = result.content;
-     if(content==101){
-       window["ss"]++;
-     }else{
-       alert("绑定过程中"+rows[row].cells[0].innerHTML+"发生错误,已下架！");
-     }
-   },
-   async:false
-});
-}else{
-  var row = a[i].parentElement.parentElement.rowIndex; 
-  //alert(a[i].value); 
-  //alert(rows[row].cells[12].innerHTML); 
-  var goodsId=a[i].value;
-  var subbranchId = $("#subbranchId").val();
-   $.ajax({
-     type: "get",
-     url :"./deletesubBriefGoods.action",
-     data :"subbranchId="+subbranchId+"&goodsId="+goodsId,
-     dataType:"json",
-   success :function(result){
-     var content = result.content;
-     if(content==101){
-       window["ss"]++;
-     }else{
-       alert("绑定过程中"+rows[row].cells[0].innerHTML+","+a[i].value+"发生错误！！！");
-     }
-   },
-   async:false
-});
-}
-}
-if(window["ss"]==a.length){
- alert("数据库更新完成！！！");
-}
-}
+   for(var i=0;i<a.length;i++) { 
+		if(a[i].checked){ 
+		  var row = a[i].parentElement.parentElement.rowIndex; 
+		  //alert(a[i].value); 
+		  //alert(rows[row].cells[12].innerHTML); 
+		  var goodsId=a[i].value;
+		  var subbranchId = $("#subbranchId").val();
+		  var classifyId = $("#classifyId").val();
+		   $.ajax({
+		     type: "get",
+		     url :"./subBriefGoods.action",
+		     data :"subbranchId="+subbranchId+"&goodsId="+goodsId+"&classifyId="+classifyId,
+		     dataType:"json",
+		     success :function(result){
+			     var content = result.content;
+			     if(content==101){
+			       window["ss"]++;
+			     }else{
+			       alert("绑定过程中"+rows[row].cells[0].innerHTML+"发生错误,已下架！");
+			     }
+		     },
+		   async:false
+		   });
+		}else{
+			  var row = a[i].parentElement.parentElement.rowIndex; 
+			  //alert(a[i].value); 
+			  //alert(rows[row].cells[12].innerHTML); 
+			  var goodsId=a[i].value;
+			  var subbranchId = $("#subbranchId").val();
+			   $.ajax({
+			     type: "get",
+			     url :"./deletesubBriefGoods.action",
+			     data :"subbranchId="+subbranchId+"&goodsId="+goodsId,
+			     dataType:"json",
+			     success :function(result){
+				     var content = result.content;
+				     if(content==101){
+				       window["ss"]++;
+				     }else{
+				       alert("绑定过程中"+rows[row].cells[0].innerHTML+","+a[i].value+"发生错误！！！");
+				     }
+			     },
+			    async:false
+			  });
+			}
+		}
+		if(window["ss"]==a.length){
+		 alert("数据库更新完成！！！");
+		}
+		}
 
 function showGoods(page){
      var input = document.getElementsByTagName("input");

@@ -43,16 +43,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<select id="classifyId" name="classifyId" onchange="updateSelect()">
                              <option value="0">-----------请选择-----------</option>
                                   </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  商品名称： &nbsp;&nbsp;&nbsp;
+                       <!--         商品名称： &nbsp;&nbsp;&nbsp;
 							<select id="goodsId" name="goodsId" onchange="showDetail()">
                              <option value="0">-----------请选择-----------</option>
-                                  </select><br>
+                                  </select><br>  -->  
   <table id="show" border="1 #76aef0 solid" cellspacing="0" cellpadding="1" align="center" bgColor="#E4E8EF" width="1024" border="0">
     <tr id="tr">
         <td width="120">商品名称</td>
         <td width="120">商品代码</td>
-        <td width="100">店内码</td>
-        <td width="100">条形码</td>
+  <!--         <td width="100">店内码</td>--> 
+      <td width="100">条形码</td>
         <td width="140">分类属性1</td>
         <td width="140">分类属性2</td>
         <td width="140">分类属性3</td>
@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td width="100">进价</td>
         <td width="120">百度员工价</td>
         <td width=100>零售价</td>
-        <td width="100">成本价</td>
+  <!--        <td width="100">成本价</td>--> 
         <td width="100" id="amount">数量</td>
         <td width="120">是否选中</td>
     </tr>

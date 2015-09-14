@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  url:"./DeleteClassify.action",
 		  data:{id:id},
 		  success:function(data){
-			  alert("操作完成！数据未发生变化则删除失败！");
+			  alert("操作完成！数据未发生变化则因分店未解除绑定,请解除分店绑定再来删除！");
 			  location.href ="./listallBrief.action";
 			  /* var con = data.code;
 			  alert(data.code);

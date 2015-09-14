@@ -52,18 +52,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<select id="goodsId" name="goodsId" onchange="changname(this.value)">
                              <option value="0">---请选择---</option>
                                   </select><br>
-                                  图片组ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--           图片编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select id="picGroupId" name="goodsDetai.picGroupId">
                              <option value="0">---请选择---</option>
-                                  </select><br>
+                                  </select><br> --> 
+                                   图片编号: 
+                                  <input type="text" id="picGroupId"  name="goodsDetai.picGroupId" readonly="readonly"  class="span12"  /><br>
                                   商品名: 
-                                  <input type="text" id="name" name="goodsDetai.name" class="span12" readonly="readonly" /><br>
-                                  商品代码:
-                                  <input type="text" id="goodsCode" name="goodsDetai.goodsCode" class="span12" onblur="checkGoodsCode()"/><br>
-                                  店内代码:
-                                  <input type="text" id="shopCode" name="goodsDetai.shopCode" class="span12"/><br>
+                                  <input type="text" id="name" name="goodsDetai.name" class="span12" /><br>
+                                  商品编号:
+                                  <input type="text" id="goodsCode" name="goodsDetai.goodsCode" readonly="readonly"  class="span12" /><br>
+                     <!--             店内代码:
+                                  <input type="text" id="shopCode" name="goodsDetai.shopCode" class="span12"/><br> -->
                                   条形码:
-                                  <input type="text" id="barCode" name="goodsDetai.barCode" class="span12"/><br>
+                                  <input type="text" id="barCode" name="goodsDetai.barCode"   onblur="checkbarcode()" class="span12"/><br>
                                   分类属性1:(颜色)
                                   <input type="text" id="type1" name="goodsDetai.type1" class="span12"/><br>
                                   分类属性2:(大小)
@@ -78,9 +80,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   <input type="text" id="baiduPrice" name="goodsDetai.baiduPrice" class="span12"/><br>
                                   零售价*:(单位:元)
                                   <input type="text" id="retailPrice" name="goodsDetai.retailPrice" class="span12"/><br>
-                                  成本价*:(单位:元)
-                                  <input type="text" id="costPrice" name="goodsDetai.costPrice" class="span12"/><br>
-                                  <input type="submit" value="Submit" class="btn btn-primary"/>
+                        <!--                     成本价*:(单位:元)
+                                  <input type="text" id="costPrice" name="goodsDetai.costPrice" class="span12"/><br>-->
+                                  <input type="submit" value="Submit" class="btn btn-primary"/>  
        </form>    
        </div>
        </div>
@@ -89,21 +91,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
 <script type="text/javascript">
  window.onload = function(){ 
+	 //查出所有的分类
 	 $.ajax({
-	 type :"post",
-	 url :"./allclassify.action",
-	 dataType :"json",
-	 success :function(result){
-	 var data = result.content;
-	 for(var n=0;n<data.length;n++){
-	  //var ids = data[n].id;
-	  //var names = data[n].name;
-	  $("#classifyId").append("<option id='"+data[n].id+"' value='"+data[n].id+"'>"+data[n].name+"</option>");
-	  
-	 }
-	 }
+		 type :"post",
+		 url :"./allclassify.action",
+		 dataType :"json",
+		 success :function(result){
+		 var data = result.content;
+			 for(var n=0;n<data.length;n++){
+			  $("#classifyId").append("<option id='"+data[n].id+"' value='"+data[n].id+"'>"+data[n].name+"</option>");
+			 }
+		 }
      });
-  
+      //查出商品图片
      $.ajax({
     	 type :"post",
     	 url :"./listgroupId.action",
@@ -117,13 +117,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      };
     
      function beforeSubmit(form){
+    	
 	    if(form.classifyId.value=='0'){
 		 alert('没有选择分类');
 		 form.classifyId.focus();
 		 return false;
 		 }
 		 if(form.goodsId.value=='0'){
-		 alert('没有选择概要商品分类');
+		 alert('没有选择概要商品');
 		 form.goodsId.focus();
 		 return false;
 		 }
@@ -137,17 +138,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		 form.goodsCode.focus();
    		 return false;
 		 }
+		 if(form.stockPrice.value==''){
+			 alert('没有填写进价');
+   		 form.stockPrice.focus();
+   		 return false;
+		 }
+		 if(form.baiduPrice.value==''){
+			 alert('没有填写百度员工价');
+   		 form.baiduPrice.focus();
+   		 return false;
+		 }
 		 if(form.retailPrice.value=='') {
 			 alert('没有填写零售价');
 			 form.retailPrice.focus();
 			 return false;
 		 }
+		
 }
     
      function changname(value){
-    	 $("#name").val(value);
+    	 $("#picGroupId").val(value);
+    	 $("#goodsCode").val(value);
+    	 checkpic( $("#picGroupId").val());
      };
      
+     //查出所有的商品名称
 function updateSelect(){
  var classifyId = $("#classifyId").val();
  $("#goodsId").empty();
@@ -161,25 +176,44 @@ function updateSelect(){
     var data = result.content;
 	 for(var n=0;n<data.length;n++){
 	  var names = data[n][0];
-	  $("#goodsId").append("<option id='"+names+"' value='"+names+"'>"+names+"</option>");
+	  var goodcode = data[n][1];
+	  $("#goodsId").append("<option id='"+names+"' value='"+goodcode+"'>"+names+"</option>");
 
 	 }
     }
 });
 }
+     //查询图片组中收否已添加改组图片
+   
+     function checkpic(picid){
+    		$.ajax({
+    		    type:"post",
+    		    url:"./checkpic.action",
+    		    data:{groupId:picid},
+    		    dataType :"json",
+    		    success :function(result){
+    		    var data = result.content;
+    			 if(data==102){
+    				 alert("！图片编号不存在,请先添加图片");
+    				//return true;
+    			 }
+    		    }
+    		});
+     }
 
-function checkGoodsCode(){
-	var goodsCode = $("#goodsCode").val();
+//检查商品编号是否存在
+function checkbarcode(){
+	var barCode = $("#barCode").val();
 	$.ajax({
 	    type:"post",
-	    url:"./checkGoodsCode.action",
-	    data:{goodsCode:goodsCode},
+	    url:"./checkbarcode.action",
+	    data:{barCode:barCode},
 	    dataType :"json",
 	    success :function(result){
 	    var data = result.content;
 		 if(data==102){
-			 alert("商品代码已存在！");
-			 document.getElementById("goodsCode").focus();
+			 alert("商品条形码已存在！");
+			 document.getElementById("barCode").focus();
 		 }
 	    }
 	});

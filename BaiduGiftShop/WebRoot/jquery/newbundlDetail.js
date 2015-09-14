@@ -6,7 +6,7 @@
  $("#show").append($("<tr/>").attr("id","tr"));
  $("#tr").append($("<td/>").text("商品名称").attr("width","120"));
  $("#tr").append($("<td/>").text("商品代码").attr("width","120"));
- $("#tr").append($("<td/>").text("店内码").attr("width","100"));
+ //$("#tr").append($("<td/>").text("店内码").attr("width","100"));
  $("#tr").append($("<td/>").text("条形码").attr("width","100"));
  $("#tr").append($("<td/>").text("分类属性1").attr("width","140"));
  $("#tr").append($("<td/>").text("分类属性2").attr("width","140"));
@@ -15,7 +15,7 @@
  $("#tr").append($("<td/>").text("进价").attr("width","100"));
  $("#tr").append($("<td/>").text("百度员工价").attr("width","120"));
  $("#tr").append($("<td/>").text("零售价").attr("width","100"));
- $("#tr").append($("<td/>").text("成本价").attr("width","100"));
+ //$("#tr").append($("<td/>").text("成本价").attr("width","100"));
  $("#tr").append($("<td/>").text("数量").attr("width","100").attr("id","amount"));
  $("#tr").append($("<td/>").text("是否绑定").attr("width","120"));
 $.ajax({
@@ -30,7 +30,7 @@ success :function(result){
    var detail = data[n];
    var tTr = "<tr><td>"+detail.name+"</td>"+
    "<td>"+detail.goodsCode+"</td>"+
-   "<td>"+detail.shopCode+"</td>"+
+  // "<td>"+detail.shopCode+"</td>"+
    "<td>"+detail.barCode+"</td>"+
    "<td>"+detail.type1+"</td>"+
    "<td>"+detail.type2+"</td>"+
@@ -40,7 +40,7 @@ success :function(result){
    "<td>"+detail.baiduPrice+"</td>"+
    "<td>"+detail.retailPrice+"</td>"+
    "<td>"+detail.costPrice+"</td>"+
-   "<td>"+detail.picGroupId+"</td>"+
+  // "<td>"+detail.picGroupId+"</td>"+
    "<td>"+"<input type='checkbox'; name='goodsDetId'; value='"+detail.id+"'; style='width: 20;height: 20' ></td></tr>";
    $("#show").append(tTr);
  }

@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
     <!-- Demo page code -->
 
     <style type="text/css">
@@ -46,14 +47,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <option value="0" selected="selected">-----------请选择-----------</option>
                                   </select><br>      
                                                                         单位：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="unit" name="unit" class="span12"/><br>
-                                                                        货品名：&nbsp;&nbsp;<input type="text" id="name" name="name" class="span12"/><br>
-                              <select name="productType">
+                                                                        商品名：&nbsp;&nbsp;<input type="text" id="name" name="name" class="span12"/><br>
+                        	商品编号：&nbsp;&nbsp;<input type="text" id="goodcode" name="goodcode"  class="span12" onblur="checkGoodsCode()"/><br>                                      
+                        	  商品分类：&nbsp;<br> <select name="productType">
 	                               <option value="0" selected="selected">普通商品</option>
 	                               <option value="1">热卖商品</option>
 	                               <option value="2">新品上货</option>
                               </select> 
-                              <br>                                                                             
+                              <hr>                                                                            
                               &nbsp   上传图片：<input type="file" id="pic" name="pic"><br>（要求规格（宽：480~1024）的正方形）<br>                                         
+							   <hr> 
 							 <input type="submit" value="增加商品信息" class="btn btn-primary"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							 <input type="reset"  value="重置" class="btn btn-info">
 	               </form>
@@ -90,6 +93,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		 form.unit.focus();
  		 return false;
  		 }
+ 		 if($.trim(form.goodcode.value)=='' || form.goodcode.value==''){
+ 	 		 alert('没有填写商品编号');
+ 	 		 form.goodcode.focus();
+ 	 		 return false;
+ 	 		 }
  		 if($.trim(form.unit.value)=='' || form.name.value==''){
  			 alert('没填写货品名');
  			 form.name.focus();
@@ -101,6 +109,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		 return false;
  		 }
  }
+     
+     function checkGoodsCode(){
+    		var goodcode = $("#goodcode").val();
+    		$.ajax({
+    		    type:"post",
+    		    url:"./checkGoodcode.action",
+    		    data:{goodcode:goodcode},
+    		    dataType :"json",
+    		    success :function(result){
+    		    var data = result.content;
+    			 if(data==102){
+    				 alert("商品编号已存在！");
+    				 document.getElementById("goodcode").focus();
+    			 }
+    		    }
+    		});
+    	}
 	</script>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">

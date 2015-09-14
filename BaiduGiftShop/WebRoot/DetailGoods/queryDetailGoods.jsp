@@ -17,6 +17,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    function deletedetialgood(goodsId){
+    	if(confirm("确定删除吗?删除后明细商品及分店绑定都将删除,但请手动删除商品图片")){
+    	   $.ajax({
+    	       type :"get",
+    	       url :"./deleteDetailgood.action",
+    	       data:{goodsId:goodsId},
+    	       dataType:"json",
+    	       success :function(result){
+    	          var data = result.content;
+    	          if(data==101){
+    	            alert("删除成功!");
+    	            location.href ="./listallDetailGoods.action";
+    	          }else{
+    	            alert("删除失败！");
+    	          }
+    	       }
+    	     });
+    	}
+    	};
+    
+    </script>
     <!-- Demo page code -->
     <style type="text/css">
         #line-chart {
@@ -40,8 +62,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form action="./queryDetailGoods.action" method="post">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   查询的商品条形码:<input type="text" name="barCode" style="height: 35"/>(*必填)&nbsp;&nbsp;&nbsp;&nbsp;
-     查询的商品ID:<input type="text" name="goodsDetailId" style="height: 35"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   查询的商品代码:<input type="text" name="goodsCode" style="height: 35"/>&nbsp;&nbsp;&nbsp;&nbsp;
+    
      <input type="submit" value="查询" class="btn btn-info"/>
   </form>
    <table id="show" border="1 #76aef0 solid" cellspacing="0" cellpadding="1" align="center" bgColor="#E4E8EF" width="" border="0">
@@ -50,19 +72,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td width="70">分类名称</td>
         <td width="70">商品名称</td>
         <td width="70">商品代码</td>
-        <td width="50">店内码</td>
         <td width="50">条形码</td>
         <td width="80">分类属性1</td>
         <td width="80">分类属性2</td>
         <td width="80">分类属性3</td>
         <td width="80">分类属性4</td>
-        <td width="80">对应的一组图片ID</td>
+      <!--    <td width="80">对应的一组图片ID</td>-->
         <td width="50">进价</td>
-        <td width="50">零售价</td>
-        <td width="70">最后进价</td>
-        <td width="50">成本价</td>
+        <td width="50">百度员工价</td>
+        <td width="70">零售价</td>
         <td width="100">状态(0为下架商品)</td>
         <td width="100">上架或下架</td>
+        <td width="100">删除</td>
     </tr>
     <s:iterator value="#request.list" id="list">
     <tr>
@@ -70,17 +91,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td width="70"><s:property value="#list.goods.name"/></td>
         <td width="70"><s:property value="#list.name"/></td>
         <td width="70"><s:property value="#list.goodsCode"/></td>
-        <td width="50"><s:property value="#list.shopCode"/></td>
         <td width="50"><s:property value="#list.barCode"/></td>
         <td width="80"><s:property value="#list.type1"/></td>
         <td width="80"><s:property value="#list.type2"/></td>
         <td width="80"><s:property value="#list.type3"/></td>
         <td width="80"><s:property value="#list.type4"/></td>
-        <td width="80"><s:property value="#list.picGroupId"/></td>
+    <!--    <td width="80"><s:property value="#list.picGroupId"/></td> --> 
         <td width="50"><s:property value="#list.stockPrice"/></td>
-        <td width="50"><s:property value="#list.lastStockPrice"/></td>
+        <td width="50"><s:property value="#list.baiduPrice"/></td>
         <td width="70"><s:property value="#list.retailPrice"/></td>
-        <td width="50"><s:property value="#list.costPrice"/></td>
         <td width="100"><s:property value="#list.state"/></td>
         <td width="100">
          <s:if test="%{#list.state==1}">
@@ -90,6 +109,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="button" id="button" name="button" class="btn btn-success" value="上架" style="width: 100px;height: 40px" onclick="change(<s:property value="#list.id"/>)"/>
         </s:elseif>
         </td>
+          <td width="100">
+           <input type="button" id="button" name="button"   value="删除" style="width: 100px;height: 40px" onclick="deletedetialgood(<s:property value="#list.id"/>)"/>
+		</td> 
     </tr>
     </s:iterator>
     </table>

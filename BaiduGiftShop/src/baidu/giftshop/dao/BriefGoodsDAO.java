@@ -19,9 +19,10 @@ public class BriefGoodsDAO {
 	 * @param classifyId
 	 * @param unit
 	 * @param name
+	 * @param goodcode 
 	 * @return
 	 */
-	public Boolean savegoods(Integer classifyId,String unit,String name,Integer productType){
+	public Boolean savegoods(Integer classifyId,String unit,String name,Integer productType, String goodcode){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
 		Classify classify = (Classify) session.get(Classify.class, classifyId);
@@ -36,6 +37,7 @@ public class BriefGoodsDAO {
 		goods.setUnit(unit);
 		goods.setName(name);
 		goods.setProductType(productType);
+		goods.setGoodcode(goodcode);
 		goods.setState(1);
 		session.save(goods);
 		tr.commit();
@@ -71,7 +73,7 @@ public class BriefGoodsDAO {
 	public List<GoodsPicture> queryAllBrief(){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
-		String sql = "select gp from GoodsPicture gp";
+		String sql = "select gp from GoodsPicture gp ";
 		Query q = session.createQuery(sql);
 		List<GoodsPicture> list = q.list();
 		tr.commit();
@@ -86,7 +88,7 @@ public class BriefGoodsDAO {
 	public List<GoodsPicture> queryAllBrief(Integer firstResult,Integer maxResult){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
-		String sql = "select gp from GoodsPicture gp";
+		String sql = "select gp from GoodsPicture gp order by gp.goods.id desc";
 		Query q = session.createQuery(sql);
 		q.setFirstResult(firstResult);
 		q.setMaxResults(maxResult);
@@ -135,7 +137,7 @@ public class BriefGoodsDAO {
 	@SuppressWarnings("unchecked")
 	public List<Object[]> querygoodsById(Integer Id){
 		Session session = HibernateSessionFactory.getSession();
-		String sql = "select g.name,g.unit,g.id from Goods g where g.classify.id=?";
+		String sql = "select g.name,g.goodcode,g.unit,g.id from Goods g where g.classify.id=?";
 		Query q = session.createQuery(sql);
 		q.setParameter(0, Id);
 		List<Object[]> list = q.list();
@@ -150,7 +152,7 @@ public class BriefGoodsDAO {
 	@SuppressWarnings("unchecked")
 	public List<Object[]> querygoodsById(Integer Id,Integer firstResult,Integer maxResult){
 		Session session = HibernateSessionFactory.getSession();
-		String sql = "select g.name,g.unit,g.id from Goods g where g.classify.id=?";
+		String sql = "select g.name,g.goodcode,g.unit,g.id from Goods g where g.classify.id=?";
 		Query q = session.createQuery(sql);
 		q.setParameter(0, Id);
 		q.setFirstResult(firstResult);
@@ -300,4 +302,74 @@ public class BriefGoodsDAO {
 		session.close();
 		return list;
 	}
+	public Integer checkGoodcode(String goodcode) {
+		Session session = HibernateSessionFactory.getSession();
+		String sql = "select g from Goods g where g.goodcode=?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, goodcode);
+		if(q.list().size()>0){
+			return q.list().size();
+		}else{
+			return 0;
+		}
+	}
+	public List<GoodsPicture> querybriefgoodbygoodcode(String goodcode) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String sql = "select gp from GoodsPicture gp where gp.goods.goodcode = ?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, goodcode);
+		List<GoodsPicture> list = q.list();
+		tr.commit();
+		session.close();
+		return list;
+	}
+	public List<GoodsPicture> querybriefgoodbygoodcode(int firstResult,int maxResult, String goodcode) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String sql = "select gp from GoodsPicture gp where gp.goods.goodcode = ?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, goodcode);
+		q.setFirstResult(firstResult);
+		q.setMaxResults(maxResult);
+		List<GoodsPicture> list = q.list();
+		tr.commit();
+		session.close();
+		return list;
+	}
+	public List<GoodsPicture> querybriefgoodbyproductType(Integer productType) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String sql = "select gp from GoodsPicture gp where gp.goods.productType = ?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, productType);
+		List<GoodsPicture> list = q.list();
+		tr.commit();
+		session.close();
+		return list;
+	}
+	public List<GoodsPicture> querybriefgoodbyproductType(int firstResult,
+			int maxResult, Integer productType) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		String sql = "select gp from GoodsPicture gp where gp.goods.productType = ?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, productType);
+		q.setFirstResult(firstResult);
+		q.setMaxResults(maxResult);
+		List<GoodsPicture> list = q.list();
+		tr.commit();
+		session.close();
+		return list;
+	}
+	public boolean deleteBriefgood(Integer goods_id) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tr = session.beginTransaction();
+		Goods good=(Goods)session.get(Goods.class, goods_id);
+		session.delete(good);
+		tr.commit();
+		session.close();
+		return true;
+	}
+	
 }

@@ -27,7 +27,7 @@ public class PictureGroupAction extends ActionSupport{
 	private List<File> myFile = new ArrayList<File>();//�ļ�
 	private List<String> myFileFileName = new ArrayList<String>();;//�ļ���ʵ����
 	private String result;
-	private Integer groupId;
+	private String groupId;
 	private String picGroupName;
 	
 	
@@ -74,12 +74,12 @@ public class PictureGroupAction extends ActionSupport{
 	 * @return
 	 */
 	public String addPic(){
-		 groupId= picgroupservice.queryGroupId();
-		 if(groupId==null){
-			 groupId=1;
-		 }else{
-		groupId=groupId+1; 
-		 }
+//		 groupId= picgroupservice.queryGroupId();
+//		 if(groupId==null){
+//			 groupId=1;
+//		 }else{
+//		groupId=groupId+1; 
+//		 }
 		return SUCCESS;
 	}
 	/**
@@ -90,13 +90,45 @@ public class PictureGroupAction extends ActionSupport{
 		picgroupservice.deletegroup(groupId);
 		return SUCCESS;
 	}
+	/**
+	 * 查看图片编号是否存在
+	 * @return
+	 * @throws Exception
+	 */
+	public String checkpicgroupId() throws Exception{
+		result = picgroupservice.checkpicgroupId(groupId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();   
+		            out.print(result);  
+		            out.flush();
+		return null;
+	}
+	/**
+	 * 添加商品是查看图片是否已存在
+	 * @return
+	 * @throws Exception
+	 */
+	public String checkpic() throws Exception{
+		result = picgroupservice.checkpicId(groupId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();   
+		out.print(result);  
+		out.flush();
+		return null;
+	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String querythumbPathById() throws Exception{
 		List list = picgroupservice.querythumbPathById(groupId);
 		Map request = (Map) ActionContext.getContext().get("request");
+		if(list.size()>0){
 		request.put("thumbPath", list);
 		return SUCCESS;
+		}
+		request.put("thumbPath", list);
+		return "nopicture";
 	}
 	public List<File> getMyFile() {
 		return myFile;
@@ -120,11 +152,11 @@ public class PictureGroupAction extends ActionSupport{
 		this.result = result;
 	}
 
-	public Integer getGroupId() {
+	public String getGroupId() {
 		return groupId;
 	}
 
-	public void setGroupId(Integer groupId) {
+	public void setGroupId(String groupId) {
 		this.groupId = groupId;
 	}
 }

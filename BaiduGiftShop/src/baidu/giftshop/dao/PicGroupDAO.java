@@ -13,7 +13,7 @@ public class PicGroupDAO {
 
 	
 	@SuppressWarnings("unchecked")
-	public void deletegroup(Integer groupId){
+	public void deletegroup(String groupId){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
 		String sql = "select gdp from GoodsDetailPicture gdp where gdp.groupId=?";
@@ -27,7 +27,7 @@ public class PicGroupDAO {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public List querythumbPathById(Integer groupId){
+	public List querythumbPathById(String groupId){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tr = session.beginTransaction();
 		String sql = "select gdp.thumbPath from GoodsDetailPicture gdp where gdp.groupId=?";

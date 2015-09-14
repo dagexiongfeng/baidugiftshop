@@ -22,6 +22,15 @@ public class Goods implements java.io.Serializable {
 	private String name;
 	private Integer state;
 	private Integer productType;
+	private String goodcode;
+	public String getGoodcode() {
+		return goodcode;
+	}
+
+	public void setGoodcode(String goodcode) {
+		this.goodcode = goodcode;
+	}
+
 	public Integer getProductType() {
 		return productType;
 	}

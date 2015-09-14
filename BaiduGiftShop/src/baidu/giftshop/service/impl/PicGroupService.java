@@ -24,7 +24,7 @@ public class PicGroupService implements IPicGroupService {
 	
 	private String result;
 	@Override
-	public String upload(File pic, String picFileName, Integer groupId, String picGroupName) {
+	public String upload(File pic, String picFileName, String groupId, String picGroupName) {
 		return addpicgroupdao.upload(pic, picFileName, groupId,picGroupName);
 	}
 	
@@ -38,9 +38,9 @@ public class PicGroupService implements IPicGroupService {
 	public String listGroupId() {
 		 List<GoodsDetailPicture> list = addpicgroupdao.listGroupId();
 		 List<PictureidBean> results=new ArrayList<PictureidBean>();
-		 Map<Integer,String> idMap=new TreeMap<Integer, String>();
+		 Map<String,String> idMap=new TreeMap<String, String>();
 		 for(GoodsDetailPicture p:list){
-			 int id=p.getGroupId();
+			 String id=p.getGroupId();
 			 String name=p.getPicGroupName();
 			 if(idMap.containsKey(id)){
 				 
@@ -68,7 +68,7 @@ public class PicGroupService implements IPicGroupService {
 
 
 	@Override
-	public void deletegroup(Integer groupId) {
+	public void deletegroup(String groupId) {
 		PicGroupDAO picgroupdao = new PicGroupDAO();
 		picgroupdao.deletegroup(groupId);
 	}
@@ -76,7 +76,7 @@ public class PicGroupService implements IPicGroupService {
 
 	@SuppressWarnings({ "rawtypes" })
 	@Override
-	public List querythumbPathById(Integer groupId) {
+	public List querythumbPathById(String groupId) {
 		PicGroupDAO picgroupdao = new PicGroupDAO();
 		return picgroupdao.querythumbPathById(groupId);
 	}
@@ -88,5 +88,31 @@ public class PicGroupService implements IPicGroupService {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public String checkpicgroupId(String groupId) {
+		Base base = new Base();
+		if(addpicgroupdao.checkGoodsCode(groupId)>0){
+			base.setContent(102);
+		}else{
+			base.setContent(101);
+		}
+		JsonConfig jsonConfig = new JsonConfig();
+		JSONObject jsonObject = new JSONObject();
+	    result = JSONObject.fromObject(base,jsonConfig).toString();
+		return result;
+	}
+
+	public String checkpicId(String groupId) {
+		Base base = new Base();
+		if(addpicgroupdao.checkGoodsCode(groupId)==0){
+			base.setContent(102);
+		}else{
+			base.setContent(101);
+		}
+		JsonConfig jsonConfig = new JsonConfig();
+		JSONObject jsonObject = new JSONObject();
+	    result = JSONObject.fromObject(base,jsonConfig).toString();
+		return result;
 	}
 }

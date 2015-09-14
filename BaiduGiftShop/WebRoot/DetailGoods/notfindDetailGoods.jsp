@@ -1,19 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="baidu.giftshop.frk.*" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String realpath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
-String root = realpath.substring(0,realpath.lastIndexOf("/"));
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>My JSP 'ShowPic.jsp' starting page</title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <title>修改明细商品信息</title>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -40,31 +36,30 @@ String root = realpath.substring(0,realpath.lastIndexOf("/"));
             color: #fff;
             font-weight: bold;
         }
-    </style>  
-    <%
-    String url = "./queryGroup.action";
-     %>
+    </style> 
   </head>
-  
   <body>
-   <div class="row-fluid">
+ <div class="row-fluid">
     <div class="dialog">
         <div class="block">
-            <p class="block-heading">查询一组图片</p>
-               <div class="block-body">
-     <form action=<%=url %>>
-                                  查询的商品图片编号(与商品编号一致)：<input type="text" name="groupId" class="span12"/><br><br>
-                       <input type="submit" value="确定" style="width: 100;height: 35" class="btn btn-primary"/>
+            <p class="block-heading">添加商品信息</p>
+            <div class="block-body">
+  <form action="./ModifyDetailGoods.action" method="post">
+              没有您要修改的商品编号,请确认该编号是否存在
+              <hr>
+           修改的商品条形码:(*必填)<input type="text" name="barCode" class="span12"/>
+           
+        <!--   修改的商品ID:<input type="text" name="goodsDetailId" class="span12"/> --> 
+          
+               <input type="submit" value="查询" class="btn btn-primary"/>
      </form>
      <br>
-               <s:iterator value="#request.thumbPath" id="thumbPath">
-               <img src="<%=root %>/<s:property value="#thumbPath"/>">
-               </s:iterator><br>
-               
-   </div>
-   </div>
-   <a href="./index.jsp">返回首页</a>
-   </div>
-   </div>
+      <a href="./index.jsp" >返回到首页</a>
+  </div>
+  </div>
+  </div>
+
+ 
+  </div>
   </body>
 </html>

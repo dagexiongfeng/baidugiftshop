@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <property name="groupId" type="integer">
+        <property name="groupId" type="string">
             <column name="group_id">
                 <comment>此张图片对应的图片组id</comment>
             </column>

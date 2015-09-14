@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="classify" class="baidu.giftshop.entity.Classify" fetch="select" lazy="false">
+        <many-to-one name="classify"  class="baidu.giftshop.entity.Classify" fetch="select" lazy="false" >
             <column name="classify_id" not-null="true">
                 <comment>所属的分类ID</comment>
             </column>
@@ -27,15 +27,20 @@
         </property>
         <property name="productType" type="integer">
             <column name="product_type" length="50">
-                <comment>货品名称</comment>
+                <comment>货品类型</comment>
+            </column>
+        </property>
+        <property name="goodcode" type="string">
+            <column name="goodcode" length="50">
+                <comment>商品编号</comment>
             </column>
         </property>
         <property name="state" type="integer">
-            <column name="state" length="11">
+            <column name="state" length="11" not-null="true" >
                 <comment>概要商品状态</comment>
             </column>
         </property>
-        <set name="goodsSubbranchs" inverse="true">
+        <set name="goodsSubbranchs" inverse="true" cascade="delete">
             <key>
                 <column name="goods_id">
                     <comment>商品表外键</comment>
@@ -43,7 +48,7 @@
             </key>
             <one-to-many class="baidu.giftshop.entity.GoodsSubbranch" />
         </set>
-        <set name="goodsPictures" inverse="true">
+        <set name="goodsPictures" inverse="true" cascade="delete">
             <key>
                 <column name="goods_id" not-null="true">
                     <comment>对应商品表的外键</comment>
@@ -51,7 +56,7 @@
             </key>
             <one-to-many class="baidu.giftshop.entity.GoodsPicture" />
         </set>
-        <set name="goodsDetais" inverse="true">
+        <set name="goodsDetais" inverse="true" cascade="delete">
             <key>
                 <column name="goods_id" not-null="true">
                     <comment>商品表的外键</comment>

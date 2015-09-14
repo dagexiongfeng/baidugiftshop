@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <p class="block-heading">删除一组图片</p>
                <div class="block-body">
       <form action="./deleteGroup.action">
-                               输入要删除的组号：<input type="text" name="groupId" class="span12"/><br>
+                               输入要删除的商品图片编号：<input type="text" name="groupId" class="span12"/><br>
                           <input type="submit" value="确定" class="btn btn-success"/>
       </form>
         </div>

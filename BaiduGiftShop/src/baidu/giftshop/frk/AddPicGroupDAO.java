@@ -43,7 +43,7 @@ public class AddPicGroupDAO {
      * @throws IOException 
      * @throws ParseException 
      */  
-    public String upload(File pic,String picFileName,Integer groupId,String picGroupName){  
+    public String upload(File pic,String picFileName,String groupId,String picGroupName){  
     	
     	String name = picFileName.substring(picFileName.lastIndexOf(".")); // 得到后缀名
     	if (name.equals(".jpg") || name.equals(".gif") || name.equals(".png")|| name.equals(".jpeg")) { 
@@ -101,7 +101,7 @@ public class AddPicGroupDAO {
      * 删除插入进数据的Goods类型
      */
     @SuppressWarnings("unchecked")
-	public void deleteGoods(Integer groupId){
+	public void deleteGoods(String groupId){
     	Session session = HibernateSessionFactory.getSession();
     	Transaction tr = session.beginTransaction();
     	String sql = "select gd from GoodsDetai gd where gd.picGroupId=?";
@@ -227,6 +227,22 @@ public class AddPicGroupDAO {
     
 	public void setRadio(Double radio) {
 		this.radio = radio;
+	}
+	/**
+	 * 查询图片编号是否存在
+	 * @param groupId
+	 * @return
+	 */
+	public int checkGoodsCode(String groupId) {
+		Session session = HibernateSessionFactory.getSession();
+		String sql = "select g from GoodsDetailPicture g where g.groupId=?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, groupId);
+		if(q.list().size()>0){
+			return q.list().size();
+		}else{
+			return 0;
+		}
 	}
 
 }

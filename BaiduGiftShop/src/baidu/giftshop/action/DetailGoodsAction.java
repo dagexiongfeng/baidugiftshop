@@ -39,7 +39,11 @@ public class DetailGoodsAction extends ActionSupport{
 	//private String picGroupId;
 	
 	private GoodsDetai goodsDetai;
-	
+	/**
+	 * 添加商品
+	 * @return
+	 * @throws Exception
+	 */
 	public String addDeatilGoods() throws Exception{
 		Goods goods = detailgoodsService.queryGoods(classifyId, goodsId);
 		goodsDetai.setGoods(goods);
@@ -48,17 +52,47 @@ public class DetailGoodsAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	/**
+	 * 更新修改的商品
+	 * @return
+	 * @throws Exception
+	 */
+	public String updateDetailGoods() throws Exception{
+		Goods goods = detailgoodsService.querygood(classifyId, goodsId);
+		goodsDetai.setGoods(goods);
+		goodsDetai.setState(1);
+	    detailgoodsService.saveDetailGoods(goodsDetai);
+		return SUCCESS;
+	}
+	/**
+	 * 更具商品编号或条形码查询商品
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String queryDetailGoods() throws Exception{
-		if(goodsDetailId!=null){
-			GoodsDetai goodsdetai = detailgoodsService.queryDetaiGoods(barCode, goodsDetailId);
-			Map session=(Map)ActionContext.getContext().getSession();
-			session.put("goodsdetai", goodsdetai);
-		}else{
-			GoodsDetai goodsdetai = detailgoodsService.queryDetaiGoods(barCode);
-			Map session=(Map)ActionContext.getContext().getSession();
-			session.put("goodsdetai", goodsdetai);
-		}
+//		if(goodsCode!=null){
+//			GoodsDetai goodsdetai = detailgoodsService.queryDetaiGoods(barCode, goodsDetailId);
+//			Map session=(Map)ActionContext.getContext().getSession();
+//			session.put("goodsdetai", goodsdetai);
+//		}else{
+	//	    List<GoodsDetai> list = detailgoodsService.queryDetailGoods(goodsCode);
+		//	Map session=(Map)ActionContext.getContext().getSession();
+		//	Map request=(Map)ActionContext.getContext().get("request");
+		//request.put("list", list);
+		//	session.put("list", list);
+	//	}
+//			pageBean.setCurrentPage(page);
+//			List<GoodsDetai> list = detailgoodsService.listallDetailGoods(pageBean);
+//			Map request=(Map)ActionContext.getContext().get("request");
+//			request.put("list", list);
+//			request.put("pageBean", pageBean);
+//			return SUCCESS;
+			pageBean.setCurrentPage(page);
+			List<GoodsDetai> list = detailgoodsService.queryDetailGoods(pageBean,goodsCode);
+			Map request=(Map)ActionContext.getContext().get("request");
+			request.put("list", list);
+			request.put("pageBean", pageBean);
 		return SUCCESS;
 	}
 	
@@ -82,19 +116,23 @@ public class DetailGoodsAction extends ActionSupport{
 		return null;
 	}
 	
-	
+	/**
+	 * 查询要修改的商品编号
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String ModifyDetailGoods() throws Exception{
-		if(goodsDetailId!=null){
-			GoodsDetai goodsdetai = detailgoodsService.queryDetaiGoods(barCode, goodsDetailId);
-			if(goodsdetai!=null){
-			    Map session=(Map)ActionContext.getContext().getSession();
-			    session.put("goodsdetai", goodsdetai);
-			    return SUCCESS;
-			}else{
-				return ERROR;
-			}
-		}else{
+//		if(goodsDetailId!=null){
+//			GoodsDetai goodsdetai = detailgoodsService.queryDetaiGoods(barCode, goodsDetailId);
+//			if(goodsdetai!=null){
+//			    Map session=(Map)ActionContext.getContext().getSession();
+//			    session.put("goodsdetai", goodsdetai);
+//			    return SUCCESS;
+//			}else{
+//				return ERROR;
+//			}
+//		}else{
 			GoodsDetai goodsdetai = detailgoodsService.queryDetaiGoods(barCode);
 			if(goodsdetai!=null){
 			      Map session=(Map)ActionContext.getContext().getSession();
@@ -103,9 +141,22 @@ public class DetailGoodsAction extends ActionSupport{
 			}else{
 				return ERROR;
 			}
-		}
+	//	}
 	}
-	
+	/**
+	 * 删除明细商品
+	 * @return
+	 * @throws Exception
+	 */
+	public String deleteDetailgood() throws Exception{
+		result = detailgoodsService.deleteBriefgood(goodsId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		            out.print(result);
+		            out.flush();
+		return null;
+	}
 	public String listDetailByGid() throws Exception{
 		pageBean.setCurrentPage(page);
 		result = detailgoodsService.listDetailByGid(Integer.parseInt(goodsId),subbranchId,pageBean);
@@ -164,10 +215,26 @@ public class DetailGoodsAction extends ActionSupport{
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();   
-		            out.print(result);  
-		            out.flush();
+		out.print(result);  
+		out.flush();
 		return null;
 	}
+	
+	/**
+	 * 检查条形码是否存在
+	 * @return
+	 * @throws Exception
+	 */
+	public String checkbarcode() throws Exception{
+		result = detailgoodsService.checkbarcode(barCode);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();   
+		out.print(result);  
+		out.flush();
+		return null;
+	}
+	
 	public String getClassifyId() {
 		return classifyId;
 	}

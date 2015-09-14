@@ -11,7 +11,7 @@ public class GoodsDetailPicture implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	// Fields
 	private Integer id;
-	private Integer groupId;
+	private String groupId;
 	private String path;
 	private String thumbPath;
 	private Double ratio;
@@ -30,7 +30,7 @@ public class GoodsDetailPicture implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public GoodsDetailPicture(Integer id, Integer groupId, String path,
+	public GoodsDetailPicture(Integer id, String groupId, String path,
 			String thumbPath, Double ratio) {
 		super();
 		this.id = id;
@@ -50,11 +50,11 @@ public class GoodsDetailPicture implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getGroupId() {
+	public String getGroupId() {
 		return this.groupId;
 	}
 
-	public void setGroupId(Integer groupId) {
+	public void setGroupId(String groupId) {
 		this.groupId = groupId;
 	}
 

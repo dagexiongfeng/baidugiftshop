@@ -90,32 +90,35 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
         </div>
     </div>
     
+
+
+    
     <div class="sidebar-nav">
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
+            <li ><a href="./index.jsp">&nbsp&nbsp&nbspHome</a></li>
             <li ><a href="./getAllUser.action">&nbsp&nbsp&nbsp分店用户管理</a></li>
             <li ><a href="user.jsp">&nbsp&nbsp&nbsp个人中心</a></li>
-            <li ><a href="sdkupload.jsp">&nbsp&nbsp&nbsp文件上传</a></li>
         </ul>
 
-        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">2</span></a>
-        <ul id="accounts-menu" class="nav nav-list collapse in">
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">2</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse">
             <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
             <li ><a href="./listallBrief.action">&nbsp&nbsp&nbsp查询分类信息</a></li>
         </ul>
         <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">2</span></a>
-        <ul id="accounts-menu2" class="nav nav-list collapse in">
+        <ul id="accounts-menu2" class="nav nav-list collapse">
             <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加商品信息</a></li>
             <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询商品信息</a></li>
         </ul>
         <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品明细<span class="label label-info">3</span></a>
-        <ul id="accounts-menu3" class="nav nav-list collapse in">
+        <ul id="accounts-menu3" class="nav nav-list collapse">
             <li ><a href="./DetailGoods/addDetailGoods.jsp">&nbsp&nbsp&nbsp增加明细信息</a></li>
             <li ><a href="./listallDetailGoods.action">&nbsp&nbsp&nbsp查询明细商品</a></li>
             <li ><a href="./DetailGoods/ModifyDetailGoods.jsp">&nbsp&nbsp&nbsp修改明细商品</a></li>
         </ul>
         <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>图片组别<span class="label label-info">3</span></a>
-        <ul id="accounts-menu4" class="nav nav-list collapse in">
+        <ul id="accounts-menu4" class="nav nav-list collapse">
             <li ><a href="./addPic.action">&nbsp&nbsp&nbsp增加一组图片</a></li>
             <li ><a href="./Picture/ShowPic.jsp">&nbsp&nbsp&nbsp查询一组图片</a></li>
             <li ><a href="./Picture/DeleteGroup.jsp">&nbsp&nbsp&nbsp删除一组图片</a></li>

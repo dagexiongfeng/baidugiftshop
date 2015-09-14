@@ -48,7 +48,7 @@
   </head>
   <body>
   <br>
-   <form action="./querybriefgood.action" method="get">
+   <form action="./querybriefgood.action" method="post">
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  	  查询的商品编号:<input type="text" id="goodcode" name="goodcode" style="width: 140px;height: 35px" />&nbsp;&nbsp;&nbsp;&nbsp;
      <select style="width: 140px;height: 35px" id="productType" name="productType" >
@@ -117,9 +117,10 @@
            <input type="button" id="button" name="button" class="btn btn-success" value="上架" style="width: 100px;height: 40px" onclick="change(<s:property value="#list.goods.id"/>)"/>
         </s:elseif>
         </td>
-         <td width="100">
+        <td width="100">
            <input type="button" id="button" name="button"   value="删除" style="width: 100px;height: 40px" onclick="deletegood(<s:property value="#list.goods.id"/>)"/>
-			</td>   
+			</td>  
+    </tr>
     </s:iterator>
     </table>
     <br>
@@ -131,10 +132,10 @@
                           第<s:property value="pageBean.currentPage" />页
                          共<s:property value="pageBean.allPage"/>页
                         
-          <a href="queryAllBriefGoods.action?page=<s:property value='pageBean.firstPage'/>">首页</a>
-          <a href="queryAllBriefGoods.action?page=<s:property value='pageBean.previousPage'/>">上一页</a>
-          <a href="queryAllBriefGoods.action?page=<s:property value='pageBean.nextPage'/>">下一页</a>
-          <a href="queryAllBriefGoods.action?page=<s:property value='pageBean.lastPage'/>">尾页</a>
+          <a href="querybriefgood.action?page=<s:property value='pageBean.firstPage'/>&productType=<s:property value='productType'/>">首页</a>
+          <a href="querybriefgood.action?page=<s:property value='pageBean.previousPage'/>&productType=<s:property value='productType'/>">上一页</a>
+          <a href="querybriefgood.action?page=<s:property value='pageBean.nextPage'/>&productType=<s:property value='productType'/>">下一页</a>
+          <a href="querybriefgood.action?page=<s:property value='pageBean.lastPage'/>&productType=<s:property value='productType'/>">尾页</a>
            共<s:property value="pageBean.allRecords"/>条
       </td>
     </tr>
@@ -163,7 +164,6 @@ function change(goodsId){
        }
      });
 };
-
 function deletegood(goodsId){
 	if(confirm("确定删除吗?删除后明细商品及分店绑定都将删除,但请手动删除商品图片")){
 	   $.ajax({

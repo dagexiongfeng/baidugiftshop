@@ -19,14 +19,14 @@ public class GoodsDetai implements java.io.Serializable {
 	private Integer id;
 	private Goods goods;
 	private String name;
-	private String goodsCode;
+	private String goodsCode;//不同商品的唯一编号
 	private String shopCode;
-	private String barCode;
+	private String barCode;//区分一件商品里的不同属性
 	private String type1;
 	private String type2;
 	private String type3;
 	private String type4;
-	private Integer picGroupId; //商品数量,艹
+	private String picGroupId; //商品数量,艹
 	private BigDecimal stockPrice;
 	private BigDecimal baiduPrice;
 	private BigDecimal retailPrice;
@@ -128,11 +128,11 @@ public class GoodsDetai implements java.io.Serializable {
 		this.type4 = type4;
 	}
 
-	public Integer getPicGroupId() {
+	public String getPicGroupId() {
 		return this.picGroupId;
 	}
 
-	public void setPicGroupId(Integer picGroupId) {
+	public void setPicGroupId(String picGroupId) {
 		this.picGroupId = picGroupId;
 	}
 
@@ -149,6 +149,7 @@ public class GoodsDetai implements java.io.Serializable {
 	}
 
 	public void setStockPrice(BigDecimal stockPrice) {
+	
 		this.stockPrice = stockPrice;
 	}
 
@@ -175,6 +176,7 @@ public class GoodsDetai implements java.io.Serializable {
 	}
 
 	public void setCostPrice(BigDecimal costPrice) {
+	
 		this.costPrice = costPrice;
 	}
 	
@@ -188,7 +190,7 @@ public class GoodsDetai implements java.io.Serializable {
 
 	public GoodsDetai(Integer id, Goods goods, String name, String goodsCode,
 			String shopCode, String barCode, String type1, String type2,
-			String type3, String type4, Integer picGroupId,
+			String type3, String type4, String picGroupId,
 			BigDecimal stockPrice, BigDecimal lastStockPrice,
 			BigDecimal retailPrice, BigDecimal costPrice, Integer state,
 			Set goodsDetailSubbranchs) {
