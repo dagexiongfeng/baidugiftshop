@@ -39,8 +39,8 @@ success :function(result){
    "<td>"+detail.stockPrice+"</td>"+
    "<td>"+detail.baiduPrice+"</td>"+
    "<td>"+detail.retailPrice+"</td>"+
-   "<td>"+detail.costPrice+"</td>"+
-  // "<td>"+detail.picGroupId+"</td>"+
+ //  "<td>"+detail.costPrice+"</td>"+
+   "<td>"+detail.picGroupId+"</td>"+
    "<td>"+"<input type='checkbox'; name='goodsDetId'; value='"+detail.id+"'; style='width: 20;height: 20' ></td></tr>";
    $("#show").append(tTr);
  }
@@ -68,7 +68,7 @@ for(var i=1;i<tbmain.rows.length;i++)
    /* 
            添加单击事件属性。此处不可使用setAttribute方法。 
    */ 
-  tbmain.rows[i].cells[12].onclick=AddObjOfText; 
+  tbmain.rows[i].cells[10].onclick=AddObjOfText; 
 }
 
     pageStr="<center><span>共<input type='text' style='height:25px;width:35px' value='"+pagebean.allPage+"' readonly/>页</span>";
@@ -94,7 +94,7 @@ function showDetailGoods(page){
      $("#show").append($("<tr/>").attr("id","tr"));
      $("#tr").append($("<td/>").text("商品名称").attr("width","120"));
      $("#tr").append($("<td/>").text("商品代码").attr("width","120"));
-     $("#tr").append($("<td/>").text("店内码").attr("width","100"));
+ //    $("#tr").append($("<td/>").text("店内码").attr("width","100"));
      $("#tr").append($("<td/>").text("条形码").attr("width","100"));
      $("#tr").append($("<td/>").text("分类属性1").attr("width","140"));
      $("#tr").append($("<td/>").text("分类属性2").attr("width","140"));
@@ -103,7 +103,7 @@ function showDetailGoods(page){
      $("#tr").append($("<td/>").text("进价").attr("width","100"));
      $("#tr").append($("<td/>").text("百度员工价").attr("width","120"));
      $("#tr").append($("<td/>").text("零售价").attr("width","100"));
-     $("#tr").append($("<td/>").text("成本价").attr("width","100"));
+  //   $("#tr").append($("<td/>").text("成本价").attr("width","100"));
      $("#tr").append($("<td/>").text("数量").attr("width","100").attr("id","amount"));
      $("#tr").append($("<td/>").text("是否绑定").attr("width","120"));
    $.ajax({
@@ -118,7 +118,7 @@ function showDetailGoods(page){
        var detail = data[n];
        var tTr = "<tr><td>"+detail.name+"</td>"+
        "<td>"+detail.goodsCode+"</td>"+
-       "<td>"+detail.shopCode+"</td>"+
+  //     "<td>"+detail.shopCode+"</td>"+
        "<td>"+detail.barCode+"</td>"+
        "<td>"+detail.type1+"</td>"+
        "<td>"+detail.type2+"</td>"+
@@ -127,7 +127,7 @@ function showDetailGoods(page){
        "<td>"+detail.stockPrice+"</td>"+
        "<td>"+detail.baiduPrice+"</td>"+
        "<td>"+detail.retailPrice+"</td>"+
-       "<td>"+detail.costPrice+"</td>"+
+  //     "<td>"+detail.costPrice+"</td>"+
        "<td>"+detail.picGroupId+"</td>"+
        "<td>"+"<input type='checkbox'; name='goodsDetId'; value='"+detail.id+"'; style='width: 20;height: 20' ></td></tr>";
        $("#show").append(tTr);
@@ -156,7 +156,7 @@ function showDetailGoods(page){
        /* 
                添加单击事件属性。此处不可使用setAttribute方法。 
        */ 
-      tbmain.rows[i].cells[12].onclick=AddObjOfText; 
+      tbmain.rows[i].cells[10].onclick=AddObjOfText; 
     }
     
         pageStr="<center><span>共<input type='text' style='height:25px;width:35px' value='"+pagebean.allPage+"' readonly/>页</span>";
@@ -224,7 +224,7 @@ var row = a[i].parentElement.parentElement.rowIndex;
 //alert(a[i].value); 
 //alert(rows[row].cells[12].innerHTML); 
 var goodsDetId=a[i].value;
-var amount = rows[row].cells[12].innerHTML;
+var amount = rows[row].cells[10].innerHTML;
 var subbranchId = $("#subbranchId").val();
    $.ajax({
      type: "get",

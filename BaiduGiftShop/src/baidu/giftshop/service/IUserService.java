@@ -20,4 +20,6 @@ public interface IUserService {
 	public List<Account> getAllUser(PageBean pageBean);
 	
 	public void deleteUser(Integer id);
+
+	public String getSubbranchName(Integer subbranchId);
 }

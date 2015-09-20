@@ -29,6 +29,17 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
     <!-- Demo page code -->
+  <style type="text/css">
+  body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+}
+  
+  </style>  
     <style type="text/css">
         #line-chart {
             height:300px;
@@ -81,7 +92,7 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
                             <li class="divider"></li>
                             <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
                             <li class="divider visible-phone"></li>
-                            <li><a tabindex="-1" href="./logout.action">Logout</a></li>
+                            <li><a tabindex="-1" href="./logout.action">退出</a></li>
                         </ul>
                     </li>
                     
@@ -91,13 +102,12 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
     </div>
     
     <div class="sidebar-nav">
-        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
-        <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li ><a href="./getAllUser.action">&nbsp&nbsp&nbsp分店用户管理</a></li>
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>首页</a>
+        <ul id="accounts-menu" class="nav nav-list collapse">
+                <li ><a href="./getAllUser.action">&nbsp&nbsp&nbsp分店用户管理</a></li>
             <li ><a href="user.jsp">&nbsp&nbsp&nbsp个人中心</a></li>
             <li ><a href="sdkupload.jsp">&nbsp&nbsp&nbsp文件上传</a></li>
         </ul>
-
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">2</span></a>
         <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
@@ -120,7 +130,11 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
             <li ><a href="./Picture/ShowPic.jsp">&nbsp&nbsp&nbsp查询一组图片</a></li>
             <li ><a href="./Picture/DeleteGroup.jsp">&nbsp&nbsp&nbsp删除一组图片</a></li>
         </ul>
-
+        
+ 	 <a href="#accounts-menu5" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">1</span></a></a>
+        <ul id="accounts-menu5" class="nav nav-list collapse">
+            <li ><a href="./ListAllOrder.action">&nbsp&nbsp&nbsp全部订单</a></li>
+        </ul>
         <!-- <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
         <ul id="error-menu" class="nav nav-list collapse">
             <li ><a href="403.html">403 page</a></li>
@@ -128,10 +142,8 @@ ${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
             <li ><a href="500.html">500 page</a></li>
             <li ><a href="503.html">503 page</a></li>
         </ul> -->
-
-        <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
+         <a href="help.jsp" class="nav-header" ><i class="icon-question-sign"></i>帮助</a> 
     </div>
-    
     <div class="content">
         <center>
         <br><br>

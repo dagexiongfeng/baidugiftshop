@@ -108,4 +108,13 @@ public class UserService implements IUserService {
 		
 		userDAO.deleteUser(id);
 	}
+	/**
+	 * 获取分店名
+	 */
+	@Override
+	public String getSubbranchName(Integer subbranchId) {
+		userDAO = new UserDAO();
+		String subbranchname = userDAO.getSubbranchName(subbranchId);
+		return subbranchname;
+	}
 }

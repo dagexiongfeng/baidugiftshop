@@ -86,17 +86,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="block-body">
                 <form action="./login.action" method="post" name="login">
                     
-                    <label>Username</label>
+                    <label>用户名</label>
                     <input type="text" name="account" class="span12" id="username"/>
-                    <label>Password</label>
+                    <label>密码</label>
                     <input type="password" name="password" class="span12" id="password"/>
-                    <input type="submit" value="Sing In" class="btn btn-primary pull-right"/>
-                    <label class="remember-me"><a href="sign-up.html"> Sing up</a></label>
+                    <input type="submit" value="登录" class="btn btn-primary pull-right"/>
                     <div class="clearfix"></div>
                 </form>
             </div>
         </div>
-        <p><a href="reset-password.html">Forgot your password?</a></p>
+        <p><a href="reset-password.jsp">忘了密码?</a></p>
     </div>
 </div>
 

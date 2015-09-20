@@ -54,19 +54,19 @@
             <p class="block-heading">Sign Up</p>
             <div class="block-body">
                 <form action="register.action" method="post" name="form" onsubmit="return beforeSubmit(this);">
-                    <label>UserName</label>
+                    <label>用户名</label>
                     <input type="text" id="account" name="account" class="span12" onblur="valuationUsername()"/>
-                    <label>Password</label>
+                    <label>密码</label>
                     <input type="password" name="password" class="span12" onblur="checkPassword()"/>
-                    <label>Subbranch ID</label>
+                    <label>分店地址</label>
                     <select id="subbranch" name="subbranch">
                              <option value="0">---请选择---</option>
                                   </select>
-                    <label>Email</label>
+                    <label>邮箱</label>
                     <input type="text" class="span12" id="email" name="email" onblur="valuationEmail()">
-                    <label>Tel</label>
+                    <label>电话</label>
                     <input type="text" class="span12" id="tel" name="tel">
-                    <input type="submit" value="Sing Up!" class="btn btn-primary pull-right"/>
+                    <input type="submit" value="新建!" class="btn btn-primary pull-right"/>
                     <label class="remember-me"><input type="checkbox"> I agree with the <a href="terms-and-conditions.html">Terms and Conditions</a></label>
                     <div class="clearfix"></div>
                 </form>

@@ -31,6 +31,9 @@ public class DetailGoodsService implements IDetailGoodsService{
 	public Base getDetailGoods(Integer subbranch_id, Integer classify_id,
 			Integer goods_id) {
 		Integer picId = goodsdetailDao.selectGroupId(goods_id);
+		
+		
+		System.out.println("ssss");
 		List Type1 = goodsdetailDao.Type1(goods_id);
 		List Type2 = goodsdetailDao.Type2(goods_id);
 		List Type3 = goodsdetailDao.Type3(goods_id);
@@ -42,7 +45,6 @@ public class DetailGoodsService implements IDetailGoodsService{
 		List<GoodsDetailA> lista = new ArrayList<GoodsDetailA>();
 		lista.add(goodsdetaila);
 		List<GoodsDetailB> listb = goodsdetailDao.selectBySubIdAndGoodsId(subbranch_id, goods_id);
-		
 		GoodsDetailC goodsdetailc = new GoodsDetailC();
 		goodsdetailc.setClassify_id(classify_id);
 		goodsdetailc.setDetailGoods(listb);
@@ -53,7 +55,7 @@ public class DetailGoodsService implements IDetailGoodsService{
 		goodsdetailc.setType2(Type2);
 		goodsdetailc.setType3(Type3);
 		goodsdetailc.setType4(Type4);
-		
+	
 		Base base = new Base();
 		base.setContent(goodsdetailc);
 		base.setCode(101);

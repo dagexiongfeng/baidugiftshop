@@ -30,7 +30,7 @@ public interface GoodsDetailMapper {
     @SuppressWarnings("rawtypes")
 	List Type4(Integer goods_id);
     
-    int selectGroupId(Integer goods_id);
+    Integer selectGroupId(Integer goods_id);
     
     List<GoodsDetailB> selectBySubIdAndGoodsId(Integer subbranch_id,Integer goods_id);
 }

@@ -119,7 +119,7 @@ function showGoods(page){
 	      var data = result.content;
 	      var pagebean = result.list;
 	      for(var n=0;n<data.length;n++){
-	          var tTr = "<tr><td>"+data[n][0]+"</td><td>"+data[n][1]+"</td><td>"+"<input type='checkbox'; name='goodsId'; value='"+data[n][2]+"'; style='width: 20;height: 20' ></td></tr>";
+	          var tTr = "<tr><td>"+data[n][0]+"</td><td>"+data[n][2]+"</td><td>"+"<input type='checkbox'; name='goodsId'; value='"+data[n][3]+"'; style='width: 20;height: 20' ></td></tr>";
 	          $("#show").append(tTr);
 	      }
 	      $.ajax({
@@ -131,7 +131,7 @@ function showGoods(page){
 	        var classify = result.content;
 	        for(var k=0;k<classify.length;k++){
 	          for(var n=0;n<data.length;n++){
-	            if(classify[k]==data[n][2]){
+	            if(classify[k]==data[n][3]){
 	               var j=n+1;
 	               input[j].checked=true;
 	            }else{

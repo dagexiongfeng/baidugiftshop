@@ -164,4 +164,16 @@ public class UserDAO {
 		Integer a=q.list().size();
 		return a;
 	}
+
+	public String getSubbranchName(Integer subbranchId) {
+		Session session = HibernateSessionFactory.getSession();
+		String sql = "select s.name from Subbranch s  where id = ?";
+		Query q = session.createQuery(sql);
+		q.setParameter(0, subbranchId);
+		String list = (String) q.uniqueResult();
+		session.close();
+		return list;
+	}
+
+
 }

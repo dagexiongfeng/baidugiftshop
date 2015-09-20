@@ -7,7 +7,7 @@
 	<package name="struts" extends="struts-default" namespace="/">
 	    <!-- 注册监听事件 -->
 		<action name="register" class="baidu.giftshop.action.UserAction" method="register">
-			<result name="success">./login.jsp</result>
+			<result name="success" type="redirect">./getAllUser.action</result>
 			<result name="error">./sign-up.html</result>
 		</action>
 		<!-- 登陆监听事件 -->
@@ -139,6 +139,15 @@
 		</action> -->
 		<action name="listAllOrders" class="baidu.giftshop.action.OrderAction" method="listAllOrder">
 		       <result name="success">/Subbranch/listOrder.jsp</result>
+		</action>
+		<!-- 显示所有分店的订单 -->
+		<action name="ListAllOrder"  class="baidu.giftshop.action.OrderAction" method="ListAllOrder">
+			<result name="success">/ListOrder.jsp</result>
+		</action>
+		<!-- 超级管理员根据不同分店查看 -->
+		<action name="listAllOrderbysubbranch" class="baidu.giftshop.action.OrderAction"  method="listAllOrderbysubbranch">
+		<result name="success">/ListOrdersubbranch.jsp</result>
+		<result name="all" type="redirect">./ListAllOrder.action </result>
 		</action>
 		<!-- 显示已支付待发货订单 -->
 		<action name="listPayOrders" class="baidu.giftshop.action.OrderAction" method="listPayOrders">

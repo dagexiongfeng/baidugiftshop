@@ -202,10 +202,7 @@ public class DetailGoodsService implements IDetailGoodsService {
 	}
 	@Override
 	public String listDetailBysubgood(int classifyId, Integer subbranchId) {
-		System.out.println("ssss");
-		System.out.println("ssss");
-		System.out.println("ssss");
-		System.out.println("ssss");
+	
 		BriefGoodsDAO bfd=new BriefGoodsDAO();
 	    List<Integer> ss=	bfd.findBriefID(classifyId,subbranchId);
 	    

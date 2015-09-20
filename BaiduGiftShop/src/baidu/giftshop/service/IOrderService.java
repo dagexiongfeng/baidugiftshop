@@ -14,4 +14,6 @@ public interface IOrderService {
 	public List<NewOrderBean> listPayOrders(PageBean pageBean,
 			Integer subbranch_id);
 
+	public List<NewOrderBean> ListAllOrder(PageBean pageBean);
+
 }

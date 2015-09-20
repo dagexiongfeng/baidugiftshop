@@ -56,10 +56,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body class=""> 
   <!--<![endif]-->
     <div class="navbar">
-        <div class="navbar-inner">
+         <div class="navbar-inner">
                 <ul class="nav pull-right">
                     
-                    <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
+                    <li><a href="javascript:void(0)" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
+                    <li><a href="javascript:void(0)" class="hidden-phone visible-tablet visible-desktop" role="button">${subbranchname }</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-user"></i> ${user.account }
@@ -67,11 +68,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">My Account</a></li>
+                            <li><a tabindex="-1" href="javascript:void(0)">My Account</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                            <li><a  class="visible-phone" href="javascript:void(0)">Settings</a></li>
                             <li class="divider visible-phone"></li>
-                            <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                            <li><a tabindex="-1" href="./logout.action">退出</a></li>
                         </ul>
                     </li>
                     
@@ -81,28 +82,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
 
-     <div class="sidebar-nav">
-        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
-        <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li ><a href="./Subbranch/Index.jsp">Home</a></li>
-            <li ><a href="./Subbranch/reset-password.jsp">Rset Password</a></li>
-             <li ><a href="./Subbranch/user.jsp">Personal information</a></li>
+        <div class="sidebar-nav">
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>首页</a>
+        <ul id="accounts-menu" class="nav nav-list collapse">
+            <li ><a href="./Subbranch/reset-password.jsp">&nbsp&nbsp&nbsp密码重置</a></li>
+             <li ><a href="./Subbranch/user.jsp">&nbsp&nbsp&nbsp个人信息</a></li>
         </ul>
 
-        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">1</span></a>
-        <ul id="accounts-menu" class="nav nav-list collapse">
+         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">1</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./subbranchClassify.action">&nbsp&nbsp&nbsp 绑定分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">1</span></a>
-        <ul id="accounts-menu2" class="nav nav-list collapse">
+       <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">1</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./Subbranch/bundlBrief.jsp">&nbsp&nbsp&nbsp 绑定商品信息</a></li>
         </ul>
-        <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">1</span></a>
-        <ul id="accounts-menu3" class="nav nav-list collapse">
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">1</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./Subbranch/bundlDetail.jsp">&nbsp&nbsp&nbsp 分店绑定明细商品</a></li>
         </ul>
-        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">2</span></a></a>
-        <ul id="accounts-menu4" class="nav nav-list collapse">
+         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">2</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./listAllOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp全部订单</a></li>
             <li ><a href="./listPayOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp待发货订单</a></li>
         </ul>
@@ -123,7 +123,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <h1 class="page-title">Edit User</h1>
         </div>
                 <ul class="breadcrumb">
-            <li><a href="./Subbranch/Index.jsp">Home</a> <span class="divider">/</span></li>
             <li class="active">User</li>
         </ul>
 
@@ -144,20 +143,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
     <form id="tab">
-        <label>Username</label>
+        <label>用户名</label>
         <input type="text" value="${user.account }" class="input-xlarge">
         <label>分店ID</label>
-        <input type="text" value="${user.subbranchId }" class="input-xlarge">
-        <label>Email</label>
+        <input type="text" value="${subbranchname }" class="input-xlarge">
+        <label>邮编</label>
         <input type="text" value="${user.email }" class="input-xlarge">
-        <label>Tel</label>
+        <label>电话</label>
         <input type="text" value="${user.tel }" class="input-xlarge">
-        <label>Address</label>
-        <textarea value="Smith" rows="3" class="input-xlarge">
-2817 S 49th
-Apt 314
-
-        </textarea>
+      
     </form>
       </div>
       <div class="tab-pane fade" id="profile">

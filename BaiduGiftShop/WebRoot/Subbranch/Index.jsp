@@ -60,6 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul class="nav pull-right">
                     
                     <li><a href="javascript:void(0)" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
+                    <li><a href="javascript:void(0)" class="hidden-phone visible-tablet visible-desktop" role="button">${subbranchname }</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-user"></i> ${user.account }
@@ -71,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <li class="divider"></li>
                             <li><a  class="visible-phone" href="javascript:void(0)">Settings</a></li>
                             <li class="divider visible-phone"></li>
-                            <li><a tabindex="-1" href="./logout.action">Logout</a></li>
+                            <li><a tabindex="-1" href="./logout.action">退出</a></li>
                         </ul>
                     </li>
                     
@@ -82,27 +83,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 
     <div class="sidebar-nav">
-        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
-        <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li ><a href="./Subbranch/Index.jsp">Home</a></li>
-            <li ><a href="./Subbranch/reset-password.jsp">Rset Password</a></li>
-             <li ><a href="./Subbranch/user.jsp">Personal information</a></li>
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>首页</a>
+        <ul id="accounts-menu" class="nav nav-list collapse">
+            <li ><a href="./Subbranch/reset-password.jsp">&nbsp&nbsp&nbsp密码重置</a></li>
+             <li ><a href="./Subbranch/user.jsp">&nbsp&nbsp&nbsp个人信息</a></li>
         </ul>
 
-        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">1</span></a>
-        <ul id="accounts-menu" class="nav nav-list collapse">
+         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">1</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./subbranchClassify.action">&nbsp&nbsp&nbsp 绑定分类信息</a></li>
         </ul>
-        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">1</span></a>
-        <ul id="accounts-menu2" class="nav nav-list collapse">
+       <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">1</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./Subbranch/bundlBrief.jsp">&nbsp&nbsp&nbsp 绑定商品信息</a></li>
         </ul>
-        <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">1</span></a>
-        <ul id="accounts-menu3" class="nav nav-list collapse">
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">1</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./Subbranch/bundlDetail.jsp">&nbsp&nbsp&nbsp 分店绑定明细商品</a></li>
         </ul>
-        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">2</span></a></a>
-        <ul id="accounts-menu4" class="nav nav-list collapse">
+         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">2</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./listAllOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp全部订单</a></li>
             <li ><a href="./listPayOrders.action?subbranch_id=${user.subbranchId }">&nbsp&nbsp&nbsp待发货订单</a></li>
         </ul>

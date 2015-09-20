@@ -69,7 +69,9 @@ public class UserAction extends ActionSupport{
 		      session.setAttribute("user", acc);
 		      return SUCCESS;
 		   }else if(acc!=null&&acc.getSubbranchId()!=null){
-			  session.setAttribute("user", acc);
+			       String  subbranchname=  userService.getSubbranchName(acc.getSubbranchId());
+			       session.setAttribute("subbranchname", subbranchname);
+			       session.setAttribute("user", acc);
 		      return "subbranch";
 		   }else{
 			  return ERROR;

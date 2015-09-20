@@ -1,23 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<%-- 
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+--%>
+ <!-- 
+<base href="http://localhost:8080/baidugift/">
+
+${pageContext.request.contextPath}输出的是/baidugiftshop;有斜杠
+-->
+
+<base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
   <head>
-    <title>Baidu GiftShop</title>
+    <title>BaiduGiftShop</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-    
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-
-    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"> </script>
-
-    <style type="text/css">
+    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <!-- Demo page code -->
+  <style type="text/css">
   body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -27,11 +39,7 @@
   background-color: #ffffff;
 }
   
-  </style> 
-   
-
-    <!-- Demo page code -->
-
+  </style>  
     <style type="text/css">
         #line-chart {
             height:300px;
@@ -54,7 +62,6 @@
     <!--[if lt IE 9]>
       <script src="lib/html5.js"></script>
     <![endif]-->
-
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
@@ -62,7 +69,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
-
   <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
   <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
   <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
@@ -70,9 +76,8 @@
   <!--[if (gt IE 9)|!(IE)]><!--> 
   <body class=""> 
   <!--<![endif]-->
-    
     <div class="navbar">
-         <div class="navbar-inner">
+        <div class="navbar-inner">
                 <ul class="nav pull-right">
                     
                     <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
@@ -96,10 +101,7 @@
         </div>
     </div>
     
-
-
-    
-     <div class="sidebar-nav">
+    <div class="sidebar-nav">
         <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>首页</a>
         <ul id="accounts-menu" class="nav nav-list collapse">
                 <li ><a href="./getAllUser.action">&nbsp&nbsp&nbsp分店用户管理</a></li>
@@ -140,90 +142,32 @@
             <li ><a href="500.html">500 page</a></li>
             <li ><a href="503.html">503 page</a></li>
         </ul> -->
-         <a href="help.jsp" class="nav-header" ><i class="icon-question-sign"></i>帮助</a> 
+         <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>帮助</a> 
     </div>
-    
-
-    
-    <div class="content">
+<div class="content">
+        
         <div class="header">
-            <h1 class="page-title">用户管理</h1>
-        </div>
+            
+            <h1 class="page-title">Help</h1>
+             </div>
+        
                 <ul class="breadcrumb">
-            <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-            <li class="active">Users</li>
         </ul>
-
-        <div class="container-fluid">
-            <div class="row-fluid">
-                    
-<div class="btn-toolbar">
-    <a href="./sign-up.html"><button class="btn btn-primary"><i class="icon-plus"></i> 新建用户</button></a>
-  <div class="btn-group">
-  </div>
-</div>
-<div class="well">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>用户名</th>
-          <th>分店</th>
-          <th>邮箱</th>
-          <th>电话</th>
-          <th>操作</th>
-          <th style="width: 26px;"></th>
-        </tr>
-      </thead>
-      <s:iterator value="#request.list" id="list">
-      <tbody>
-        <tr>
-          <td><s:property value="#list.account" /></td>
-          <td><s:property value="#list.subbranchId" /></td>
-          <td><s:property value="#list.email" /></td>
-          <td><s:property value="#list.tel" /></td>
-          <td>
-          
-              <s:if test="#list.account != 'administor'">
-              <a href="javascript:if(confirm('确实要删除该内容吗?'))location='./deleteUser.action?aid=<s:property value="#list.id"/>'">删除</a>
-              </s:if>
-          </td>
-        </tr>
-      </tbody>
-      </s:iterator>
-    </table>
-</div>
-<div class="pagination">
-    <s:iterator value="#request.pageBean" id="pageBean">
-    <ul>
-        <li><a href="./getAllUser.action?page=<s:property value='pageBean.firstPage'/>">上一页</a></li>
-        <li><a href="./getAllUser.action?page=1">1</a></li>
-        <li><a href="./getAllUser.action?page=2">2</a></li>
-        <li><a href="">...</a></li>
-        <li><a href="./getAllUser.action?page=<s:property value='pageBean.nextPage'/>">下一页</a></li>
-        <li><a>共<s:property value="pageBean.allPage"/>页</a></li>
-    </ul>
-    </s:iterator>
-</div>
-
-<div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Delete Confirmation</h3>
-    </div>
-    <div class="modal-body">
-        <p class="error-text"><i class="icon-warning-sign modal-icon"></i>Are you sure you want to delete the user?</p>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-danger" data-dismiss="modal">Delete</button>
-    </div>
-</div>
-                    
+            <div class="block">
+                <p class="block-heading">帮助说明</p>
+                <div class="block-body">
+              <b>   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp你好,欢迎使用百度礼品店管理系统,本系统因有分店模块所以分两类用户(强烈建议下一版本不设分店),即超级管理员和分店管理员,超级管理员主要有上架商品和查看
+                                      所有订单信息两<hr>部分,上架商品前需对该商品进行分类,在增加分类信息模块进行增加分类信息,并可对分类信息进行增删改操作,在删除之前需解除分店绑定,否则删除不了,
+                                      正式添加商品前先确定该商品<hr>的商品编号,他是区分不同商品的唯一身份,增加商品的明细信息前必须添加该商品的对应的图片(务必先执行此操作),然后再录入商品的详细信息。
+                           <hr>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp分店用户主要进行商品与该店的绑定,即该店有此商品时就绑定该商品并添加该商品对应的数量。 
+                              <hr>一般不建议删除商品，因为用户 购买过该商品后，该商品的信息就会在用户的订单表中;所以你也删不了^^;
+                              <hr> *该系统存在浏览器兼容问题,请务必使用Chrome浏览器,否则您的任何操作可能无效,至此带来的损失有操作者承担;
+                                  
+                                      </b>
+                </div>
+                
             </div>
         </div>
-    </div>
-    
-
 
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">

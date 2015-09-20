@@ -53,4 +53,20 @@ public class OrderService implements IOrderService {
 		int firstResult = (pageBean.getCurrentPage()-1)*maxResult;
 		return orderdao.listPayOrder(firstResult,maxResult,subbranch_id);
 	}
+
+
+/**
+ * 显示所有分店的订单
+ */
+	@Override
+	public List<NewOrderBean> ListAllOrder(PageBean pageBean) {
+		OrderDAO orderdao = new OrderDAO();
+		List<NewOrderBean> list = orderdao.ListAllOrder();
+		int totalSize = list.size();
+		pageBean.setPerPage(10);
+		pageBean = pageBean.init(pageBean, totalSize);
+		int maxResult = pageBean.getPerPage();
+		int firstResult = (pageBean.getCurrentPage()-1)*maxResult;
+		return orderdao.ListAllOrder(firstResult,maxResult);
+	}
 }

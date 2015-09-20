@@ -21,7 +21,7 @@ public class DetailGoodsController {
 
 	@Autowired
 	@Qualifier("detailGoodsService")
-	private IDetailGoodsService detailGoodsService;
+	private IDetailGoodsService detailGoodsServices;
 	
 	/**
 	 * 显示明细商品列表
@@ -36,7 +36,7 @@ public class DetailGoodsController {
 			HttpServletRequest request,HttpServletResponse response){
 		Base base = new Base();
 		Integer goods_id = Integer.parseInt(request.getParameter("goods_id"));
-		base = detailGoodsService.getDetailGoods(subbranch_id, classify_id, goods_id);
+		base = detailGoodsServices.getDetailGoods(subbranch_id, classify_id, goods_id);
 		   
 		try {
 			    response.setContentType("text/javascript;charset=UTF-8");
@@ -59,7 +59,7 @@ public class DetailGoodsController {
 	public void QueryAmount(@RequestParam(value="subbranch_id",required=false) Integer subbranch_id,@RequestParam(value="goods_detail_id",required=false) Integer goods_detail_id,
 			HttpServletRequest request,HttpServletResponse response){
 		Base base = new Base();
-		base = detailGoodsService.queryAmount(goods_detail_id, subbranch_id);
+		base = detailGoodsServices.queryAmount(goods_detail_id, subbranch_id);
 		
 		try {
 		    response.setContentType("text/javascript;charset=UTF-8");

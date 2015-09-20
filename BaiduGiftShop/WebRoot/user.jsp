@@ -15,7 +15,17 @@
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
 
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-
+  <style type="text/css">
+  body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+}
+  
+  </style> 
     <!-- Demo page code -->
 
     <style type="text/css">
@@ -58,7 +68,7 @@
   <!--<![endif]-->
     
     <div class="navbar">
-        <div class="navbar-inner">
+          <div class="navbar-inner">
                 <ul class="nav pull-right">
                     
                     <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
@@ -73,12 +83,12 @@
                             <li class="divider"></li>
                             <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
                             <li class="divider visible-phone"></li>
-                            <li><a tabindex="-1" href="./logout.action">Logout</a></li>
+                            <li><a tabindex="-1" href="./logout.action">退出</a></li>
                         </ul>
                     </li>
                     
                 </ul>
-                <a class="brand" href="index.html"><span class="first">Your</span> <span class="second">Company</span></a>
+                <a class="brand" href="index.jsp"><span class="first">Baidu</span> <span class="second">ShiftShop</span></a>
         </div>
     </div>
     
@@ -86,36 +96,39 @@
 
     
      <div class="sidebar-nav">
-        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>
-        <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li ><a href="./index.jsp">Home</a></li>
-            <li ><a href="./getAllUser.action">User management</a></li>
-            <li ><a href="user.jsp">Personal information</a></li>
-        </ul>
-
-        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>分类信息<span class="label label-info">2</span></a>
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>首页</a>
         <ul id="accounts-menu" class="nav nav-list collapse">
+                <li ><a href="./getAllUser.action">&nbsp&nbsp&nbsp分店用户管理</a></li>
+            <li ><a href="user.jsp">&nbsp&nbsp&nbsp个人中心</a></li>
+            <li ><a href="sdkupload.jsp">&nbsp&nbsp&nbsp文件上传</a></li>
+        </ul>
+        <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>分类信息<span class="label label-info">2</span></a>
+        <ul id="accounts-menu" class="nav nav-list collapse in">
             <li ><a href="./goods.action">&nbsp&nbsp&nbsp增加分类信息</a></li>
             <li ><a href="./listallBrief.action">&nbsp&nbsp&nbsp查询分类信息</a></li>
         </ul>
         <a href="#accounts-menu2" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品信息<span class="label label-info">2</span></a>
-        <ul id="accounts-menu2" class="nav nav-list collapse">
+        <ul id="accounts-menu2" class="nav nav-list collapse in">
             <li ><a href="./briefGoods/addBriefGoods.jsp">&nbsp&nbsp&nbsp增加商品信息</a></li>
             <li ><a href="./queryAllBriefGoods.action">&nbsp&nbsp&nbsp查询商品信息</a></li>
         </ul>
-        <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>明细商品<span class="label label-info">3</span></a>
-        <ul id="accounts-menu3" class="nav nav-list collapse">
+        <a href="#accounts-menu3" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>商品明细<span class="label label-info">3</span></a>
+        <ul id="accounts-menu3" class="nav nav-list collapse in">
             <li ><a href="./DetailGoods/addDetailGoods.jsp">&nbsp&nbsp&nbsp增加明细信息</a></li>
             <li ><a href="./listallDetailGoods.action">&nbsp&nbsp&nbsp查询明细商品</a></li>
             <li ><a href="./DetailGoods/ModifyDetailGoods.jsp">&nbsp&nbsp&nbsp修改明细商品</a></li>
         </ul>
         <a href="#accounts-menu4" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>图片组别<span class="label label-info">3</span></a>
-        <ul id="accounts-menu4" class="nav nav-list collapse">
+        <ul id="accounts-menu4" class="nav nav-list collapse in">
             <li ><a href="./addPic.action">&nbsp&nbsp&nbsp增加一组图片</a></li>
             <li ><a href="./Picture/ShowPic.jsp">&nbsp&nbsp&nbsp查询一组图片</a></li>
             <li ><a href="./Picture/DeleteGroup.jsp">&nbsp&nbsp&nbsp删除一组图片</a></li>
         </ul>
-
+        
+ 	 <a href="#accounts-menu5" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>订单管理<span class="label label-info">1</span></a></a>
+        <ul id="accounts-menu5" class="nav nav-list collapse">
+            <li ><a href="./ListAllOrder.action">&nbsp&nbsp&nbsp全部订单</a></li>
+        </ul>
         <!-- <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
         <ul id="error-menu" class="nav nav-list collapse">
             <li ><a href="403.html">403 page</a></li>
@@ -123,8 +136,7 @@
             <li ><a href="500.html">500 page</a></li>
             <li ><a href="503.html">503 page</a></li>
         </ul> -->
-
-        <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
+         <a href="help.jsp" class="nav-header" ><i class="icon-question-sign"></i>帮助</a> 
     </div>
     
 
@@ -133,13 +145,10 @@
         
         <div class="header">
             
-            <h1 class="page-title">Edit User</h1>
         </div>
         
                 <ul class="breadcrumb">
-            <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
-            <li><a href="./getAllUser.action">Users</a> <span class="divider">/</span></li>
-            <li class="active">User</li>
+            <li>Users <span class="divider">/</span></li>
         </ul>
 
         <div class="container-fluid">
@@ -153,26 +162,21 @@
 </div> -->  
 <div class="well">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-      <li><a href="./reset-password.jsp">Password</a></li>
+      <li class="active"><a href="#home" data-toggle="tab">个人信息</a></li>
+      <li><a href="./reset-password.jsp">密码重置</a></li>
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
     <form id="tab">
-        <label>Username</label>
+        <label>用户名</label>
         <input type="text" value="${user.account }" class="input-xlarge">
         <label>分店ID</label>
         <input type="text" value="${user.subbranchId }" class="input-xlarge">
-        <label>Email</label>
+        <label>邮编</label>
         <input type="text" value="${user.email }" class="input-xlarge">
-        <label>Tel</label>
+        <label>电话</label>
         <input type="text" value="${user.tel }" class="input-xlarge">
-        <label>Address</label>
-        <textarea value="Smith" rows="3" class="input-xlarge">
-2817 S 49th
-Apt 314
-San Jose, CA 95101
-        </textarea>
+       
     </form>
       </div>
       <div class="tab-pane fade" id="profile">
