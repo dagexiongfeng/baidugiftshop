@@ -31,9 +31,9 @@ public class TranslateTimer {
         };
         if (scheduler.isShutdown()) {  
         	scheduler = Executors.newScheduledThreadPool(1);  
-            scheduler.scheduleAtFixedRate(task, 10, 600, TimeUnit.SECONDS);  
+            scheduler.scheduleAtFixedRate(task, 10, 10, TimeUnit.HOURS);  
         } else {  
-            scheduler.scheduleAtFixedRate(task, 10, 600, TimeUnit.SECONDS); // 延迟10秒，每隔10分钟翻译一次  
+            scheduler.scheduleAtFixedRate(task, 10, 10, TimeUnit.HOURS); // 延迟10秒，每隔10分钟翻译一次  
         }  
     }  
   

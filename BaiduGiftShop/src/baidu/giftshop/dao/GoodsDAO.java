@@ -49,11 +49,14 @@ public class GoodsDAO {
 	 */
 	public String queryclassify(){
 		Transaction tr = session.beginTransaction();
-		String sql ="select code from Classify where id=(select max(id) from Classify)";
+		String sql ="select max(id) from Classify";
 		Query q = session.createQuery(sql);
-		String code = (String) q.list().get(0);
+		Integer code =(Integer) q.uniqueResult();
 		tr.commit();
-		return code;
+		if(code==null){
+			return "0";
+		}
+		return code.toString();
 		}
 	/**
 	 * 增加一个分类信息

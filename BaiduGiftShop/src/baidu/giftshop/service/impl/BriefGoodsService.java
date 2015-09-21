@@ -236,4 +236,22 @@ public class BriefGoodsService implements IBriefGoodsService {
 			result = JSONObject.fromObject(base,jsonConfig).toString();
 			return result;
 	}
+
+public String querygoodsById(Integer Id){
+		
+		List<Object[]> list = briefGoodsDAO.querygoodsById(Id);
+		int totalSize = list.size();
+		
+		Base base = new Base();
+		base.setContent(list);
+		
+		JsonConfig jsonConfig = new JsonConfig();  
+		jsonConfig.setIgnoreDefaultExcludes(false); 
+		jsonConfig.setExcludes(new String[]{"goods"});
+		@SuppressWarnings("unused")
+		JSONObject jsonObject = new JSONObject();
+		result = JSONObject.fromObject(base,jsonConfig).toString();
+		return result;
+	}
+
 }

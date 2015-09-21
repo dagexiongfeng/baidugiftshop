@@ -23,5 +23,5 @@ public interface IBriefGoodsService {
 	public String checkGoodcode(String goodcode);
 	public List<GoodsPicture> querybriefgoodbygoodcode(PageBean pageBean,String goodcode);
 	public List<GoodsPicture> querybriefgoodbyproductType(PageBean pageBean,Integer productType);
-	
+	public String querygoodsById(Integer Id);
 }

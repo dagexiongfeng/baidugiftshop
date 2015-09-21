@@ -46,7 +46,7 @@ public class AddPicGroupDAO {
     public String upload(File pic,String picFileName,String groupId,String picGroupName){  
     	
     	String name = picFileName.substring(picFileName.lastIndexOf(".")); // 得到后缀名
-    	if (name.equals(".jpg") || name.equals(".gif") || name.equals(".png")|| name.equals(".jpeg")) { 
+    	if (name.equals(".jpg") || name.equals(".gif") || name.equals(".png")|| name.equals(".jpeg")||name.equals(".JPG")) { 
     		 try {
 				String path = ServletActionContext.getServletContext().getRealPath("");
 				String realpath = path.substring(0, path.lastIndexOf("\\"))+"\\Original";

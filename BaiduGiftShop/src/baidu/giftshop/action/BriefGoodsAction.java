@@ -207,7 +207,22 @@ public class BriefGoodsAction extends ActionSupport{
 		            out.flush();
 		return null;
 	}
-	
+	/**
+	 * 不分页查询
+	 * @return
+	 * @throws Exception
+	 */
+	public String quegoodsById() throws Exception{
+		
+		result = briefGoodsService.querygoodsById(Id);
+
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();   
+		            out.print(result);  
+		            out.flush();
+		return null;
+	}
 	/**
 	 * 根据分类的ID，分店的ID，得到概要商品的信息
 	 * @return
