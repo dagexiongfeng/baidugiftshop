@@ -67,7 +67,7 @@ public class BriefGoodsController {
 		Integer startIndex = Integer.parseInt(request.getParameter("startIndex"));
 		Integer requestAmount = Integer.parseInt(request.getParameter("requestAmount"));
 		String name = request.getParameter("name");
-		name = new String(name.getBytes("iso8859-1"),"utf-8");
+	//	name = new String(name.getBytes("iso8859-1"),"utf-8");
 		if(classify_id!=null){
 		   base = briefGoodsService.queryBriefGoods(subbranch_id, classify_id,startIndex, requestAmount, name);
 		}else{
@@ -81,7 +81,12 @@ public class BriefGoodsController {
 			e.printStackTrace();
 		    }
 		}
-	
+	/**
+	 * 热门商品查询
+	 * @param subbranch_id
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping("/HotGoodsList")
 	public void HotGoodsList(@RequestParam(value="subbranch_id",required=false) Integer subbranch_id,
 			HttpServletRequest request,HttpServletResponse response){
@@ -97,6 +102,12 @@ public class BriefGoodsController {
 			e.printStackTrace();
 		    }
 		}
+	/**
+	 * 新品查询
+	 * @param subbranch_id
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping("/NewGoodsList")
 	public void NewGoodsList(@RequestParam(value="subbranch_id",required=false) Integer subbranch_id,
 			HttpServletRequest request,HttpServletResponse response){

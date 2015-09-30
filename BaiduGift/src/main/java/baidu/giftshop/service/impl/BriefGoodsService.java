@@ -184,7 +184,7 @@ public class BriefGoodsService implements IBriefGoodsService {
 		  base.setCode(101);
 		return base;
 	}
-
+//新品查询
 	@Override
 	public Base getNewGoods(Integer subbranch_id, Integer startIndex,Integer requestAmount) {
 		List<Goods> list = goodsDao.selectNewGoods(subbranch_id, startIndex, requestAmount);
