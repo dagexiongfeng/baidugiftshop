@@ -98,7 +98,12 @@ public class AddressController {
 			e.printStackTrace();
 	     }
 	}
-	
+	/**
+	 * 根据地址id查询地址信息
+	 * @param addressid
+	 * @param response
+	 * @throws Exception
+	 */
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/QueryAddressById")
 	public void QueryAddressById(@RequestParam(value="addressid",required=false) Integer addressid,

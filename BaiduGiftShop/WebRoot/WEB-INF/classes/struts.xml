@@ -226,7 +226,7 @@
 		<action name="listDetailBysubgood" class="baidu.giftshop.action.DetailGoodsAction" method="listDetailBysubgood"></action>
 		<!-- 百度sdk上传 -->
 		<action name="uploadsdk" class="baidu.giftshop.action.baiduSdkupload"  method="uploadsdk">
-			    <result>/403.html</result>
+			    <result>/sdkuploadsuccess.jsp</result>
 		 	  <interceptor-ref name="fileUpload">
                 <param name="maximumSize">52428800</param> 
             </interceptor-ref>

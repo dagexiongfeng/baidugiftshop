@@ -103,6 +103,7 @@ public class BaiduPayController {
 	 * @return
 	 * @throws IOException
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ResponseBody
 	@RequestMapping("/getOrderStatus")
 	public Object getOrderStatus(HttpServletRequest request) throws IOException{

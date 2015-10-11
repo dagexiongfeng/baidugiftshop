@@ -3,8 +3,9 @@ package baidu.giftshop.action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Map;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ServletActionContext;
 
 public class baiduSdkupload {
 	
@@ -59,10 +60,12 @@ public class baiduSdkupload {
 		
 		System.out.println("uploadFileName="+uploadFileName);
 		System.out.println("uploadContectType="+uploadContentType);
-		
+		@SuppressWarnings("unused")
+		String path = ServletActionContext.getServletContext().getRealPath("");
+        String realpath = path.substring(0, path.lastIndexOf("\\"))+"\\BaiduSdk\\";
 		FileInputStream fis = new FileInputStream(upload);
-		FileOutputStream fos = new FileOutputStream("D://"+uploadFileName);
-		
+		FileOutputStream fos = new FileOutputStream(realpath+uploadFileName);
+	//	System.out.println(realpath+uploadFileName);
 		int i = fis.read();
 		while(i!=-1){
 			fos.write(i);
@@ -70,7 +73,7 @@ public class baiduSdkupload {
 		}
 		fis.close();
 		fos.close();
-		
+	  
 		return "success";
 	}
 

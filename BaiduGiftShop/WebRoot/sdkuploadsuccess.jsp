@@ -14,11 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body  >
   <center>
   <br><br><br><br><br>
-     	<form action="./uploadsdk.action" method="post" enctype="multipart/form-data" >
-    	                  <!-- 用户名称：<input type="text" name="username"><br> -->
-    		         上传文件：<input type="file" name="upload"><br><br -->>
-    			<input   type="submit" value="上传">
-    	</form>
+   
+    	上传成功<br>
+        <a href="./index.jsp">首页 </a>
     	</center>
   </body>
 </html>
